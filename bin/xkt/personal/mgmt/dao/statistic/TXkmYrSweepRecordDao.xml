@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.statistic.TXkmYrSweepRecordDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TXkmYrSweepRecord" >
+    <result column="report_date" property="reportDate" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="arrive_wx_date" property="arriveWxDate" jdbcType="VARCHAR" />
+    <result column="departure_addr" property="departureAddr" jdbcType="VARCHAR" />
+    <result column="household_name" property="householdName" jdbcType="VARCHAR" />
+    <result column="current_district" property="currentDistrict" jdbcType="VARCHAR" />
+    <result column="current_street" property="currentStreet" jdbcType="VARCHAR" />
+    <result column="current_community" property="currentCommunity" jdbcType="VARCHAR" />
+    <result column="live_address" property="liveAddress" jdbcType="VARCHAR" />
+    <result column="paas_addr_name" property="paasAddrName" jdbcType="VARCHAR" />
+    <result column="is_healthy" property="isHealthy" jdbcType="VARCHAR" />
+    <result column="community_flag" property="communityFlag" jdbcType="VARCHAR" />
+    <result column="check_person" property="checkPerson" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="comm_district" property="commDistrict" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="sweep_time" property="sweepTime" jdbcType="VARCHAR" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    report_date, cert_code, user_name, phone, arrive_wx_date, departure_addr, household_name, 
+    current_district, current_street, current_community, live_address, paas_addr_name, 
+    is_healthy, community_flag, check_person, community_code, community_name, comm_district, 
+    create_time, sweep_time, data_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TXkmYrSweepRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_xkm_yr_sweep_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TXkmYrSweepRecordExample" >
+    delete from t_xkm_yr_sweep_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TXkmYrSweepRecord" >
+    insert into t_xkm_yr_sweep_record (report_date, cert_code, user_name, 
+      phone, arrive_wx_date, departure_addr, 
+      household_name, current_district, current_street, 
+      current_community, live_address, paas_addr_name, 
+      is_healthy, community_flag, check_person, 
+      community_code, community_name, comm_district, 
+      create_time, sweep_time, data_type
+      )
+    values (#{reportDate,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{arriveWxDate,jdbcType=VARCHAR}, #{departureAddr,jdbcType=VARCHAR}, 
+      #{householdName,jdbcType=VARCHAR}, #{currentDistrict,jdbcType=VARCHAR}, #{currentStreet,jdbcType=VARCHAR}, 
+      #{currentCommunity,jdbcType=VARCHAR}, #{liveAddress,jdbcType=VARCHAR}, #{paasAddrName,jdbcType=VARCHAR}, 
+      #{isHealthy,jdbcType=VARCHAR}, #{communityFlag,jdbcType=VARCHAR}, #{checkPerson,jdbcType=VARCHAR}, 
+      #{communityCode,jdbcType=VARCHAR}, #{communityName,jdbcType=VARCHAR}, #{commDistrict,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{sweepTime,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TXkmYrSweepRecord" >
+    insert into t_xkm_yr_sweep_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportDate != null" >
+        report_date,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="arriveWxDate != null" >
+        arrive_wx_date,
+      </if>
+      <if test="departureAddr != null" >
+        departure_addr,
+      </if>
+      <if test="householdName != null" >
+        household_name,
+      </if>
+      <if test="currentDistrict != null" >
+        current_district,
+      </if>
+      <if test="currentStreet != null" >
+        current_street,
+      </if>
+      <if test="currentCommunity != null" >
+        current_community,
+      </if>
+      <if test="liveAddress != null" >
+        live_address,
+      </if>
+      <if test="paasAddrName != null" >
+        paas_addr_name,
+      </if>
+      <if test="isHealthy != null" >
+        is_healthy,
+      </if>
+      <if test="communityFlag != null" >
+        community_flag,
+      </if>
+      <if test="checkPerson != null" >
+        check_person,
+      </if>
+      <if test="communityCode != null" >
+        community_code,
+      </if>
+      <if test="communityName != null" >
+        community_name,
+      </if>
+      <if test="commDistrict != null" >
+        comm_district,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="sweepTime != null" >
+        sweep_time,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportDate != null" >
+        #{reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxDate != null" >
+        #{arriveWxDate,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAddr != null" >
+        #{departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="householdName != null" >
+        #{householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="currentDistrict != null" >
+        #{currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStreet != null" >
+        #{currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCommunity != null" >
+        #{currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null" >
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="paasAddrName != null" >
+        #{paasAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealthy != null" >
+        #{isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="communityFlag != null" >
+        #{communityFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="checkPerson != null" >
+        #{checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commDistrict != null" >
+        #{commDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sweepTime != null" >
+        #{sweepTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TXkmYrSweepRecordExample" resultType="java.lang.Integer" >
+    select count(*) from t_xkm_yr_sweep_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_xkm_yr_sweep_record
+    <set >
+      <if test="record.reportDate != null" >
+        report_date = #{record.reportDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCode != null" >
+        cert_code = #{record.certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveWxDate != null" >
+        arrive_wx_date = #{record.arriveWxDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureAddr != null" >
+        departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdName != null" >
+        household_name = #{record.householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentDistrict != null" >
+        current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentStreet != null" >
+        current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentCommunity != null" >
+        current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveAddress != null" >
+        live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paasAddrName != null" >
+        paas_addr_name = #{record.paasAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHealthy != null" >
+        is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityFlag != null" >
+        community_flag = #{record.communityFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkPerson != null" >
+        check_person = #{record.checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityCode != null" >
+        community_code = #{record.communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityName != null" >
+        community_name = #{record.communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commDistrict != null" >
+        comm_district = #{record.commDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sweepTime != null" >
+        sweep_time = #{record.sweepTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataType != null" >
+        data_type = #{record.dataType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_xkm_yr_sweep_record
+    set report_date = #{record.reportDate,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      arrive_wx_date = #{record.arriveWxDate,jdbcType=VARCHAR},
+      departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      household_name = #{record.householdName,jdbcType=VARCHAR},
+      current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      paas_addr_name = #{record.paasAddrName,jdbcType=VARCHAR},
+      is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      community_flag = #{record.communityFlag,jdbcType=VARCHAR},
+      check_person = #{record.checkPerson,jdbcType=VARCHAR},
+      community_code = #{record.communityCode,jdbcType=VARCHAR},
+      community_name = #{record.communityName,jdbcType=VARCHAR},
+      comm_district = #{record.commDistrict,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      sweep_time = #{record.sweepTime,jdbcType=VARCHAR},
+      data_type = #{record.dataType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="queryYrSweepRecord" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		report_date reportDate, 
+  		cert_code certCode, 
+  		user_name userName, 
+  		phone, 
+  		arrive_wx_date arriveWxDate, 
+  		departure_addr departureAddr, 
+  		household_name householdName, 
+	    current_district currentDistrict, 
+	    current_street currentStreet, 
+	    current_community currentCommunity, 
+	    live_address liveAddress, 
+	    paas_addr_name paasAddrName, 
+	    is_healthy isHealthy, 
+	    community_flag communityFlag, 
+	    check_person checkPerson, 
+	    community_code communityCode, 
+	    community_name communityName, 
+	    comm_district commDistrict, 
+	    create_time createTime, 
+	    sweep_time sweepTime, 
+	    data_type dataType
+	from 
+		t_xkm_yr_sweep_record
+	where 
+		data_type=#{dataType,jdbcType=VARCHAR}
+	<if test="userName != null">
+			AND user_name like concat('%',#{userName,jdbcType=VARCHAR},'%') 
+	</if>
+	<if test="phone !=null">
+			And  phone = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="certCode !=null">
+			And  cert_code = #{certCode,jdbcType=VARCHAR}
+	</if>
+	<if test="checkPerson !=null">
+			And  check_person = #{checkPerson,jdbcType=VARCHAR}
+	</if>
+  	<if test="startTime != null">
+			AND sweep_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	</if>
+	<if test="endTime != null">
+			AND sweep_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	</if>
+	order by sweep_time desc
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  <select id="countYrSweepRecord" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	select 
+  		count(1)
+	from 
+		t_xkm_yr_sweep_record
+	where 
+		data_type=#{dataType,jdbcType=VARCHAR}
+	<if test="userName != null">
+			AND user_name like concat('%',#{userName,jdbcType=VARCHAR},'%') 
+	</if>
+	<if test="phone !=null">
+			And  phone = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="certCode !=null">
+			And  cert_code = #{certCode,jdbcType=VARCHAR}
+	</if>
+	<if test="checkPerson !=null">
+			And  check_person = #{checkPerson,jdbcType=VARCHAR}
+	</if>
+  	<if test="startTime != null">
+			AND sweep_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	</if>
+	<if test="endTime != null">
+			AND sweep_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	</if>
+	
+  </select>
+</mapper>

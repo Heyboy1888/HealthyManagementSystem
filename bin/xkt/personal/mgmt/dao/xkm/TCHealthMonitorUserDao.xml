@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthMonitorUserDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthMonitorUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cert_code_secret" property="certCodeSecret" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cert_code_secret, user_type, create_time, update_time, district_code, district_name, 
+    flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_monitor_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_health_monitor_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_health_monitor_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUserExample" >
+    delete from t_c_health_monitor_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUser" >
+    insert into t_c_health_monitor_user (id, cert_code_secret, user_type, 
+      create_time, update_time, district_code, 
+      district_name, flag)
+    values (#{id,jdbcType=VARCHAR}, #{certCodeSecret,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{districtCode,jdbcType=VARCHAR}, 
+      #{districtName,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUser" >
+    insert into t_c_health_monitor_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="certCodeSecret != null" >
+        cert_code_secret,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="districtName != null" >
+        district_name,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="certCodeSecret != null" >
+        #{certCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null" >
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUserExample" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_monitor_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_monitor_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCodeSecret != null" >
+        cert_code_secret = #{record.certCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.districtCode != null" >
+        district_code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtName != null" >
+        district_name = #{record.districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_monitor_user
+    set id = #{record.id,jdbcType=VARCHAR},
+      cert_code_secret = #{record.certCodeSecret,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      district_name = #{record.districtName,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUser" >
+    update t_c_health_monitor_user
+    <set >
+      <if test="certCodeSecret != null" >
+        cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="districtCode != null" >
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null" >
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthMonitorUser" >
+    update t_c_health_monitor_user
+    set cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      district_name = #{districtName,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="queryMonitorUser" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		id, 
+  		cert_code_secret certCodeSecret, 
+  		user_type userType, 
+  		create_time createTime, 
+  		update_time updateTime, 
+  		district_code districtCode, 
+  		district_name districtName, 
+  		flag
+  	from 
+  		t_c_health_monitor_user
+  	<where>
+  		<if test="flag">
+  			and flag = #{flag,jdbcType=CHAR}
+  		</if>
+  		<if test="certCodeSecret">
+  			and cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR}
+  		</if>
+  		<if test="userType">
+  		 	AND user_type like concat('%',#{userType,jdbcType=VARCHAR},'%') 
+  		</if>
+  		<if test="districtCode">
+  			and district_code=#{districtCode,jdbcType=VARCHAR}
+  		</if>
+  	</where>
+  		ORDER BY
+		create_time desc
+		LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  <select id="countMonitorUser" parameterType="java.util.Map" resultType="int">
+  	select 
+  		count(1)
+  	from 
+  		t_c_health_monitor_user
+  	<where>
+  		<if test="flag">
+  			and flag = #{flag,jdbcType=CHAR}
+  		</if>
+  		<if test="certCodeSecret">
+  			and cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR}
+  		</if>
+  		<if test="userType">
+  		 	AND user_type like concat('%',#{userType,jdbcType=VARCHAR},'%') 
+  		</if>
+  		<if test="districtCode">
+  			and district_code=#{districtCode,jdbcType=VARCHAR}
+  		</if>
+  	</where>
+  </select>
+</mapper>

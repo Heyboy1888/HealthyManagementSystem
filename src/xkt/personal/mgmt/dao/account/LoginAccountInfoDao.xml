@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.account.LoginAccountInfoDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.web.vo.LoginAccountInfoVo" >
+    <id column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="org_no" property="districtCode" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="staff_id" property="staffId" jdbcType="VARCHAR" />
+    <result column="staff_name" property="staffName" jdbcType="VARCHAR" />
+    <result column="staff_identity_card" property="staffIdentityCard" jdbcType="VARCHAR" />
+    <result column="staff_mobile" property="staffMobile" jdbcType="VARCHAR" />
+    <result column="account_createdate" property="accountCreateDate" jdbcType="TIMESTAMP" />
+    <result column="is_mainaccount" property="isMainAccount" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="queryCondition">
+  			<if test="districtCode != '' and districtCode != null">
+				and s.org_no=#{districtCode,jdbcType=VARCHAR}
+			</if>
+			<if test="accountName != '' and accountName != null">
+				and a.account_name=#{accountName,jdbcType=VARCHAR}
+			</if>
+			<if test="staffName != '' and staffName != null">
+				and s.staff_name=#{staffName,jdbcType=VARCHAR}
+			</if>
+			<if test="staffIdentityCard != '' and staffIdentityCard != null">
+				and s.staff_identity_card=#{staffIdentityCard,jdbcType=VARCHAR}
+			</if>
+			<if test="staffMobile != '' and staffMobile != null">
+				and s.staff_mobile=#{staffMobile,jdbcType=VARCHAR}
+			</if>
+			<if test="createTimeFrom != '' and createTimeFrom != null">
+		 		AND a.account_createdate <![CDATA[>=]]> to_date(#{createTimeFrom},'YYYY-MM-DD')
+		 	</if>
+		 	<if test="createTimeTo != '' and createTimeTo != null">
+		 		AND a.account_createdate <![CDATA[<=]]> to_date(#{createTimeTo},'YYYY-MM-DD')
+		 	</if>
+  </sql>
+  <select id="selectByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+  			select 	(@i:=@i+1) id,
+  					a.account_id,
+  					a.ACCOUNT_NAME,
+  					a.ACCOUNT_CREATEDATE,
+					 a.is_mainaccount,
+  					 s.ORG_NO,
+					 s.staff_id,
+					 s.STAFF_NAME,
+					 s.STAFF_IDENTITY_CARD,
+					 s.STAFF_MOBILE
+			from pf_account a,pf_staff s,(select @i:=0)j
+			where a.STAFF_ID = s.STAFF_ID
+			<include refid="queryCondition"/>
+		LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  <select id="queryCount" parameterType="java.util.Map" resultType="int">
+  		select count(1)
+  		from pf_account a,pf_staff s
+		where a.STAFF_ID = s.STAFF_ID
+		<include refid="queryCondition"/>
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="String" resultMap="BaseResultMap" >
+		  		select a.account_id,
+		  				a.is_mainaccount,
+					 a.ACCOUNT_NAME,
+					 s.staff_id,
+					 s.STAFF_NAME,
+					 s.ORG_NO,
+					 s.STAFF_IDENTITY_CARD,
+					 s.STAFF_MOBILE
+					 
+			from pf_account a,pf_staff s
+			where a.STAFF_ID = s.STAFF_ID
+				and a.account_id=#{accountId}
+  </select>
+  <!--
+  <delete id="deleteByPrimaryKey">
+  	delete from pf_account where account_id = #{accountId}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.web.vo.LoginAccountInfoVo">
+		UPDATE pf_account a,pf_staff
+		<set>
+			<if test="districtCode!=null">
+				s.org_no = #{districtCode}
+			</if>
+			<if test="accountName!=null">
+			  	a.account_name = #{accountName},
+			</if>
+			<if test="staffName!=null">
+			  	s.staff_name = #{staffName},
+			</if>
+			<if test="staffIdentityCard!=null">
+			 	s.staff_identity_card = #{staffIdentityCard},
+			</if>
+			<if test="staffMobile!=null">
+			  	s.staff_mobile = #{staffMobile},
+			</if>
+			<if test="isMainAccount!=null">
+			  	a.is_mainaccount = #{isMainAccount}
+			</if>
+		</set>
+		where a.staff_id=s.staff_id and a.account_id=#{accountId}
+	</update>
+	
+	<insert id="insertStaff" parameterType="xkt.personal.mgmt.web.vo.LoginAccountInfoVo">
+		insert into pf_staff(staff_id,staff_name,STAFF_IDENTITY_CARD,staff_mobile,org_no) 
+		values(#{staffId},#{staffName},#{staffIdentityCard},#{staffMobile},#{orgNo})
+	</insert>
+  	
+  	<insert id="insertAccount" parameterType="xkt.personal.mgmt.web.vo.LoginAccountInfoVo">
+  		insert into pf_account(account_id,account_name,is_mainaccount)
+  		values(#{accountId},#{accountName},#{isMainAccount})
+  	</insert> -->
+</mapper>

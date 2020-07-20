@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthCompanySweepRecordMapper" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthCompanySweepRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_sub_id" property="companySubId" jdbcType="VARCHAR" />
+    <result column="is_health" property="isHealth" jdbcType="CHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, open_id, cert_code, real_name, company_id, is_health, longitude, latitude, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecordCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_company_sweep_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_health_company_sweep_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_health_company_sweep_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecordCriteria" >
+    delete from t_c_health_company_sweep_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecord" >
+    insert into t_c_health_company_sweep_record (id, open_id, cert_code, 
+      real_name, company_id, is_health, 
+      longitude, latitude, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{isHealth,jdbcType=CHAR}, 
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecord" >
+    insert into t_c_health_company_sweep_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="isHealth != null" >
+        is_health,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealth != null" >
+        #{isHealth,jdbcType=CHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecordCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_company_sweep_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_company_sweep_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openId != null" >
+        open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCode != null" >
+        cert_code = #{record.certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHealth != null" >
+        is_health = #{record.isHealth,jdbcType=CHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_company_sweep_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      open_id = #{record.openId,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      is_health = #{record.isHealth,jdbcType=CHAR},
+      longitude = #{record.longitude,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecord" >
+    update t_c_health_company_sweep_record
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        cert_code = #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealth != null" >
+        is_health = #{isHealth,jdbcType=CHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySweepRecord" >
+    update t_c_health_company_sweep_record
+    set open_id = #{openId,jdbcType=VARCHAR},
+      cert_code = #{certCode,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      is_health = #{isHealth,jdbcType=CHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectRecordByCertCode" parameterType="java.util.Map" resultType="java.util.HashMap">
+   	SELECT
+	c.*,d.*,e.company_sub_name
+	FROM
+	( SELECT * FROM t_c_health_company_sweep_record a 
+	WHERE a.cert_code = #{certCode,jdbcType=VARCHAR}
+			<if test="startTime != null">
+				AND a.create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND a.create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+	UNION ALL 
+	SELECT * FROM t_c_health_company_sweep_rec_his b 
+	WHERE b.cert_code = #{certCode,jdbcType=VARCHAR}
+			<if test="startTime != null">
+				AND b.create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND b.create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+	 ) c
+	LEFT JOIN t_c_health_company_info d 
+	ON c.company_id = d.id
+	left join t_c_health_company_sub e 
+	on c.company_sub_id=e.id
+	order by c.create_time desc
+    LIMIT
+	${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  <select id="countRecordByCertCode" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	SELECT
+	count(1)
+	FROM
+	( SELECT * FROM t_c_health_company_sweep_record a 
+	WHERE a.cert_code = #{certCode,jdbcType=VARCHAR}
+			<if test="startTime != null">
+				AND a.create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND a.create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+	UNION ALL 
+	SELECT * FROM t_c_health_company_sweep_rec_his b 
+	WHERE b.cert_code = #{certCode,jdbcType=VARCHAR} 
+			<if test="startTime != null">
+				AND b.create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND b.create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+	) c
+	LEFT JOIN t_c_health_company_info d 
+	ON c.company_id = d.id
+  </select>
+  <resultMap id="personalScan" type="java.util.Map" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_sub_id" property="companySubId" jdbcType="VARCHAR" />
+     <result column="company_sub_name" property="companySubName" jdbcType="VARCHAR" />
+    <result column="is_health" property="isHealth" jdbcType="CHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectPersonalScanByCompanyIdScanDate" parameterType="java.util.Map"
+		resultMap="personalScan">
+	 SELECT
+		a.cert_code,
+		a.real_name,
+		a.company_id,
+		a.is_health,
+		a.company_sub_id,
+		a.longitude,
+		a.latitude,
+		a.create_time,
+		a.update_time,
+		s.company_sub_name
+	FROM
+		t_c_health_company_sweep_record  a
+		left join t_c_health_company_sub s on a.company_sub_id=s.id
+	WHERE
+			a.company_id = #{companyId,jdbcType=VARCHAR}
+		AND date( a.create_time ) = #{scanDate,jdbcType=VARCHAR}
+		<if test="companySubId != null and companySubId != ''" >
+		 	and a.company_sub_id = #{companySubId,jdbcType=VARCHAR}
+		 </if>
+    UNION ALL
+	SELECT
+		b.cert_code,
+		b.real_name,
+		b.company_id,
+		b.is_health,
+		b.company_sub_id,
+		b.longitude,
+		b.latitude,
+		b.create_time,
+		b.update_time,
+		s.company_sub_name
+	FROM
+		t_c_health_company_sweep_rec_his b
+		left join t_c_health_company_sub s on b.company_sub_id=s.id
+	WHERE
+			b.company_id = #{companyId,jdbcType=VARCHAR}
+		AND date( b.create_time ) = #{scanDate,jdbcType=VARCHAR}
+		 <if test="companySubId != null and companySubId != ''" >
+		 	and b.company_sub_id = #{companySubId,jdbcType=VARCHAR}
+		 </if>
+	ORDER BY
+		create_time desc
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  <select id="countPersonalScanByCompanyIdScanDate" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+	SELECT
+		count( id ) 
+	FROM
+		(
+		SELECT
+			id 
+		FROM
+			t_c_health_company_sweep_record 
+		WHERE
+			company_id = #{companyId,jdbcType=VARCHAR}
+		AND date( create_time ) = #{scanDate,jdbcType=VARCHAR}
+		<if test="companySubId != null and companySubId != '' and companySubId != 'null'" >
+		 	and company_sub_id = #{companySubId,jdbcType=VARCHAR}
+		 </if>
+		UNION ALL
+		SELECT
+			id 
+		FROM
+			t_c_health_company_sweep_rec_his 
+		WHERE
+			company_id = #{companyId,jdbcType=VARCHAR}
+		AND date( create_time ) = #{scanDate,jdbcType=VARCHAR}
+		<if test="companySubId != null and companySubId != '' and companySubId != 'null'" >
+		 	and company_sub_id = #{companySubId,jdbcType=VARCHAR}
+		 </if>
+		) zz
+  </select>
+</mapper>

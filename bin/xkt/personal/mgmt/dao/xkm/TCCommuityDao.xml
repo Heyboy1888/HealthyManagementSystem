@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCCommuityDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCCommuity" >
+    <id column="COMMUITY_ID" property="commuityId" jdbcType="VARCHAR" />
+    <result column="CMMTY_TYPE" property="cmmtyType" jdbcType="VARCHAR" />
+    <result column="COMMUITY_NO" property="commuityNo" jdbcType="VARCHAR" />
+    <result column="COMMUITY_NAME" property="commuityName" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+    <result column="STREET_CODE" property="streetCode" jdbcType="VARCHAR" />
+    <result column="VILLAGE_CODE" property="villageCode" jdbcType="VARCHAR" />
+    <result column="ROAD_CODE" property="roadCode" jdbcType="VARCHAR" />
+    <result column="COMMUITY_ADDR" property="commuityAddr" jdbcType="VARCHAR" />
+    <result column="ORG_NO" property="orgNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    COMMUITY_ID, CMMTY_TYPE, COMMUITY_NO, COMMUITY_NAME, PROVINCE_CODE, CITY_CODE, COUNTY_CODE, 
+    STREET_CODE, VILLAGE_CODE, ROAD_CODE, COMMUITY_ADDR, ORG_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCCommuityCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_commuity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_commuity
+    where COMMUITY_ID = #{commuityId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_commuity
+    where COMMUITY_ID = #{commuityId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCCommuityCriteria" >
+    delete from t_c_commuity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCCommuity" >
+    insert into t_c_commuity (COMMUITY_ID, CMMTY_TYPE, COMMUITY_NO, 
+      COMMUITY_NAME, PROVINCE_CODE, CITY_CODE, 
+      COUNTY_CODE, STREET_CODE, VILLAGE_CODE, 
+      ROAD_CODE, COMMUITY_ADDR, ORG_NO
+      )
+    values (#{commuityId,jdbcType=VARCHAR}, #{cmmtyType,jdbcType=VARCHAR}, #{commuityNo,jdbcType=VARCHAR}, 
+      #{commuityName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{streetCode,jdbcType=VARCHAR}, #{villageCode,jdbcType=VARCHAR}, 
+      #{roadCode,jdbcType=VARCHAR}, #{commuityAddr,jdbcType=VARCHAR}, #{orgNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCCommuity" >
+    insert into t_c_commuity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commuityId != null" >
+        COMMUITY_ID,
+      </if>
+      <if test="cmmtyType != null" >
+        CMMTY_TYPE,
+      </if>
+      <if test="commuityNo != null" >
+        COMMUITY_NO,
+      </if>
+      <if test="commuityName != null" >
+        COMMUITY_NAME,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+      <if test="streetCode != null" >
+        STREET_CODE,
+      </if>
+      <if test="villageCode != null" >
+        VILLAGE_CODE,
+      </if>
+      <if test="roadCode != null" >
+        ROAD_CODE,
+      </if>
+      <if test="commuityAddr != null" >
+        COMMUITY_ADDR,
+      </if>
+      <if test="orgNo != null" >
+        ORG_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commuityId != null" >
+        #{commuityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmmtyType != null" >
+        #{cmmtyType,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityNo != null" >
+        #{commuityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityName != null" >
+        #{commuityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="streetCode != null" >
+        #{streetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null" >
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roadCode != null" >
+        #{roadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityAddr != null" >
+        #{commuityAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null" >
+        #{orgNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCCommuityCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_c_commuity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_commuity
+    <set >
+      <if test="record.commuityId != null" >
+        COMMUITY_ID = #{record.commuityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmmtyType != null" >
+        CMMTY_TYPE = #{record.cmmtyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commuityNo != null" >
+        COMMUITY_NO = #{record.commuityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commuityName != null" >
+        COMMUITY_NAME = #{record.commuityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyCode != null" >
+        COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.streetCode != null" >
+        STREET_CODE = #{record.streetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.villageCode != null" >
+        VILLAGE_CODE = #{record.villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roadCode != null" >
+        ROAD_CODE = #{record.roadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commuityAddr != null" >
+        COMMUITY_ADDR = #{record.commuityAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgNo != null" >
+        ORG_NO = #{record.orgNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_commuity
+    set COMMUITY_ID = #{record.commuityId,jdbcType=VARCHAR},
+      CMMTY_TYPE = #{record.cmmtyType,jdbcType=VARCHAR},
+      COMMUITY_NO = #{record.commuityNo,jdbcType=VARCHAR},
+      COMMUITY_NAME = #{record.commuityName,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      STREET_CODE = #{record.streetCode,jdbcType=VARCHAR},
+      VILLAGE_CODE = #{record.villageCode,jdbcType=VARCHAR},
+      ROAD_CODE = #{record.roadCode,jdbcType=VARCHAR},
+      COMMUITY_ADDR = #{record.commuityAddr,jdbcType=VARCHAR},
+      ORG_NO = #{record.orgNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCCommuity" >
+    update t_c_commuity
+    <set >
+      <if test="cmmtyType != null" >
+        CMMTY_TYPE = #{cmmtyType,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityNo != null" >
+        COMMUITY_NO = #{commuityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityName != null" >
+        COMMUITY_NAME = #{commuityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="streetCode != null" >
+        STREET_CODE = #{streetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null" >
+        VILLAGE_CODE = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roadCode != null" >
+        ROAD_CODE = #{roadCode,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityAddr != null" >
+        COMMUITY_ADDR = #{commuityAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNo != null" >
+        ORG_NO = #{orgNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMMUITY_ID = #{commuityId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCCommuity" >
+    update t_c_commuity
+    set CMMTY_TYPE = #{cmmtyType,jdbcType=VARCHAR},
+      COMMUITY_NO = #{commuityNo,jdbcType=VARCHAR},
+      COMMUITY_NAME = #{commuityName,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      STREET_CODE = #{streetCode,jdbcType=VARCHAR},
+      VILLAGE_CODE = #{villageCode,jdbcType=VARCHAR},
+      ROAD_CODE = #{roadCode,jdbcType=VARCHAR},
+      COMMUITY_ADDR = #{commuityAddr,jdbcType=VARCHAR},
+      ORG_NO = #{orgNo,jdbcType=VARCHAR}
+    where COMMUITY_ID = #{commuityId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="selectByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	  SELECT *
+	  FROM t_c_commuity
+	<where>
+		<if test="countyCode != null ">
+			AND county_code =  #{countyCode,jdbcType=VARCHAR}
+		</if>	
+        <if test="streetCode != null" >
+        	AND street_code = #{streetCode,jdbcType=VARCHAR}
+        </if>		
+      	<if test="villageCode != null" >
+       		AND village_code =  #{villageCode,jdbcType=VARCHAR}
+      	</if>
+      	<if test="cmmtyType != null" >
+       		AND cmmty_type =  #{cmmtyType,jdbcType=VARCHAR}
+      	</if>
+      	<if test="commuityName != null" >
+       		AND commuity_name like concat('%',#{commuityName,jdbcType=VARCHAR},'%') 
+      	</if>
+      	<if test="commuityNo != null" >
+       		AND commuity_no =  #{commuityNo,jdbcType=VARCHAR}
+      	</if>
+     </where>
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  <select id="countByExampleAndPage" parameterType="java.util.Map" resultType="java.lang.Integer" >
+    SELECT
+	   	 count(1)
+	FROM t_c_commuity
+	<where>
+		<if test="countyCode != null ">
+			AND county_code =  #{countyCode,jdbcType=VARCHAR}
+		</if>	
+        <if test="streetCode != null" >
+        	AND street_code = #{streetCode,jdbcType=VARCHAR}
+        </if>
+        <if test="communityCode != null" >
+        	AND community_code = #{communityCode,jdbcType=VARCHAR}
+       </if>			
+      	<if test="villageCode != null" >
+       		AND village_code =  #{villageCode,jdbcType=VARCHAR}
+      	</if>
+      	<if test="cmmtyType != null" >
+       		AND cmmty_type =  #{cmmtyType,jdbcType=VARCHAR}
+      	</if>
+      	<if test="commuityName != null" >
+       		AND commuity_name like  concat('%',#{commuityName,jdbcType=VARCHAR},'%')
+      	</if>
+      	<if test="commuityNo != null" >
+       		AND commuity_no =  #{commuityNo,jdbcType=VARCHAR}
+      	</if>
+     </where>
+  </select>
+  
+  
+   <select id="selectByVerify" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	SELECT * FROM t_c_commuity a,t_c_commuity_verifier_rela b
+	where a.commuity_id = b.commuity_id
+	  and b.verifier_id = #{id,jdbcType=VARCHAR}
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  <select id="countByVerify" parameterType="java.util.Map" resultType="java.lang.Integer" >
+    SELECT count(1) FROM t_c_commuity a,t_c_commuity_verifier_rela b
+	where a.commuity_id = b.commuity_id
+	  and b.verifier_id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByChecker" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	SELECT * FROM t_c_commuity a,t_c_commuity_checker_rela b
+	where a.commuity_id = b.commuity_id
+	  and b.checker_id = #{id,jdbcType=VARCHAR}
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  <select id="countByChecker" parameterType="java.util.Map" resultType="java.lang.Integer" >
+    SELECT count(1) FROM t_c_commuity a,t_c_commuity_checker_rela b
+	where a.commuity_id = b.commuity_id
+	  and b.checker_id = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

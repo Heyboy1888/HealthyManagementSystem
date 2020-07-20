@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.statistic.TCHealthUserStatisticsDao">
+	<resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthUserStatistics">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="area" property="area" jdbcType="VARCHAR" />
+		<result column="register_now" property="registerNow" jdbcType="VARCHAR" />
+		<result column="register_today" property="registerToday"
+			jdbcType="VARCHAR" />
+		<result column="register_non_native" property="registerNonNative"
+			jdbcType="VARCHAR" />
+		<result column="red_code_yesterday" property="redCodeYesterday"
+			jdbcType="VARCHAR" />
+		<result column="red_code_modeadds" property="redCodeModeadds"
+			jdbcType="VARCHAR" />
+		<result column="red_code_tecadds" property="redCodeTecadds"
+			jdbcType="VARCHAR" />
+		<result column="red_code_hight" property="redCodeHight"
+			jdbcType="VARCHAR" />
+		<result column="red_code_middle" property="redCodeMiddle"
+			jdbcType="VARCHAR" />
+		<result column="red_code_foreign" property="redCodeForeign"
+			jdbcType="VARCHAR" />
+		<result column="red_code_checked_green" property="redCodeCheckedGreen"
+			jdbcType="VARCHAR" />
+		<result column="red_code_checked_red" property="redCodeCheckedRed"
+			jdbcType="VARCHAR" />
+		<result column="red_code_checked_yellow" property="redCodeCheckedYellow"
+			jdbcType="VARCHAR" />
+		<result column="red_code_uncheck" property="redCodeUncheck"
+			jdbcType="VARCHAR" />
+		<result column="red_code_uncheck_green" property="redCodeUncheckGreen"
+			jdbcType="VARCHAR" />
+		<result column="red_code_red_now" property="redCodeRedNow"
+			jdbcType="VARCHAR" />
+		<result column="red_code_yellow_now" property="redCodeYellowNow"
+			jdbcType="VARCHAR" />
+		<result column="green_to_red" property="greenToRed" jdbcType="VARCHAR" />
+		<result column="accept_auditor" property="acceptAuditor"
+			jdbcType="VARCHAR" />
+		<result column="accept_verifier" property="acceptVerifier"
+			jdbcType="VARCHAR" />
+		<result column="verifi_all" property="verifiAll" jdbcType="VARCHAR" />
+		<result column="verifi_add" property="verifiAdd" jdbcType="VARCHAR" />
+		<result column="verifi_red_out" property="verifiRedOut"
+			jdbcType="VARCHAR" />
+		<result column="verifi_yellow_out" property="verifiYellowOut"
+			jdbcType="VARCHAR" />
+		<result column="statistics_date" property="statisticsDate"
+			jdbcType="TIMESTAMP" />
+		<result column="red_code_checked" property="redCodeChecked"
+			jdbcType="VARCHAR" />
+		<result column="pre_attr1" property="preAttr1" jdbcType="VARCHAR" />
+		<result column="pre_attr2" property="preAttr2" jdbcType="VARCHAR" />
+		<result column="pre_attr3" property="preAttr3" jdbcType="VARCHAR" />
+		<result column="pre_attr4" property="preAttr4" jdbcType="VARCHAR" />
+		<result column="pre_attr5" property="preAttr5" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, area, register_now, register_today, register_non_native,
+		red_code_yesterday,
+		red_code_modeadds, red_code_tecadds, red_code_hight, red_code_middle, red_code_foreign,
+		red_code_checked_green, red_code_checked_red, red_code_checked_yellow,
+		red_code_uncheck,
+		red_code_uncheck_green, red_code_red_now, red_code_yellow_now, green_to_red, accept_auditor,
+		accept_verifier, verifi_all, verifi_add, verifi_red_out,
+		verifi_yellow_out, statistics_date,
+		red_code_checked, pre_attr1, pre_attr2, pre_attr3, pre_attr4, pre_attr5
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="xkt.personal.mgmt.bo.TCHealthUserStatisticsExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_c_health_user_statistics
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_c_health_user_statistics
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_c_health_user_statistics
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatisticsExample">
+		delete from t_c_health_user_statistics
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatistics">
+		insert into t_c_health_user_statistics (id, area, register_now,
+		register_today, register_non_native, red_code_yesterday,
+		red_code_modeadds, red_code_tecadds, red_code_hight,
+		red_code_middle, red_code_foreign, red_code_checked_green,
+		red_code_checked_red, red_code_checked_yellow,
+		red_code_uncheck, red_code_uncheck_green, red_code_red_now,
+		red_code_yellow_now, green_to_red, accept_auditor,
+		accept_verifier, verifi_all, verifi_add,
+		verifi_red_out, verifi_yellow_out, statistics_date,
+		red_code_checked, pre_attr1, pre_attr2,
+		pre_attr3, pre_attr4, pre_attr5
+		)
+		values (#{id,jdbcType=INTEGER}, #{area,jdbcType=VARCHAR},
+		#{registerNow,jdbcType=VARCHAR},
+		#{registerToday,jdbcType=VARCHAR}, #{registerNonNative,jdbcType=VARCHAR},
+		#{redCodeYesterday,jdbcType=VARCHAR},
+		#{redCodeModeadds,jdbcType=VARCHAR},
+		#{redCodeTecadds,jdbcType=VARCHAR}, #{redCodeHight,jdbcType=VARCHAR},
+		#{redCodeMiddle,jdbcType=VARCHAR}, #{redCodeForeign,jdbcType=VARCHAR},
+		#{redCodeCheckedGreen,jdbcType=VARCHAR},
+		#{redCodeCheckedRed,jdbcType=VARCHAR},
+		#{redCodeCheckedYellow,jdbcType=VARCHAR},
+		#{redCodeUncheck,jdbcType=VARCHAR},
+		#{redCodeUncheckGreen,jdbcType=VARCHAR},
+		#{redCodeRedNow,jdbcType=VARCHAR},
+		#{redCodeYellowNow,jdbcType=VARCHAR}, #{greenToRed,jdbcType=VARCHAR},
+		#{acceptAuditor,jdbcType=VARCHAR},
+		#{acceptVerifier,jdbcType=VARCHAR}, #{verifiAll,jdbcType=VARCHAR}, #{verifiAdd,jdbcType=VARCHAR},
+		#{verifiRedOut,jdbcType=VARCHAR}, #{verifiYellowOut,jdbcType=VARCHAR},
+		#{statisticsDate,jdbcType=TIMESTAMP},
+		#{redCodeChecked,jdbcType=VARCHAR}, #{preAttr1,jdbcType=VARCHAR},
+		#{preAttr2,jdbcType=VARCHAR},
+		#{preAttr3,jdbcType=VARCHAR}, #{preAttr4,jdbcType=VARCHAR}, #{preAttr5,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatistics">
+		insert into t_c_health_user_statistics
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="area != null">
+				area,
+			</if>
+			<if test="registerNow != null">
+				register_now,
+			</if>
+			<if test="registerToday != null">
+				register_today,
+			</if>
+			<if test="registerNonNative != null">
+				register_non_native,
+			</if>
+			<if test="redCodeYesterday != null">
+				red_code_yesterday,
+			</if>
+			<if test="redCodeModeadds != null">
+				red_code_modeadds,
+			</if>
+			<if test="redCodeTecadds != null">
+				red_code_tecadds,
+			</if>
+			<if test="redCodeHight != null">
+				red_code_hight,
+			</if>
+			<if test="redCodeMiddle != null">
+				red_code_middle,
+			</if>
+			<if test="redCodeForeign != null">
+				red_code_foreign,
+			</if>
+			<if test="redCodeCheckedGreen != null">
+				red_code_checked_green,
+			</if>
+			<if test="redCodeCheckedRed != null">
+				red_code_checked_red,
+			</if>
+			<if test="redCodeCheckedYellow != null">
+				red_code_checked_yellow,
+			</if>
+			<if test="redCodeUncheck != null">
+				red_code_uncheck,
+			</if>
+			<if test="redCodeUncheckGreen != null">
+				red_code_uncheck_green,
+			</if>
+			<if test="redCodeRedNow != null">
+				red_code_red_now,
+			</if>
+			<if test="redCodeYellowNow != null">
+				red_code_yellow_now,
+			</if>
+			<if test="greenToRed != null">
+				green_to_red,
+			</if>
+			<if test="acceptAuditor != null">
+				accept_auditor,
+			</if>
+			<if test="acceptVerifier != null">
+				accept_verifier,
+			</if>
+			<if test="verifiAll != null">
+				verifi_all,
+			</if>
+			<if test="verifiAdd != null">
+				verifi_add,
+			</if>
+			<if test="verifiRedOut != null">
+				verifi_red_out,
+			</if>
+			<if test="verifiYellowOut != null">
+				verifi_yellow_out,
+			</if>
+			<if test="statisticsDate != null">
+				statistics_date,
+			</if>
+			<if test="redCodeChecked != null">
+				red_code_checked,
+			</if>
+			<if test="preAttr1 != null">
+				pre_attr1,
+			</if>
+			<if test="preAttr2 != null">
+				pre_attr2,
+			</if>
+			<if test="preAttr3 != null">
+				pre_attr3,
+			</if>
+			<if test="preAttr4 != null">
+				pre_attr4,
+			</if>
+			<if test="preAttr5 != null">
+				pre_attr5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="registerNow != null">
+				#{registerNow,jdbcType=VARCHAR},
+			</if>
+			<if test="registerToday != null">
+				#{registerToday,jdbcType=VARCHAR},
+			</if>
+			<if test="registerNonNative != null">
+				#{registerNonNative,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeYesterday != null">
+				#{redCodeYesterday,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeModeadds != null">
+				#{redCodeModeadds,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeTecadds != null">
+				#{redCodeTecadds,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeHight != null">
+				#{redCodeHight,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeMiddle != null">
+				#{redCodeMiddle,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeForeign != null">
+				#{redCodeForeign,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeCheckedGreen != null">
+				#{redCodeCheckedGreen,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeCheckedRed != null">
+				#{redCodeCheckedRed,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeCheckedYellow != null">
+				#{redCodeCheckedYellow,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeUncheck != null">
+				#{redCodeUncheck,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeUncheckGreen != null">
+				#{redCodeUncheckGreen,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeRedNow != null">
+				#{redCodeRedNow,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeYellowNow != null">
+				#{redCodeYellowNow,jdbcType=VARCHAR},
+			</if>
+			<if test="greenToRed != null">
+				#{greenToRed,jdbcType=VARCHAR},
+			</if>
+			<if test="acceptAuditor != null">
+				#{acceptAuditor,jdbcType=VARCHAR},
+			</if>
+			<if test="acceptVerifier != null">
+				#{acceptVerifier,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiAll != null">
+				#{verifiAll,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiAdd != null">
+				#{verifiAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiRedOut != null">
+				#{verifiRedOut,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiYellowOut != null">
+				#{verifiYellowOut,jdbcType=VARCHAR},
+			</if>
+			<if test="statisticsDate != null">
+				#{statisticsDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="redCodeChecked != null">
+				#{redCodeChecked,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr1 != null">
+				#{preAttr1,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr2 != null">
+				#{preAttr2,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr3 != null">
+				#{preAttr3,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr4 != null">
+				#{preAttr4,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr5 != null">
+				#{preAttr5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatisticsExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_c_health_user_statistics
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_c_health_user_statistics
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.area != null">
+				area = #{record.area,jdbcType=VARCHAR},
+			</if>
+			<if test="record.registerNow != null">
+				register_now = #{record.registerNow,jdbcType=VARCHAR},
+			</if>
+			<if test="record.registerToday != null">
+				register_today = #{record.registerToday,jdbcType=VARCHAR},
+			</if>
+			<if test="record.registerNonNative != null">
+				register_non_native = #{record.registerNonNative,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeYesterday != null">
+				red_code_yesterday = #{record.redCodeYesterday,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeModeadds != null">
+				red_code_modeadds = #{record.redCodeModeadds,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeTecadds != null">
+				red_code_tecadds = #{record.redCodeTecadds,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeHight != null">
+				red_code_hight = #{record.redCodeHight,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeMiddle != null">
+				red_code_middle = #{record.redCodeMiddle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeForeign != null">
+				red_code_foreign = #{record.redCodeForeign,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeCheckedGreen != null">
+				red_code_checked_green =
+				#{record.redCodeCheckedGreen,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeCheckedRed != null">
+				red_code_checked_red = #{record.redCodeCheckedRed,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeCheckedYellow != null">
+				red_code_checked_yellow =
+				#{record.redCodeCheckedYellow,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeUncheck != null">
+				red_code_uncheck = #{record.redCodeUncheck,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeUncheckGreen != null">
+				red_code_uncheck_green =
+				#{record.redCodeUncheckGreen,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeRedNow != null">
+				red_code_red_now = #{record.redCodeRedNow,jdbcType=VARCHAR},
+			</if>
+			<if test="record.redCodeYellowNow != null">
+				red_code_yellow_now = #{record.redCodeYellowNow,jdbcType=VARCHAR},
+			</if>
+			<if test="record.greenToRed != null">
+				green_to_red = #{record.greenToRed,jdbcType=VARCHAR},
+			</if>
+			<if test="record.acceptAuditor != null">
+				accept_auditor = #{record.acceptAuditor,jdbcType=VARCHAR},
+			</if>
+			<if test="record.acceptVerifier != null">
+				accept_verifier = #{record.acceptVerifier,jdbcType=VARCHAR},
+			</if>
+			<if test="record.verifiAll != null">
+				verifi_all = #{record.verifiAll,jdbcType=VARCHAR},
+			</if>
+			<if test="record.verifiAdd != null">
+				verifi_add = #{record.verifiAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.verifiRedOut != null">
+				verifi_red_out = #{record.verifiRedOut,jdbcType=VARCHAR},
+			</if>
+			<if test="record.verifiYellowOut != null">
+				verifi_yellow_out = #{record.verifiYellowOut,jdbcType=VARCHAR},
+			</if>
+			<if test="record.statisticsDate != null">
+				statistics_date = #{record.statisticsDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.redCodeChecked != null">
+				red_code_checked = #{record.redCodeChecked,jdbcType=VARCHAR},
+			</if>
+			<if test="record.preAttr1 != null">
+				pre_attr1 = #{record.preAttr1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.preAttr2 != null">
+				pre_attr2 = #{record.preAttr2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.preAttr3 != null">
+				pre_attr3 = #{record.preAttr3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.preAttr4 != null">
+				pre_attr4 = #{record.preAttr4,jdbcType=VARCHAR},
+			</if>
+			<if test="record.preAttr5 != null">
+				pre_attr5 = #{record.preAttr5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_c_health_user_statistics
+		set id = #{record.id,jdbcType=INTEGER},
+		area = #{record.area,jdbcType=VARCHAR},
+		register_now = #{record.registerNow,jdbcType=VARCHAR},
+		register_today = #{record.registerToday,jdbcType=VARCHAR},
+		register_non_native = #{record.registerNonNative,jdbcType=VARCHAR},
+		red_code_yesterday = #{record.redCodeYesterday,jdbcType=VARCHAR},
+		red_code_modeadds = #{record.redCodeModeadds,jdbcType=VARCHAR},
+		red_code_tecadds = #{record.redCodeTecadds,jdbcType=VARCHAR},
+		red_code_hight = #{record.redCodeHight,jdbcType=VARCHAR},
+		red_code_middle = #{record.redCodeMiddle,jdbcType=VARCHAR},
+		red_code_foreign = #{record.redCodeForeign,jdbcType=VARCHAR},
+		red_code_checked_green = #{record.redCodeCheckedGreen,jdbcType=VARCHAR},
+		red_code_checked_red = #{record.redCodeCheckedRed,jdbcType=VARCHAR},
+		red_code_checked_yellow =
+		#{record.redCodeCheckedYellow,jdbcType=VARCHAR},
+		red_code_uncheck = #{record.redCodeUncheck,jdbcType=VARCHAR},
+		red_code_uncheck_green = #{record.redCodeUncheckGreen,jdbcType=VARCHAR},
+		red_code_red_now = #{record.redCodeRedNow,jdbcType=VARCHAR},
+		red_code_yellow_now = #{record.redCodeYellowNow,jdbcType=VARCHAR},
+		green_to_red = #{record.greenToRed,jdbcType=VARCHAR},
+		accept_auditor = #{record.acceptAuditor,jdbcType=VARCHAR},
+		accept_verifier = #{record.acceptVerifier,jdbcType=VARCHAR},
+		verifi_all = #{record.verifiAll,jdbcType=VARCHAR},
+		verifi_add = #{record.verifiAdd,jdbcType=VARCHAR},
+		verifi_red_out = #{record.verifiRedOut,jdbcType=VARCHAR},
+		verifi_yellow_out = #{record.verifiYellowOut,jdbcType=VARCHAR},
+		statistics_date = #{record.statisticsDate,jdbcType=TIMESTAMP},
+		red_code_checked = #{record.redCodeChecked,jdbcType=VARCHAR},
+		pre_attr1 = #{record.preAttr1,jdbcType=VARCHAR},
+		pre_attr2 = #{record.preAttr2,jdbcType=VARCHAR},
+		pre_attr3 = #{record.preAttr3,jdbcType=VARCHAR},
+		pre_attr4 = #{record.preAttr4,jdbcType=VARCHAR},
+		pre_attr5 = #{record.preAttr5,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatistics">
+		update t_c_health_user_statistics
+		<set>
+			<if test="area != null">
+				area = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="registerNow != null">
+				register_now = #{registerNow,jdbcType=VARCHAR},
+			</if>
+			<if test="registerToday != null">
+				register_today = #{registerToday,jdbcType=VARCHAR},
+			</if>
+			<if test="registerNonNative != null">
+				register_non_native = #{registerNonNative,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeYesterday != null">
+				red_code_yesterday = #{redCodeYesterday,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeModeadds != null">
+				red_code_modeadds = #{redCodeModeadds,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeTecadds != null">
+				red_code_tecadds = #{redCodeTecadds,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeHight != null">
+				red_code_hight = #{redCodeHight,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeMiddle != null">
+				red_code_middle = #{redCodeMiddle,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeForeign != null">
+				red_code_foreign = #{redCodeForeign,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeCheckedGreen != null">
+				red_code_checked_green = #{redCodeCheckedGreen,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeCheckedRed != null">
+				red_code_checked_red = #{redCodeCheckedRed,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeCheckedYellow != null">
+				red_code_checked_yellow = #{redCodeCheckedYellow,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeUncheck != null">
+				red_code_uncheck = #{redCodeUncheck,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeUncheckGreen != null">
+				red_code_uncheck_green = #{redCodeUncheckGreen,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeRedNow != null">
+				red_code_red_now = #{redCodeRedNow,jdbcType=VARCHAR},
+			</if>
+			<if test="redCodeYellowNow != null">
+				red_code_yellow_now = #{redCodeYellowNow,jdbcType=VARCHAR},
+			</if>
+			<if test="greenToRed != null">
+				green_to_red = #{greenToRed,jdbcType=VARCHAR},
+			</if>
+			<if test="acceptAuditor != null">
+				accept_auditor = #{acceptAuditor,jdbcType=VARCHAR},
+			</if>
+			<if test="acceptVerifier != null">
+				accept_verifier = #{acceptVerifier,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiAll != null">
+				verifi_all = #{verifiAll,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiAdd != null">
+				verifi_add = #{verifiAdd,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiRedOut != null">
+				verifi_red_out = #{verifiRedOut,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiYellowOut != null">
+				verifi_yellow_out = #{verifiYellowOut,jdbcType=VARCHAR},
+			</if>
+			<if test="statisticsDate != null">
+				statistics_date = #{statisticsDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="redCodeChecked != null">
+				red_code_checked = #{redCodeChecked,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr1 != null">
+				pre_attr1 = #{preAttr1,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr2 != null">
+				pre_attr2 = #{preAttr2,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr3 != null">
+				pre_attr3 = #{preAttr3,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr4 != null">
+				pre_attr4 = #{preAttr4,jdbcType=VARCHAR},
+			</if>
+			<if test="preAttr5 != null">
+				pre_attr5 = #{preAttr5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatistics">
+		update t_c_health_user_statistics
+		set area = #{area,jdbcType=VARCHAR},
+		register_now = #{registerNow,jdbcType=VARCHAR},
+		register_today = #{registerToday,jdbcType=VARCHAR},
+		register_non_native = #{registerNonNative,jdbcType=VARCHAR},
+		red_code_yesterday = #{redCodeYesterday,jdbcType=VARCHAR},
+		red_code_modeadds = #{redCodeModeadds,jdbcType=VARCHAR},
+		red_code_tecadds = #{redCodeTecadds,jdbcType=VARCHAR},
+		red_code_hight = #{redCodeHight,jdbcType=VARCHAR},
+		red_code_middle = #{redCodeMiddle,jdbcType=VARCHAR},
+		red_code_foreign = #{redCodeForeign,jdbcType=VARCHAR},
+		red_code_checked_green = #{redCodeCheckedGreen,jdbcType=VARCHAR},
+		red_code_checked_red = #{redCodeCheckedRed,jdbcType=VARCHAR},
+		red_code_checked_yellow = #{redCodeCheckedYellow,jdbcType=VARCHAR},
+		red_code_uncheck = #{redCodeUncheck,jdbcType=VARCHAR},
+		red_code_uncheck_green = #{redCodeUncheckGreen,jdbcType=VARCHAR},
+		red_code_red_now = #{redCodeRedNow,jdbcType=VARCHAR},
+		red_code_yellow_now = #{redCodeYellowNow,jdbcType=VARCHAR},
+		green_to_red = #{greenToRed,jdbcType=VARCHAR},
+		accept_auditor = #{acceptAuditor,jdbcType=VARCHAR},
+		accept_verifier = #{acceptVerifier,jdbcType=VARCHAR},
+		verifi_all = #{verifiAll,jdbcType=VARCHAR},
+		verifi_add = #{verifiAdd,jdbcType=VARCHAR},
+		verifi_red_out = #{verifiRedOut,jdbcType=VARCHAR},
+		verifi_yellow_out = #{verifiYellowOut,jdbcType=VARCHAR},
+		statistics_date = #{statisticsDate,jdbcType=TIMESTAMP},
+		red_code_checked = #{redCodeChecked,jdbcType=VARCHAR},
+		pre_attr1 = #{preAttr1,jdbcType=VARCHAR},
+		pre_attr2 = #{preAttr2,jdbcType=VARCHAR},
+		pre_attr3 = #{preAttr3,jdbcType=VARCHAR},
+		pre_attr4 = #{preAttr4,jdbcType=VARCHAR},
+		pre_attr5 = #{preAttr5,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="countStatistic" parameterType="xkt.personal.mgmt.bo.TCHealthUserStatistics"
+		resultType="int">
+		SELECT
+		count(1)
+		FROM
+		tmp_xkm_report_part1 a
+		LEFT JOIN tmp_xkm_report_part2 b ON
+		a.report_date = b.report_date
+		AND a.current_district = b.current_district
+		<where>
+
+			<if test="statisticsDate != null and statisticsDate != ''">
+				and a.report_date = #{statisticsDate,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<select id="queryStatistic" parameterType="java.lang.String"
+		resultType="java.util.Map">
+		SELECT
+		report_date reportDate,
+		current_district currentDistrict,
+		apply_total applyTotal,
+		apply_add applyAdd,
+		apply_out_today applyOutToday,
+		nocheck_yday nocheckYday,
+		model_push modelPush,
+		tech_analysis techAnalysis,
+		high_risk_user highRiskUser,
+		mid_risk_user midRiskUser,
+		traffice_foreign trafficeForeign,
+		check_green checkGreen,
+		check_red checkRed,
+		check_yellow checkYellow,
+		nocheck_total nocheckTotal,
+		nochek_2_green nochek2Green,
+		red,
+		yellow,
+		green_2_red_today green2RedToday,
+		auditor,
+		verifier,
+		sweep_cnt sweepCnt,
+		sweep_cnt_add sweepCntAdd,
+		red_out redOut,
+		yellow_out yellowOut,
+		ent_sweep_cnt entSweepCnt,
+		ent_sweep_add entSweepAdd
+		FROM
+		t_xkm_report
+		<where>
+			<if test="statisticsDate != null and statisticsDate != ''">
+				and report_date = #{statisticsDate,jdbcType=VARCHAR}
+			</if>
+		</where>
+		union all
+		select
+			report_date reportDate,
+			'全部' currentDistrict,
+			sum(apply_total) applyTotal,
+			sum(apply_add) applyAdd,
+			sum(apply_out_today) applyOutToday,
+			sum(nocheck_yday) nocheckYday,
+			sum(model_push) modelPush,
+			sum(tech_analysis) techAnalysis,
+			sum(high_risk_user) highRiskUser,
+			sum(mid_risk_user) midRiskUser,
+			sum(traffice_foreign) trafficeForeign,
+			sum(check_green) checkGreen,
+			sum(check_red) checkRed,
+			sum(check_yellow) checkYellow,
+			sum(nocheck_total) nocheckTotal,
+			sum(nochek_2_green) nochek2Green,
+			sum(red) red,
+			sum(yellow) yellow,
+			sum(green_2_red_today) green2RedToday,
+			sum(auditor) auditor,
+			sum(verifier) verifier,
+			sum(sweep_cnt) sweepCnt,
+			sum(sweep_cnt_add) sweepCntAdd,
+			sum(red_out) redOut,
+			sum(yellow_out) yellowOut,
+			sum(ent_sweep_cnt) entSweepCnt,
+			sum(ent_sweep_add) entSweepAdd
+		from
+		t_xkm_report
+		<where>
+			<if test="statisticsDate != null and statisticsDate != ''">
+				and report_date = #{statisticsDate,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryYrTodayCount" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT
+			current_district currentDistrict,
+			red_today_cnt redTodayCnt,
+			yellow_today_cnt yellowTodayCnt,
+			red5_today_cnt red5TodayCnt,
+			yellow4_today_cnt yellow4TodayCnt,
+			red_total redTotal,
+			green_total greenTotal,
+			yellow_total yellowTotal,
+			red5_total red5Total,
+			yellow4_total yellow4Total
+		FROM
+		t_xkm_report
+			
+			where report_date = #{date,jdbcType=VARCHAR}
+			
+			
+		
+		union all
+		select
+			'全部' currentDistrict,
+			sum(red_today_cnt) redTodayCnt,
+			sum(yellow_today_cnt) yellowTodayCnt,
+			sum(red5_today_cnt) red5TodayCnt,
+			sum(yellow4_today_cnt) yellow4TodayCnt,
+			sum(red_total) redTotal,
+			sum(green_total) greenTotal,
+			sum(yellow_total) yellowTotal,
+			sum(red5_total) red5Total,
+			sum(yellow4_total) yellow4Total
+		from
+		t_xkm_report
+		where report_date = #{date,jdbcType=VARCHAR}
+			
+			
+	</select>
+	<select id="callProcedure" resultType="java.lang.Integer">
+		call pro_xkm_report()
+	</select>
+</mapper>

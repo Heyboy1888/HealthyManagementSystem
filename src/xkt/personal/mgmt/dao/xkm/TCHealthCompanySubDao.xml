@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthCompanySubDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthCompanySub" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_sub_name" property="companySubName" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_id, company_sub_name, create_person, update_person, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySubExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_company_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_health_company_sub
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_health_company_sub
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySubExample" >
+    delete from t_c_health_company_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySub" >
+    insert into t_c_health_company_sub (id, company_id, company_sub_name, 
+      create_person, update_person, create_time, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{companySubName,jdbcType=VARCHAR}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updatePerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySub" >
+    insert into t_c_health_company_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companySubName != null" >
+        company_sub_name,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companySubName != null" >
+        #{companySubName,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySubExample" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_company_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_company_sub
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companySubName != null" >
+        company_sub_name = #{record.companySubName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createPerson != null" >
+        create_person = #{record.createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatePerson != null" >
+        update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_company_sub
+    set id = #{record.id,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_sub_name = #{record.companySubName,jdbcType=VARCHAR},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySub" >
+    update t_c_health_company_sub
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companySubName != null" >
+        company_sub_name = #{companySubName,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthCompanySub" >
+    update t_c_health_company_sub
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      company_sub_name = #{companySubName,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <resultMap id="SubBaseResultMap" type="java.util.Map" >
+  	<id 	column="id" 				property="id"       		jdbcType="VARCHAR" />
+    <result column="company_id"     	property="companyId" 		jdbcType="VARCHAR" />
+    <result column="company_sub_name" 	property="companySubName" 	jdbcType="VARCHAR" />
+    <result column="create_person" 		property="createPerson" 	jdbcType="VARCHAR" />
+    <result column="create_type" 		property="createType" 		jdbcType="VARCHAR" />
+    <result column="company_sub_id" 	property="companySubId" 	jdbcType="VARCHAR" />
+    <result column="company_name" 		property="companyName" 		jdbcType="VARCHAR" />
+    <result column="reg_address" 		property="regAddress" 		jdbcType="VARCHAR" />
+    <result column="external_name" 		property="externalName" 	jdbcType="VARCHAR" />
+    <result column="industry_cat" 		property="industryCat" 		jdbcType="VARCHAR" />
+    <result column="create_time" 		property="createTime" 		jdbcType="VARCHAR" />
+    <result column="update_time" 		property="updateTime" 		jdbcType="VARCHAR" />
+    <result	column="company_status" 	property="companyStatus"    jdbcType="VARCHAR" />
+  </resultMap>
+ 
+ <select id="getOneAddrOneCodeSubInfoByCompanyId" parameterType="java.util.Map" resultMap="SubBaseResultMap">
+	SELECT
+		s.id,
+		s.company_id,
+		s.company_sub_name,
+		s.create_person,
+		p.company_name,
+		p.reg_address ,
+		DATE_FORMAT(s.create_time,'%Y-%m-%d %H:%i:%s') create_time,
+		DATE_FORMAT(s.update_time,'%Y-%m-%d %H:%i:%s') update_time,
+		(select re.create_type from t_c_health_code_create_record re 
+		where s.id = re.company_sub_id 
+		ORDER BY re.create_time desc limit 1) as create_type,
+		(select re.`status` from t_c_health_code_create_record re 
+		where s.id = re.company_sub_id 
+		ORDER BY re.create_time desc limit 1) as company_status	
+	FROM
+		t_c_health_company_sub s
+		LEFT JOIN t_c_health_company_info p ON s.company_id = p.id 
+	WHERE
+		s.company_id =#{companyId,jdbcType=VARCHAR}
+		limit 0,100
+ </select>
+ 
+ <resultMap id="getInfoResultMap" type="java.util.Map">
+ 	<result column="create_person" 		property="createPerson" 	jdbcType="VARCHAR" />
+ 	<result column="is_branch" 			property="updateTime" 		jdbcType="VARCHAR" />
+ 	<result column="parent_info_code" 	property="updateTime" 		jdbcType="VARCHAR" />
+ 	<result column="branch_level" 		property="createTime" 		jdbcType="VARCHAR" />
+ 	<result column="external_name" 		property="externalName" 	jdbcType="VARCHAR" />
+ 	<result column="industry_cat" 		property="industryCat" 		jdbcType="VARCHAR" />
+ 	<result column="actual_name" 		property="actualName" 		jdbcType="VARCHAR" />
+ 	<result column="actual_cert_code" 	property="actualCertCode" 	jdbcType="VARCHAR" />
+ 	<result column="actual_mobile" 		property="actualMobile" 	jdbcType="VARCHAR" />
+ 	<result column="cert_pic" 			property="certPic" 			jdbcType="VARCHAR" />
+ 	<result column="store_pic" 			property="storePic" 		jdbcType="VARCHAR" />
+ 	<result column="bus_pic" 			property="busPic" 			jdbcType="VARCHAR" />
+ 	<result column="info_code" 			property="infoCode" 		jdbcType="VARCHAR" />
+ 	<result column="company_name" 		property="companyName" 		jdbcType="VARCHAR" />
+ 	<result column="reg_address" 		property="regAddress" 		jdbcType="VARCHAR" />
+ 	<result column="address" 			property="address" 			jdbcType="VARCHAR" />
+ 	<result	column="company_status" 	property="companyStatus"    jdbcType="VARCHAR" />
+ 	<result column="create_type" 		property="createType" 		jdbcType="VARCHAR" />
+    <result column="record_id"     	 	property="recordId" 		jdbcType="VARCHAR" />
+    <result column="company_sub_name" 	property="companySubName" 	jdbcType="VARCHAR" />
+ </resultMap>
+ 
+ <select id="getSubInfoById" parameterType="java.lang.String" resultMap="getInfoResultMap">
+ 	SELECT		
+		s.create_person,		
+		b.is_branch,
+		b.parent_info_code,
+		b.branch_level,
+		b.external_name,
+		b.industry_cat,
+		s.company_sub_name,
+		b.actual_name,
+		b.actual_cert_code,
+		b.actual_mobile,
+		b.cert_pic,
+		b.store_pic,
+		b.bus_pic,
+		a.info_code,
+		a.company_name,
+		a.reg_address,
+		CONCAT( addr.province_name, addr.city_name, addr.area_name, addr.street_name, addr.village_name, addr.num_plate ) AS address,
+		k.`STATUS` company_status,
+		k.create_type, 
+		k.id as record_id
+	FROM
+		t_c_health_company_sub s 
+		left join t_c_health_company_apply b on b.company_id = s.company_id
+		LEFT JOIN t_c_health_company_info a ON b.company_id = a.id		
+		LEFT JOIN t_c_health_company_address addr ON b.address_id = addr.id
+		LEFT JOIN (
+		SELECT
+			gg.`STATUS`,
+			gg.company_id,
+			gg.id ,
+			gg.create_type
+		FROM
+			t_c_health_code_create_record gg 
+		WHERE
+			gg.company_sub_id =  #{id,jdbcType=VARCHAR}
+		ORDER BY
+			gg.id DESC,
+			gg.create_time DESC 
+			LIMIT 1 
+		) k ON b.company_id = k.company_id 
+	WHERE
+		s.id = #{id,jdbcType=VARCHAR}
+ </select>
+  
+</mapper>

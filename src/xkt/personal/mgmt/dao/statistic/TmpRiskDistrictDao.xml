@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.statistic.TmpRiskDistrictDao" >
+<resultMap id="BaseResultMap" type="xkt.personal.mgmt.dao.statistic.TmpRiskDistrictDao" >
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="risk_level" property="riskLevel" jdbcType="VARCHAR" />
+    <result column="is_vaild" property="isVaild" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="district_full_name" property="districtFullName" jdbcType="VARCHAR" />
+    <result column="district_type" property="districtType" jdbcType="VARCHAR" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+</resultMap>
+<select id="queryRiskDistrict" parameterType="java.util.Map" resultType="java.util.Map">
+	select 
+		b.id id, 
+		a.district_code districtCode,
+		a.risk_level riskLevel,
+		a.is_vaild isVaild,
+		b.district_full_name districtFullName,
+		b.district_type districtType,
+		b.district_name districtName
+	from 
+		tmp_xkm_risk_district a 
+	left join 
+		tmp_xkm_china_district b 
+	on 
+		a.district_code=b.district_code 
+	<where>
+		<if test="districtCode!=null and districtCode!='' and districtCode!='null' ">
+			and a.district_code like concat(#{districtCode,jdbcType=VARCHAR},'%') 
+		</if>	
+		<if test="districtName!=null and districtName!='' and districtName!='null' ">
+			and district_code=#{districtCode,jdbcType=VARCHAR}
+		</if>
+		<if test="riskLevel!=null and riskLevel!='' and riskLevel!='null' ">
+			and risk_level=#{riskLevel,jdbcType=VARCHAR}
+		</if>
+		<if test="isVaild!=null and riskLevel!='' and riskLevel!='null'">
+			and is_vaild=#{isVaild,jdbcType=VARCHAR}
+		</if>
+	</where>
+	LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+</select>
+
+<select id="countqueryRiskDistrict" parameterType="java.util.Map" resultType="java.lang.Integer">
+	select 
+		count(id)
+	from 
+		tmp_xkm_risk_district a 
+	left join 
+		tmp_xkm_china_district b 
+	on 
+		a.district_code=b.district_code 
+	<where>
+		<if test="districtCode!=null and districtCode!='' and districtCode!='null' ">
+			and a.district_code like concat(#{districtCode,jdbcType=VARCHAR},'%') 
+		</if>	
+		<if test="riskLevel!=null and riskLevel!='' and riskLevel!='null' ">
+			and risk_level=#{riskLevel,jdbcType=VARCHAR}
+		</if>
+		<if test="isVaild!=null and riskLevel!='' and riskLevel!='null'">
+			and is_vaild=#{isVaild,jdbcType=VARCHAR}
+		</if>
+	</where>
+</select>
+
+<select id="RiskDistrictDetail" parameterType="java.util.Map" resultType="java.util.Map">
+	select 
+		b.id id, 
+		a.district_code districtCode,
+		a.risk_level riskLevel,
+		a.is_vaild isVaild,
+		b.district_full_name districtFullName,
+		b.district_type districtType,
+		b.district_name districtName
+	from 
+		tmp_xkm_risk_district a 
+	left join 
+		tmp_xkm_china_district b 
+	on 
+		a.district_code=b.district_code 
+	<where>
+		<if test="districtCode!=null and districtCode!='' and districtCode!='null' ">
+			and a.district_code=#{districtCode,jdbcType=VARCHAR}
+		</if>	
+	</where>
+</select>
+
+<insert id="addRiskDistrict" parameterType="java.util.Map">
+	insert into tmp_xkm_risk_district(district_code,risk_level,is_vaild)
+	values
+	(#{districtCode,jdbcType=VARCHAR},#{riskLevel,jdbcType=VARCHAR},#{isVaild,jdbcType=VARCHAR})
+</insert>
+
+<update id="updateRiskDistrict" parameterType="java.util.Map">
+	update tmp_xkm_risk_district
+	set risk_level=#{riskLevel,jdbcType=VARCHAR},
+	is_vaild=#{isVaild,jdbcType=VARCHAR}
+	where 
+	district_code=#{districtCode,jdbcType=VARCHAR}
+</update>
+
+<delete id="deleteRiskDistrict" parameterType="java.lang.String">
+	delete from tmp_xkm_risk_district
+	where 
+	district_code=#{districtCode,jdbcType=VARCHAR}
+</delete>
+
+<select id="queryByDistrictType" parameterType="java.util.Map" resultType="java.util.Map">
+	select 
+		id, 
+		district_code districtCode,
+		district_full_name districtFullName,
+		district_type districtType,
+		district_name districtName,
+		p_district_code pDistrictCode 
+	from tmp_xkm_china_district
+	<where>
+		<if test="districtCode!=null">
+			and district_code like concat(#{districtCode,jdbcType=VARCHAR},'__') 
+		</if>
+		<if test="districtType!=null">
+			and district_type=#{districtType,jdbcType=VARCHAR}
+		</if>
+		<if test="pDistrictCode!=null">
+			and p_district_code =#{pDistrictCode,jdbcType=VARCHAR}
+		</if>
+	</where>
+</select>
+
+</mapper>

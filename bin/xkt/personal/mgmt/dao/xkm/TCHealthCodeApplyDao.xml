@@ -1,0 +1,1855 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthCodeApplyMapper" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthCodeApply" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="cert_type" property="certType" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="cert_code_hide" property="certCodeHide" jdbcType="VARCHAR" />
+    <result column="cert_code_secret" property="certCodeSecret" jdbcType="VARCHAR" />
+    <result column="nation_code" property="nationCode" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+    <result column="update_flag" property="updateFlag" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="relation_cert_secret" property="relationCertSecret" jdbcType="VARCHAR" />
+    <result column="apply_entrust_relation" property="applyEntrustRelation" jdbcType="VARCHAR" />
+    <result column="wx_live_type" property="wxLiveType" jdbcType="VARCHAR" />
+    <result column="is_leave_wx_type" property="isLeaveWxType" jdbcType="VARCHAR" />
+    <result column="arrive_wx_date" property="arriveWxDate" jdbcType="TIMESTAMP" />
+    <result column="is_from_hb" property="isFromHb" jdbcType="VARCHAR" />
+    <result column="departure_addr" property="departureAddr" jdbcType="VARCHAR" />
+    <result column="departure_addr_code" property="departureAddrCode" jdbcType="VARCHAR" />
+    <result column="arrive_wx_traffic" property="arriveWxTraffic" jdbcType="VARCHAR" />
+    <result column="arrive_wx_trafficode" property="arriveWxTrafficode" jdbcType="VARCHAR" />
+    <result column="is_two_week_virus" property="isTwoWeekVirus" jdbcType="VARCHAR" />
+    <result column="household_code" property="householdCode" jdbcType="VARCHAR" />
+    <result column="household_name" property="householdName" jdbcType="VARCHAR" />
+    <result column="emergency_person" property="emergencyPerson" jdbcType="VARCHAR" />
+    <result column="emergency_phone" property="emergencyPhone" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="current_district" property="currentDistrict" jdbcType="VARCHAR" />
+    <result column="street_code" property="streetCode" jdbcType="VARCHAR" />
+    <result column="current_street" property="currentStreet" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+    <result column="current_community" property="currentCommunity" jdbcType="VARCHAR" />
+    <result column="police_station_code" property="policeStationCode" jdbcType="VARCHAR" />
+    <result column="police_station" property="policeStation" jdbcType="VARCHAR" />
+    <result column="housing_name" property="housingName" jdbcType="VARCHAR" />
+    <result column="allopatry_code" property="allopatryCode" jdbcType="VARCHAR" />
+    <result column="allopatry_name" property="allopatryName" jdbcType="VARCHAR" />
+    <result column="live_address" property="liveAddress" jdbcType="VARCHAR" />
+    <result column="is_hot" property="isHot" jdbcType="VARCHAR" />
+    <result column="is_leave" property="isLeave" jdbcType="VARCHAR" />
+    <result column="is_stay" property="isStay" jdbcType="VARCHAR" />
+    <result column="is_healthy" property="isHealthy" jdbcType="VARCHAR" />
+    <result column="isolation_days" property="isolationDays" jdbcType="INTEGER" />
+    <result column="isolation_date" property="isolationDate" jdbcType="TIMESTAMP" />
+    <result column="check_code" property="checkCode" jdbcType="CHAR" />
+    <result column="check_person" property="checkPerson" jdbcType="VARCHAR" />
+    <result column="punch_date" property="punchDate" jdbcType="DATE" />
+    <result column="atten_days" property="attenDays" jdbcType="INTEGER" />
+    <result column="tips_code" property="tipsCode" jdbcType="CHAR" />
+    <result column="alarm_code" property="alarmCode" jdbcType="CHAR" />
+    <result column="is_respira_sick" property="isRespiraSick" jdbcType="VARCHAR" />
+    <result column="is_address_right" property="isAddressRight" jdbcType="CHAR" />
+    <result column="two_week_travel" property="twoWeekTravel" jdbcType="VARCHAR" />
+    <result column="pass_addr_name" property="passAddrName" jdbcType="VARCHAR" />
+    <result column="pass_addr_code" property="passAddrCode" jdbcType="VARCHAR" />
+    <result column="tran_status" property="tranStatus" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="is_return_wuxi" property="isReturnWuxi" jdbcType="CHAR" />
+    <result column="community_flag" property="communityFlag" jdbcType="VARCHAR" />
+    <result column="person_auth_flag" property="personAuthFlag" jdbcType="VARCHAR" />
+    
+   
+    <result column="round_trip_code" property="roundTripCode" jdbcType="VARCHAR" />
+    <result column="round_trip_name" property="roundTripName" jdbcType="VARCHAR" />
+    <result column="work_unit" property="workUnit" jdbcType="VARCHAR" />
+    <result column="school_code" property="schoolCode" jdbcType="VARCHAR" />
+    <result column="res_one" property="resOne" jdbcType="VARCHAR" />
+    <result column="res_two" property="resTwo" jdbcType="VARCHAR" />
+    <result column="res_three" property="resThree" jdbcType="VARCHAR" />
+    <result column="res_four" property="resFour" jdbcType="VARCHAR" />
+    <result column="res_five" property="resFive" jdbcType="VARCHAR" />
+    <result column="paasway_codes" property="paaswayCodes" jdbcType="VARCHAR" />
+    <result column="img_update_time" property="imgUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="punch_time" property="punchTime" jdbcType="TIMESTAMP" />
+    <result column="response_time" property="responseTime" jdbcType="TIMESTAMP" />
+    <result column="flag_fresh_time" property="flagFreshTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+     <result column="is_isola_virus_psn" property="isIsolaVirusPsn" jdbcType="VARCHAR" />
+     <result column="is_cure_virus_psn" property="isCureVirusPsn" jdbcType="VARCHAR" />
+     <result column="is_obser_virus_psn" property="isObserVirusPsn" jdbcType="VARCHAR" />
+     <result column="update_status" property="updateStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="xkt.personal.mgmt.bo.TCHealthCodeApply" extends="BaseResultMap" >
+    <result column="current_person_img" property="currentPersonImg" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uuid, user_name, cert_type, cert_code, cert_code_hide, cert_code_secret, nation_code, 
+    open_id, channel_id, update_flag, phone, relation_cert_secret, apply_entrust_relation, 
+    wx_live_type, is_leave_wx_type, arrive_wx_date, is_from_hb, departure_addr, departure_addr_code, 
+    arrive_wx_traffic, arrive_wx_trafficode, is_two_week_virus, household_code, household_name, 
+    emergency_person, emergency_phone, district_code, current_district, street_code, 
+    current_street, community_code, current_community, police_station_code, police_station, 
+    housing_name, allopatry_code, allopatry_name, live_address, is_hot, is_leave, is_stay, 
+    is_healthy, isolation_days, isolation_date, check_code, check_person, punch_date, 
+    atten_days, tips_code, alarm_code, is_respira_sick, is_address_right, two_week_travel, 
+    pass_addr_name, pass_addr_code, tran_status, status, flag, is_return_wuxi, community_flag, 
+    person_auth_flag, round_trip_code, round_trip_name, 
+    work_unit, school_code, res_one, res_two, res_three, res_four, res_five, paasway_codes, 
+    img_update_time, punch_time, response_time, flag_fresh_time, create_time, update_time,
+    is_isola_virus_psn,is_cure_virus_psn,is_obser_virus_psn,update_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    current_person_img
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApplyCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_c_health_code_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApplyCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_code_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectDetailById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_c_health_code_apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_c_health_code_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApplyCriteria" >
+    delete from t_c_health_code_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApply" >
+    insert into t_c_health_code_apply (id, uuid, user_name, 
+      cert_type, cert_code, cert_code_hide, 
+      cert_code_secret, nation_code, open_id, 
+      channel_id, update_flag, phone, 
+      relation_cert_secret, apply_entrust_relation, 
+      wx_live_type, is_leave_wx_type, arrive_wx_date, 
+      is_from_hb, departure_addr, departure_addr_code, 
+      arrive_wx_traffic, arrive_wx_trafficode, is_two_week_virus, 
+      household_code, household_name, emergency_person, 
+      emergency_phone, district_code, current_district, 
+      street_code, current_street, community_code, 
+      current_community, police_station_code, police_station, 
+      housing_name, allopatry_code, allopatry_name, 
+      live_address, is_hot, is_leave, 
+      is_stay, is_healthy, isolation_days, 
+      isolation_date, check_code, check_person, 
+      punch_date, atten_days, tips_code, 
+      alarm_code, is_respira_sick, is_address_right, 
+      two_week_travel, pass_addr_name, pass_addr_code, 
+      tran_status, status, flag, 
+      is_return_wuxi, community_flag, person_auth_flag, 
+       round_trip_code, 
+      round_trip_name, work_unit, school_code, 
+      res_one, res_two, res_three, 
+      res_four, res_five, paasway_codes, 
+      img_update_time, punch_time, response_time, 
+      flag_fresh_time, create_time, update_time, 
+      current_person_img)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, #{certCodeHide,jdbcType=VARCHAR}, 
+      #{certCodeSecret,jdbcType=VARCHAR}, #{nationCode,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{channelId,jdbcType=VARCHAR}, #{updateFlag,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{relationCertSecret,jdbcType=VARCHAR}, #{applyEntrustRelation,jdbcType=VARCHAR}, 
+      #{wxLiveType,jdbcType=VARCHAR}, #{isLeaveWxType,jdbcType=VARCHAR}, #{arriveWxDate,jdbcType=TIMESTAMP}, 
+      #{isFromHb,jdbcType=VARCHAR}, #{departureAddr,jdbcType=VARCHAR}, #{departureAddrCode,jdbcType=VARCHAR}, 
+      #{arriveWxTraffic,jdbcType=VARCHAR}, #{arriveWxTrafficode,jdbcType=VARCHAR}, #{isTwoWeekVirus,jdbcType=VARCHAR}, 
+      #{householdCode,jdbcType=VARCHAR}, #{householdName,jdbcType=VARCHAR}, #{emergencyPerson,jdbcType=VARCHAR}, 
+      #{emergencyPhone,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, #{currentDistrict,jdbcType=VARCHAR}, 
+      #{streetCode,jdbcType=VARCHAR}, #{currentStreet,jdbcType=VARCHAR}, #{communityCode,jdbcType=VARCHAR}, 
+      #{currentCommunity,jdbcType=VARCHAR}, #{policeStationCode,jdbcType=VARCHAR}, #{policeStation,jdbcType=VARCHAR}, 
+      #{housingName,jdbcType=VARCHAR}, #{allopatryCode,jdbcType=VARCHAR}, #{allopatryName,jdbcType=VARCHAR}, 
+      #{liveAddress,jdbcType=VARCHAR}, #{isHot,jdbcType=VARCHAR}, #{isLeave,jdbcType=VARCHAR}, 
+      #{isStay,jdbcType=VARCHAR}, #{isHealthy,jdbcType=VARCHAR}, #{isolationDays,jdbcType=INTEGER}, 
+      #{isolationDate,jdbcType=TIMESTAMP}, #{checkCode,jdbcType=CHAR}, #{checkPerson,jdbcType=VARCHAR}, 
+      #{punchDate,jdbcType=DATE}, #{attenDays,jdbcType=INTEGER}, #{tipsCode,jdbcType=CHAR}, 
+      #{alarmCode,jdbcType=CHAR}, #{isRespiraSick,jdbcType=VARCHAR}, #{isAddressRight,jdbcType=CHAR}, 
+      #{twoWeekTravel,jdbcType=VARCHAR}, #{passAddrName,jdbcType=VARCHAR}, #{passAddrCode,jdbcType=VARCHAR}, 
+      #{tranStatus,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, 
+      #{isReturnWuxi,jdbcType=CHAR}, #{communityFlag,jdbcType=VARCHAR}, #{personAuthFlag,jdbcType=VARCHAR}, 
+      #{personAuthChannel,jdbcType=VARCHAR}, #{personAuthTime,jdbcType=TIMESTAMP}, #{roundTripCode,jdbcType=VARCHAR}, 
+      #{roundTripName,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, #{schoolCode,jdbcType=VARCHAR}, 
+      #{resOne,jdbcType=VARCHAR}, #{resTwo,jdbcType=VARCHAR}, #{resThree,jdbcType=VARCHAR}, 
+      #{resFour,jdbcType=VARCHAR}, #{resFive,jdbcType=VARCHAR}, #{paaswayCodes,jdbcType=VARCHAR}, 
+      #{imgUpdateTime,jdbcType=TIMESTAMP}, #{punchTime,jdbcType=TIMESTAMP}, #{responseTime,jdbcType=TIMESTAMP}, 
+      #{flagFreshTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{currentPersonImg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApply" >
+    insert into t_c_health_code_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="certType != null" >
+        cert_type,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="certCodeHide != null" >
+        cert_code_hide,
+      </if>
+      <if test="certCodeSecret != null" >
+        cert_code_secret,
+      </if>
+      <if test="nationCode != null" >
+        nation_code,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="updateFlag != null" >
+        update_flag,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="relationCertSecret != null" >
+        relation_cert_secret,
+      </if>
+      <if test="applyEntrustRelation != null" >
+        apply_entrust_relation,
+      </if>
+      <if test="wxLiveType != null" >
+        wx_live_type,
+      </if>
+      <if test="isLeaveWxType != null" >
+        is_leave_wx_type,
+      </if>
+      <if test="arriveWxDate != null" >
+        arrive_wx_date,
+      </if>
+      <if test="isFromHb != null" >
+        is_from_hb,
+      </if>
+      <if test="departureAddr != null" >
+        departure_addr,
+      </if>
+      <if test="departureAddrCode != null" >
+        departure_addr_code,
+      </if>
+      <if test="arriveWxTraffic != null" >
+        arrive_wx_traffic,
+      </if>
+      <if test="arriveWxTrafficode != null" >
+        arrive_wx_trafficode,
+      </if>
+      <if test="isTwoWeekVirus != null" >
+        is_two_week_virus,
+      </if>
+      <if test="householdCode != null" >
+        household_code,
+      </if>
+      <if test="householdName != null" >
+        household_name,
+      </if>
+      <if test="emergencyPerson != null" >
+        emergency_person,
+      </if>
+      <if test="emergencyPhone != null" >
+        emergency_phone,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="currentDistrict != null" >
+        current_district,
+      </if>
+      <if test="streetCode != null" >
+        street_code,
+      </if>
+      <if test="currentStreet != null" >
+        current_street,
+      </if>
+      <if test="communityCode != null" >
+        community_code,
+      </if>
+      <if test="currentCommunity != null" >
+        current_community,
+      </if>
+      <if test="policeStationCode != null" >
+        police_station_code,
+      </if>
+      <if test="policeStation != null" >
+        police_station,
+      </if>
+      <if test="housingName != null" >
+        housing_name,
+      </if>
+      <if test="allopatryCode != null" >
+        allopatry_code,
+      </if>
+      <if test="allopatryName != null" >
+        allopatry_name,
+      </if>
+      <if test="liveAddress != null" >
+        live_address,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isLeave != null" >
+        is_leave,
+      </if>
+      <if test="isStay != null" >
+        is_stay,
+      </if>
+      <if test="isHealthy != null" >
+        is_healthy,
+      </if>
+      <if test="isolationDays != null" >
+        isolation_days,
+      </if>
+      <if test="isolationDate != null" >
+        isolation_date,
+      </if>
+      <if test="checkCode != null" >
+        check_code,
+      </if>
+      <if test="checkPerson != null" >
+        check_person,
+      </if>
+      <if test="punchDate != null" >
+        punch_date,
+      </if>
+      <if test="attenDays != null" >
+        atten_days,
+      </if>
+      <if test="tipsCode != null" >
+        tips_code,
+      </if>
+      <if test="alarmCode != null" >
+        alarm_code,
+      </if>
+      <if test="isRespiraSick != null" >
+        is_respira_sick,
+      </if>
+      <if test="isAddressRight != null" >
+        is_address_right,
+      </if>
+      <if test="twoWeekTravel != null" >
+        two_week_travel,
+      </if>
+      <if test="passAddrName != null" >
+        pass_addr_name,
+      </if>
+      <if test="passAddrCode != null" >
+        pass_addr_code,
+      </if>
+      <if test="tranStatus != null" >
+        tran_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="isReturnWuxi != null" >
+        is_return_wuxi,
+      </if>
+      <if test="communityFlag != null" >
+        community_flag,
+      </if>
+      <if test="personAuthFlag != null" >
+        person_auth_flag,
+      </if>
+      
+      
+      <if test="roundTripCode != null" >
+        round_trip_code,
+      </if>
+      <if test="roundTripName != null" >
+        round_trip_name,
+      </if>
+      <if test="workUnit != null" >
+        work_unit,
+      </if>
+      <if test="schoolCode != null" >
+        school_code,
+      </if>
+      <if test="resOne != null" >
+        res_one,
+      </if>
+      <if test="resTwo != null" >
+        res_two,
+      </if>
+      <if test="resThree != null" >
+        res_three,
+      </if>
+      <if test="resFour != null" >
+        res_four,
+      </if>
+      <if test="resFive != null" >
+        res_five,
+      </if>
+      <if test="paaswayCodes != null" >
+        paasway_codes,
+      </if>
+      <if test="imgUpdateTime != null" >
+        img_update_time,
+      </if>
+      <if test="punchTime != null" >
+        punch_time,
+      </if>
+      <if test="responseTime != null" >
+        response_time,
+      </if>
+      <if test="flagFreshTime != null" >
+        flag_fresh_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="currentPersonImg != null" >
+        current_person_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="certCodeHide != null" >
+        #{certCodeHide,jdbcType=VARCHAR},
+      </if>
+      <if test="certCodeSecret != null" >
+        #{certCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="nationCode != null" >
+        #{nationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateFlag != null" >
+        #{updateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="relationCertSecret != null" >
+        #{relationCertSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="applyEntrustRelation != null" >
+        #{applyEntrustRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="wxLiveType != null" >
+        #{wxLiveType,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeaveWxType != null" >
+        #{isLeaveWxType,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxDate != null" >
+        #{arriveWxDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFromHb != null" >
+        #{isFromHb,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAddr != null" >
+        #{departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAddrCode != null" >
+        #{departureAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxTraffic != null" >
+        #{arriveWxTraffic,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxTrafficode != null" >
+        #{arriveWxTrafficode,jdbcType=VARCHAR},
+      </if>
+      <if test="isTwoWeekVirus != null" >
+        #{isTwoWeekVirus,jdbcType=VARCHAR},
+      </if>
+      <if test="householdCode != null" >
+        #{householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdName != null" >
+        #{householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyPerson != null" >
+        #{emergencyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyPhone != null" >
+        #{emergencyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentDistrict != null" >
+        #{currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="streetCode != null" >
+        #{streetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStreet != null" >
+        #{currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCommunity != null" >
+        #{currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="policeStationCode != null" >
+        #{policeStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="policeStation != null" >
+        #{policeStation,jdbcType=VARCHAR},
+      </if>
+      <if test="housingName != null" >
+        #{housingName,jdbcType=VARCHAR},
+      </if>
+      <if test="allopatryCode != null" >
+        #{allopatryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="allopatryName != null" >
+        #{allopatryName,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null" >
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeave != null" >
+        #{isLeave,jdbcType=VARCHAR},
+      </if>
+      <if test="isStay != null" >
+        #{isStay,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealthy != null" >
+        #{isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="isolationDays != null" >
+        #{isolationDays,jdbcType=INTEGER},
+      </if>
+      <if test="isolationDate != null" >
+        #{isolationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkCode != null" >
+        #{checkCode,jdbcType=CHAR},
+      </if>
+      <if test="checkPerson != null" >
+        #{checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="punchDate != null" >
+        #{punchDate,jdbcType=DATE},
+      </if>
+      <if test="attenDays != null" >
+        #{attenDays,jdbcType=INTEGER},
+      </if>
+      <if test="tipsCode != null" >
+        #{tipsCode,jdbcType=CHAR},
+      </if>
+      <if test="alarmCode != null" >
+        #{alarmCode,jdbcType=CHAR},
+      </if>
+      <if test="isRespiraSick != null" >
+        #{isRespiraSick,jdbcType=VARCHAR},
+      </if>
+      <if test="isAddressRight != null" >
+        #{isAddressRight,jdbcType=CHAR},
+      </if>
+      <if test="twoWeekTravel != null" >
+        #{twoWeekTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="passAddrName != null" >
+        #{passAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="passAddrCode != null" >
+        #{passAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tranStatus != null" >
+        #{tranStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="isReturnWuxi != null" >
+        #{isReturnWuxi,jdbcType=CHAR},
+      </if>
+      <if test="communityFlag != null" >
+        #{communityFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="personAuthFlag != null" >
+        #{personAuthFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="personAuthChannel != null" >
+        #{personAuthChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="personAuthTime != null" >
+        #{personAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roundTripCode != null" >
+        #{roundTripCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roundTripName != null" >
+        #{roundTripName,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null" >
+        #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolCode != null" >
+        #{schoolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resOne != null" >
+        #{resOne,jdbcType=VARCHAR},
+      </if>
+      <if test="resTwo != null" >
+        #{resTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="resThree != null" >
+        #{resThree,jdbcType=VARCHAR},
+      </if>
+      <if test="resFour != null" >
+        #{resFour,jdbcType=VARCHAR},
+      </if>
+      <if test="resFive != null" >
+        #{resFive,jdbcType=VARCHAR},
+      </if>
+      <if test="paaswayCodes != null" >
+        #{paaswayCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUpdateTime != null" >
+        #{imgUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punchTime != null" >
+        #{punchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responseTime != null" >
+        #{responseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flagFreshTime != null" >
+        #{flagFreshTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentPersonImg != null" >
+        #{currentPersonImg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApplyCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_code_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_code_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certType != null" >
+        cert_type = #{record.certType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCode != null" >
+        cert_code = #{record.certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCodeHide != null" >
+        cert_code_hide = #{record.certCodeHide,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCodeSecret != null" >
+        cert_code_secret = #{record.certCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationCode != null" >
+        nation_code = #{record.nationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openId != null" >
+        open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelId != null" >
+        channel_id = #{record.channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateFlag != null" >
+        update_flag = #{record.updateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationCertSecret != null" >
+        relation_cert_secret = #{record.relationCertSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyEntrustRelation != null" >
+        apply_entrust_relation = #{record.applyEntrustRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxLiveType != null" >
+        wx_live_type = #{record.wxLiveType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLeaveWxType != null" >
+        is_leave_wx_type = #{record.isLeaveWxType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveWxDate != null" >
+        arrive_wx_date = #{record.arriveWxDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isFromHb != null" >
+        is_from_hb = #{record.isFromHb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureAddr != null" >
+        departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureAddrCode != null" >
+        departure_addr_code = #{record.departureAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveWxTraffic != null" >
+        arrive_wx_traffic = #{record.arriveWxTraffic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveWxTrafficode != null" >
+        arrive_wx_trafficode = #{record.arriveWxTrafficode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTwoWeekVirus != null" >
+        is_two_week_virus = #{record.isTwoWeekVirus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdCode != null" >
+        household_code = #{record.householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdName != null" >
+        household_name = #{record.householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencyPerson != null" >
+        emergency_person = #{record.emergencyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emergencyPhone != null" >
+        emergency_phone = #{record.emergencyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtCode != null" >
+        district_code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentDistrict != null" >
+        current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.streetCode != null" >
+        street_code = #{record.streetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentStreet != null" >
+        current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityCode != null" >
+        community_code = #{record.communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentCommunity != null" >
+        current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policeStationCode != null" >
+        police_station_code = #{record.policeStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policeStation != null" >
+        police_station = #{record.policeStation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housingName != null" >
+        housing_name = #{record.housingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allopatryCode != null" >
+        allopatry_code = #{record.allopatryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allopatryName != null" >
+        allopatry_name = #{record.allopatryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveAddress != null" >
+        live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLeave != null" >
+        is_leave = #{record.isLeave,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isStay != null" >
+        is_stay = #{record.isStay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHealthy != null" >
+        is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isolationDays != null" >
+        isolation_days = #{record.isolationDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.isolationDate != null" >
+        isolation_date = #{record.isolationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.checkCode != null" >
+        check_code = #{record.checkCode,jdbcType=CHAR},
+      </if>
+      <if test="record.checkPerson != null" >
+        check_person = #{record.checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.punchDate != null" >
+        punch_date = #{record.punchDate,jdbcType=DATE},
+      </if>
+      <if test="record.attenDays != null" >
+        atten_days = #{record.attenDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.tipsCode != null" >
+        tips_code = #{record.tipsCode,jdbcType=CHAR},
+      </if>
+      <if test="record.alarmCode != null" >
+        alarm_code = #{record.alarmCode,jdbcType=CHAR},
+      </if>
+      <if test="record.isRespiraSick != null" >
+        is_respira_sick = #{record.isRespiraSick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAddressRight != null" >
+        is_address_right = #{record.isAddressRight,jdbcType=CHAR},
+      </if>
+      <if test="record.twoWeekTravel != null" >
+        two_week_travel = #{record.twoWeekTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passAddrName != null" >
+        pass_addr_name = #{record.passAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passAddrCode != null" >
+        pass_addr_code = #{record.passAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tranStatus != null" >
+        tran_status = #{record.tranStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isReturnWuxi != null" >
+        is_return_wuxi = #{record.isReturnWuxi,jdbcType=CHAR},
+      </if>
+      <if test="record.communityFlag != null" >
+        community_flag = #{record.communityFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personAuthFlag != null" >
+        person_auth_flag = #{record.personAuthFlag,jdbcType=VARCHAR},
+      </if>
+      
+      
+      <if test="record.roundTripCode != null" >
+        round_trip_code = #{record.roundTripCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roundTripName != null" >
+        round_trip_name = #{record.roundTripName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workUnit != null" >
+        work_unit = #{record.workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolCode != null" >
+        school_code = #{record.schoolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resOne != null" >
+        res_one = #{record.resOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resTwo != null" >
+        res_two = #{record.resTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resThree != null" >
+        res_three = #{record.resThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resFour != null" >
+        res_four = #{record.resFour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resFive != null" >
+        res_five = #{record.resFive,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paaswayCodes != null" >
+        paasway_codes = #{record.paaswayCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUpdateTime != null" >
+        img_update_time = #{record.imgUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.punchTime != null" >
+        punch_time = #{record.punchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.responseTime != null" >
+        response_time = #{record.responseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.flagFreshTime != null" >
+        flag_fresh_time = #{record.flagFreshTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.currentPersonImg != null" >
+        current_person_img = #{record.currentPersonImg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_c_health_code_apply
+    set id = #{record.id,jdbcType=INTEGER},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      cert_type = #{record.certType,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      cert_code_hide = #{record.certCodeHide,jdbcType=VARCHAR},
+      cert_code_secret = #{record.certCodeSecret,jdbcType=VARCHAR},
+      nation_code = #{record.nationCode,jdbcType=VARCHAR},
+      open_id = #{record.openId,jdbcType=VARCHAR},
+      channel_id = #{record.channelId,jdbcType=VARCHAR},
+      update_flag = #{record.updateFlag,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      relation_cert_secret = #{record.relationCertSecret,jdbcType=VARCHAR},
+      apply_entrust_relation = #{record.applyEntrustRelation,jdbcType=VARCHAR},
+      wx_live_type = #{record.wxLiveType,jdbcType=VARCHAR},
+      is_leave_wx_type = #{record.isLeaveWxType,jdbcType=VARCHAR},
+      arrive_wx_date = #{record.arriveWxDate,jdbcType=TIMESTAMP},
+      is_from_hb = #{record.isFromHb,jdbcType=VARCHAR},
+      departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      departure_addr_code = #{record.departureAddrCode,jdbcType=VARCHAR},
+      arrive_wx_traffic = #{record.arriveWxTraffic,jdbcType=VARCHAR},
+      arrive_wx_trafficode = #{record.arriveWxTrafficode,jdbcType=VARCHAR},
+      is_two_week_virus = #{record.isTwoWeekVirus,jdbcType=VARCHAR},
+      household_code = #{record.householdCode,jdbcType=VARCHAR},
+      household_name = #{record.householdName,jdbcType=VARCHAR},
+      emergency_person = #{record.emergencyPerson,jdbcType=VARCHAR},
+      emergency_phone = #{record.emergencyPhone,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      street_code = #{record.streetCode,jdbcType=VARCHAR},
+      current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      community_code = #{record.communityCode,jdbcType=VARCHAR},
+      current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      police_station_code = #{record.policeStationCode,jdbcType=VARCHAR},
+      police_station = #{record.policeStation,jdbcType=VARCHAR},
+      housing_name = #{record.housingName,jdbcType=VARCHAR},
+      allopatry_code = #{record.allopatryCode,jdbcType=VARCHAR},
+      allopatry_name = #{record.allopatryName,jdbcType=VARCHAR},
+      live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      is_hot = #{record.isHot,jdbcType=VARCHAR},
+      is_leave = #{record.isLeave,jdbcType=VARCHAR},
+      is_stay = #{record.isStay,jdbcType=VARCHAR},
+      is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      isolation_days = #{record.isolationDays,jdbcType=INTEGER},
+      isolation_date = #{record.isolationDate,jdbcType=TIMESTAMP},
+      check_code = #{record.checkCode,jdbcType=CHAR},
+      check_person = #{record.checkPerson,jdbcType=VARCHAR},
+      punch_date = #{record.punchDate,jdbcType=DATE},
+      atten_days = #{record.attenDays,jdbcType=INTEGER},
+      tips_code = #{record.tipsCode,jdbcType=CHAR},
+      alarm_code = #{record.alarmCode,jdbcType=CHAR},
+      is_respira_sick = #{record.isRespiraSick,jdbcType=VARCHAR},
+      is_address_right = #{record.isAddressRight,jdbcType=CHAR},
+      two_week_travel = #{record.twoWeekTravel,jdbcType=VARCHAR},
+      pass_addr_name = #{record.passAddrName,jdbcType=VARCHAR},
+      pass_addr_code = #{record.passAddrCode,jdbcType=VARCHAR},
+      tran_status = #{record.tranStatus,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=VARCHAR},
+      is_return_wuxi = #{record.isReturnWuxi,jdbcType=CHAR},
+      community_flag = #{record.communityFlag,jdbcType=VARCHAR},
+      person_auth_flag = #{record.personAuthFlag,jdbcType=VARCHAR},
+      
+      
+      round_trip_code = #{record.roundTripCode,jdbcType=VARCHAR},
+      round_trip_name = #{record.roundTripName,jdbcType=VARCHAR},
+      work_unit = #{record.workUnit,jdbcType=VARCHAR},
+      school_code = #{record.schoolCode,jdbcType=VARCHAR},
+      res_one = #{record.resOne,jdbcType=VARCHAR},
+      res_two = #{record.resTwo,jdbcType=VARCHAR},
+      res_three = #{record.resThree,jdbcType=VARCHAR},
+      res_four = #{record.resFour,jdbcType=VARCHAR},
+      res_five = #{record.resFive,jdbcType=VARCHAR},
+      paasway_codes = #{record.paaswayCodes,jdbcType=VARCHAR},
+      img_update_time = #{record.imgUpdateTime,jdbcType=TIMESTAMP},
+      punch_time = #{record.punchTime,jdbcType=TIMESTAMP},
+      response_time = #{record.responseTime,jdbcType=TIMESTAMP},
+      flag_fresh_time = #{record.flagFreshTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      current_person_img = #{record.currentPersonImg,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_code_apply
+    set id = #{record.id,jdbcType=INTEGER},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      cert_type = #{record.certType,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      cert_code_hide = #{record.certCodeHide,jdbcType=VARCHAR},
+      cert_code_secret = #{record.certCodeSecret,jdbcType=VARCHAR},
+      nation_code = #{record.nationCode,jdbcType=VARCHAR},
+      open_id = #{record.openId,jdbcType=VARCHAR},
+      channel_id = #{record.channelId,jdbcType=VARCHAR},
+      update_flag = #{record.updateFlag,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      relation_cert_secret = #{record.relationCertSecret,jdbcType=VARCHAR},
+      apply_entrust_relation = #{record.applyEntrustRelation,jdbcType=VARCHAR},
+      wx_live_type = #{record.wxLiveType,jdbcType=VARCHAR},
+      is_leave_wx_type = #{record.isLeaveWxType,jdbcType=VARCHAR},
+      arrive_wx_date = #{record.arriveWxDate,jdbcType=TIMESTAMP},
+      is_from_hb = #{record.isFromHb,jdbcType=VARCHAR},
+      departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      departure_addr_code = #{record.departureAddrCode,jdbcType=VARCHAR},
+      arrive_wx_traffic = #{record.arriveWxTraffic,jdbcType=VARCHAR},
+      arrive_wx_trafficode = #{record.arriveWxTrafficode,jdbcType=VARCHAR},
+      is_two_week_virus = #{record.isTwoWeekVirus,jdbcType=VARCHAR},
+      household_code = #{record.householdCode,jdbcType=VARCHAR},
+      household_name = #{record.householdName,jdbcType=VARCHAR},
+      emergency_person = #{record.emergencyPerson,jdbcType=VARCHAR},
+      emergency_phone = #{record.emergencyPhone,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      street_code = #{record.streetCode,jdbcType=VARCHAR},
+      current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      community_code = #{record.communityCode,jdbcType=VARCHAR},
+      current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      police_station_code = #{record.policeStationCode,jdbcType=VARCHAR},
+      police_station = #{record.policeStation,jdbcType=VARCHAR},
+      housing_name = #{record.housingName,jdbcType=VARCHAR},
+      allopatry_code = #{record.allopatryCode,jdbcType=VARCHAR},
+      allopatry_name = #{record.allopatryName,jdbcType=VARCHAR},
+      live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      is_hot = #{record.isHot,jdbcType=VARCHAR},
+      is_leave = #{record.isLeave,jdbcType=VARCHAR},
+      is_stay = #{record.isStay,jdbcType=VARCHAR},
+      is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      isolation_days = #{record.isolationDays,jdbcType=INTEGER},
+      isolation_date = #{record.isolationDate,jdbcType=TIMESTAMP},
+      check_code = #{record.checkCode,jdbcType=CHAR},
+      check_person = #{record.checkPerson,jdbcType=VARCHAR},
+      punch_date = #{record.punchDate,jdbcType=DATE},
+      atten_days = #{record.attenDays,jdbcType=INTEGER},
+      tips_code = #{record.tipsCode,jdbcType=CHAR},
+      alarm_code = #{record.alarmCode,jdbcType=CHAR},
+      is_respira_sick = #{record.isRespiraSick,jdbcType=VARCHAR},
+      is_address_right = #{record.isAddressRight,jdbcType=CHAR},
+      two_week_travel = #{record.twoWeekTravel,jdbcType=VARCHAR},
+      pass_addr_name = #{record.passAddrName,jdbcType=VARCHAR},
+      pass_addr_code = #{record.passAddrCode,jdbcType=VARCHAR},
+      tran_status = #{record.tranStatus,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=VARCHAR},
+      is_return_wuxi = #{record.isReturnWuxi,jdbcType=CHAR},
+      community_flag = #{record.communityFlag,jdbcType=VARCHAR},
+      person_auth_flag = #{record.personAuthFlag,jdbcType=VARCHAR},
+      
+      
+      round_trip_code = #{record.roundTripCode,jdbcType=VARCHAR},
+      round_trip_name = #{record.roundTripName,jdbcType=VARCHAR},
+      work_unit = #{record.workUnit,jdbcType=VARCHAR},
+      school_code = #{record.schoolCode,jdbcType=VARCHAR},
+      res_one = #{record.resOne,jdbcType=VARCHAR},
+      res_two = #{record.resTwo,jdbcType=VARCHAR},
+      res_three = #{record.resThree,jdbcType=VARCHAR},
+      res_four = #{record.resFour,jdbcType=VARCHAR},
+      res_five = #{record.resFive,jdbcType=VARCHAR},
+      paasway_codes = #{record.paaswayCodes,jdbcType=VARCHAR},
+      img_update_time = #{record.imgUpdateTime,jdbcType=TIMESTAMP},
+      punch_time = #{record.punchTime,jdbcType=TIMESTAMP},
+      response_time = #{record.responseTime,jdbcType=TIMESTAMP},
+      flag_fresh_time = #{record.flagFreshTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApply" >
+    update t_c_health_code_apply
+    <set >
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        cert_type = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        cert_code = #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="certCodeHide != null" >
+        cert_code_hide = #{certCodeHide,jdbcType=VARCHAR},
+      </if>
+      <if test="certCodeSecret != null" >
+        cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="nationCode != null" >
+        nation_code = #{nationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateFlag != null" >
+        update_flag = #{updateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="relationCertSecret != null" >
+        relation_cert_secret = #{relationCertSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="applyEntrustRelation != null" >
+        apply_entrust_relation = #{applyEntrustRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="wxLiveType != null" >
+        wx_live_type = #{wxLiveType,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeaveWxType != null" >
+        is_leave_wx_type = #{isLeaveWxType,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxDate != null" >
+        arrive_wx_date = #{arriveWxDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFromHb != null" >
+        is_from_hb = #{isFromHb,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAddr != null" >
+        departure_addr = #{departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAddrCode != null" >
+        departure_addr_code = #{departureAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxTraffic != null" >
+        arrive_wx_traffic = #{arriveWxTraffic,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxTrafficode != null" >
+        arrive_wx_trafficode = #{arriveWxTrafficode,jdbcType=VARCHAR},
+      </if>
+      <if test="isTwoWeekVirus != null" >
+        is_two_week_virus = #{isTwoWeekVirus,jdbcType=VARCHAR},
+      </if>
+      <if test="householdCode != null" >
+        household_code = #{householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdName != null" >
+        household_name = #{householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyPerson != null" >
+        emergency_person = #{emergencyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyPhone != null" >
+        emergency_phone = #{emergencyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentDistrict != null" >
+        current_district = #{currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="streetCode != null" >
+        street_code = #{streetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStreet != null" >
+        current_street = #{currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        community_code = #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCommunity != null" >
+        current_community = #{currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="policeStationCode != null" >
+        police_station_code = #{policeStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="policeStation != null" >
+        police_station = #{policeStation,jdbcType=VARCHAR},
+      </if>
+      <if test="housingName != null" >
+        housing_name = #{housingName,jdbcType=VARCHAR},
+      </if>
+      <if test="allopatryCode != null" >
+        allopatry_code = #{allopatryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="allopatryName != null" >
+        allopatry_name = #{allopatryName,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null" >
+        live_address = #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeave != null" >
+        is_leave = #{isLeave,jdbcType=VARCHAR},
+      </if>
+      <if test="isStay != null" >
+        is_stay = #{isStay,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealthy != null" >
+        is_healthy = #{isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="isolationDays != null" >
+        isolation_days = #{isolationDays,jdbcType=INTEGER},
+      </if>
+      <if test="isolationDate != null" >
+        isolation_date = #{isolationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkCode != null" >
+        check_code = #{checkCode,jdbcType=CHAR},
+      </if>
+      <if test="checkPerson != null" >
+        check_person = #{checkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="punchDate != null" >
+        punch_date = #{punchDate,jdbcType=DATE},
+      </if>
+      <if test="attenDays != null" >
+        atten_days = #{attenDays,jdbcType=INTEGER},
+      </if>
+      <if test="tipsCode != null" >
+        tips_code = #{tipsCode,jdbcType=CHAR},
+      </if>
+      <if test="alarmCode != null" >
+        alarm_code = #{alarmCode,jdbcType=CHAR},
+      </if>
+      <if test="isRespiraSick != null" >
+        is_respira_sick = #{isRespiraSick,jdbcType=VARCHAR},
+      </if>
+      <if test="isAddressRight != null" >
+        is_address_right = #{isAddressRight,jdbcType=CHAR},
+      </if>
+      <if test="twoWeekTravel != null" >
+        two_week_travel = #{twoWeekTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="passAddrName != null" >
+        pass_addr_name = #{passAddrName,jdbcType=VARCHAR},
+      </if>
+      <if test="passAddrCode != null" >
+        pass_addr_code = #{passAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tranStatus != null" >
+        tran_status = #{tranStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="isReturnWuxi != null" >
+        is_return_wuxi = #{isReturnWuxi,jdbcType=CHAR},
+      </if>
+      <if test="communityFlag != null" >
+        community_flag = #{communityFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="personAuthFlag != null" >
+        person_auth_flag = #{personAuthFlag,jdbcType=VARCHAR},
+      </if>
+     
+     
+      <if test="roundTripCode != null" >
+        round_trip_code = #{roundTripCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roundTripName != null" >
+        round_trip_name = #{roundTripName,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null" >
+        work_unit = #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolCode != null" >
+        school_code = #{schoolCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resOne != null" >
+        res_one = #{resOne,jdbcType=VARCHAR},
+      </if>
+      <if test="resTwo != null" >
+        res_two = #{resTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="resThree != null" >
+        res_three = #{resThree,jdbcType=VARCHAR},
+      </if>
+      <if test="resFour != null" >
+        res_four = #{resFour,jdbcType=VARCHAR},
+      </if>
+      <if test="resFive != null" >
+        res_five = #{resFive,jdbcType=VARCHAR},
+      </if>
+      <if test="paaswayCodes != null" >
+        paasway_codes = #{paaswayCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUpdateTime != null" >
+        img_update_time = #{imgUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punchTime != null" >
+        punch_time = #{punchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responseTime != null" >
+        response_time = #{responseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flagFreshTime != null" >
+        flag_fresh_time = #{flagFreshTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentPersonImg != null" >
+        current_person_img = #{currentPersonImg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApply" >
+    update t_c_health_code_apply
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      cert_type = #{certType,jdbcType=VARCHAR},
+      cert_code = #{certCode,jdbcType=VARCHAR},
+      cert_code_hide = #{certCodeHide,jdbcType=VARCHAR},
+      cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR},
+      nation_code = #{nationCode,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=VARCHAR},
+      update_flag = #{updateFlag,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      relation_cert_secret = #{relationCertSecret,jdbcType=VARCHAR},
+      apply_entrust_relation = #{applyEntrustRelation,jdbcType=VARCHAR},
+      wx_live_type = #{wxLiveType,jdbcType=VARCHAR},
+      is_leave_wx_type = #{isLeaveWxType,jdbcType=VARCHAR},
+      arrive_wx_date = #{arriveWxDate,jdbcType=TIMESTAMP},
+      is_from_hb = #{isFromHb,jdbcType=VARCHAR},
+      departure_addr = #{departureAddr,jdbcType=VARCHAR},
+      departure_addr_code = #{departureAddrCode,jdbcType=VARCHAR},
+      arrive_wx_traffic = #{arriveWxTraffic,jdbcType=VARCHAR},
+      arrive_wx_trafficode = #{arriveWxTrafficode,jdbcType=VARCHAR},
+      is_two_week_virus = #{isTwoWeekVirus,jdbcType=VARCHAR},
+      household_code = #{householdCode,jdbcType=VARCHAR},
+      household_name = #{householdName,jdbcType=VARCHAR},
+      emergency_person = #{emergencyPerson,jdbcType=VARCHAR},
+      emergency_phone = #{emergencyPhone,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      current_district = #{currentDistrict,jdbcType=VARCHAR},
+      street_code = #{streetCode,jdbcType=VARCHAR},
+      current_street = #{currentStreet,jdbcType=VARCHAR},
+      community_code = #{communityCode,jdbcType=VARCHAR},
+      current_community = #{currentCommunity,jdbcType=VARCHAR},
+      police_station_code = #{policeStationCode,jdbcType=VARCHAR},
+      police_station = #{policeStation,jdbcType=VARCHAR},
+      housing_name = #{housingName,jdbcType=VARCHAR},
+      allopatry_code = #{allopatryCode,jdbcType=VARCHAR},
+      allopatry_name = #{allopatryName,jdbcType=VARCHAR},
+      live_address = #{liveAddress,jdbcType=VARCHAR},
+      is_hot = #{isHot,jdbcType=VARCHAR},
+      is_leave = #{isLeave,jdbcType=VARCHAR},
+      is_stay = #{isStay,jdbcType=VARCHAR},
+      is_healthy = #{isHealthy,jdbcType=VARCHAR},
+      isolation_days = #{isolationDays,jdbcType=INTEGER},
+      isolation_date = #{isolationDate,jdbcType=TIMESTAMP},
+      check_code = #{checkCode,jdbcType=CHAR},
+      check_person = #{checkPerson,jdbcType=VARCHAR},
+      punch_date = #{punchDate,jdbcType=DATE},
+      atten_days = #{attenDays,jdbcType=INTEGER},
+      tips_code = #{tipsCode,jdbcType=CHAR},
+      alarm_code = #{alarmCode,jdbcType=CHAR},
+      is_respira_sick = #{isRespiraSick,jdbcType=VARCHAR},
+      is_address_right = #{isAddressRight,jdbcType=CHAR},
+      two_week_travel = #{twoWeekTravel,jdbcType=VARCHAR},
+      pass_addr_name = #{passAddrName,jdbcType=VARCHAR},
+      pass_addr_code = #{passAddrCode,jdbcType=VARCHAR},
+      tran_status = #{tranStatus,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      is_return_wuxi = #{isReturnWuxi,jdbcType=CHAR},
+      community_flag = #{communityFlag,jdbcType=VARCHAR},
+      person_auth_flag = #{personAuthFlag,jdbcType=VARCHAR},
+      
+      
+      round_trip_code = #{roundTripCode,jdbcType=VARCHAR},
+      round_trip_name = #{roundTripName,jdbcType=VARCHAR},
+      work_unit = #{workUnit,jdbcType=VARCHAR},
+      school_code = #{schoolCode,jdbcType=VARCHAR},
+      res_one = #{resOne,jdbcType=VARCHAR},
+      res_two = #{resTwo,jdbcType=VARCHAR},
+      res_three = #{resThree,jdbcType=VARCHAR},
+      res_four = #{resFour,jdbcType=VARCHAR},
+      res_five = #{resFive,jdbcType=VARCHAR},
+      paasway_codes = #{paaswayCodes,jdbcType=VARCHAR},
+      img_update_time = #{imgUpdateTime,jdbcType=TIMESTAMP},
+      punch_time = #{punchTime,jdbcType=TIMESTAMP},
+      response_time = #{responseTime,jdbcType=TIMESTAMP},
+      flag_fresh_time = #{flagFreshTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      current_person_img = #{currentPersonImg,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthCodeApply" >
+    update t_c_health_code_apply
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      cert_type = #{certType,jdbcType=VARCHAR},
+      cert_code = #{certCode,jdbcType=VARCHAR},
+      cert_code_hide = #{certCodeHide,jdbcType=VARCHAR},
+      cert_code_secret = #{certCodeSecret,jdbcType=VARCHAR},
+      nation_code = #{nationCode,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=VARCHAR},
+      update_flag = #{updateFlag,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      relation_cert_secret = #{relationCertSecret,jdbcType=VARCHAR},
+      apply_entrust_relation = #{applyEntrustRelation,jdbcType=VARCHAR},
+      wx_live_type = #{wxLiveType,jdbcType=VARCHAR},
+      is_leave_wx_type = #{isLeaveWxType,jdbcType=VARCHAR},
+      arrive_wx_date = #{arriveWxDate,jdbcType=TIMESTAMP},
+      is_from_hb = #{isFromHb,jdbcType=VARCHAR},
+      departure_addr = #{departureAddr,jdbcType=VARCHAR},
+      departure_addr_code = #{departureAddrCode,jdbcType=VARCHAR},
+      arrive_wx_traffic = #{arriveWxTraffic,jdbcType=VARCHAR},
+      arrive_wx_trafficode = #{arriveWxTrafficode,jdbcType=VARCHAR},
+      is_two_week_virus = #{isTwoWeekVirus,jdbcType=VARCHAR},
+      household_code = #{householdCode,jdbcType=VARCHAR},
+      household_name = #{householdName,jdbcType=VARCHAR},
+      emergency_person = #{emergencyPerson,jdbcType=VARCHAR},
+      emergency_phone = #{emergencyPhone,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      current_district = #{currentDistrict,jdbcType=VARCHAR},
+      street_code = #{streetCode,jdbcType=VARCHAR},
+      current_street = #{currentStreet,jdbcType=VARCHAR},
+      community_code = #{communityCode,jdbcType=VARCHAR},
+      current_community = #{currentCommunity,jdbcType=VARCHAR},
+      police_station_code = #{policeStationCode,jdbcType=VARCHAR},
+      police_station = #{policeStation,jdbcType=VARCHAR},
+      housing_name = #{housingName,jdbcType=VARCHAR},
+      allopatry_code = #{allopatryCode,jdbcType=VARCHAR},
+      allopatry_name = #{allopatryName,jdbcType=VARCHAR},
+      live_address = #{liveAddress,jdbcType=VARCHAR},
+      is_hot = #{isHot,jdbcType=VARCHAR},
+      is_leave = #{isLeave,jdbcType=VARCHAR},
+      is_stay = #{isStay,jdbcType=VARCHAR},
+      is_healthy = #{isHealthy,jdbcType=VARCHAR},
+      isolation_days = #{isolationDays,jdbcType=INTEGER},
+      isolation_date = #{isolationDate,jdbcType=TIMESTAMP},
+      check_code = #{checkCode,jdbcType=CHAR},
+      check_person = #{checkPerson,jdbcType=VARCHAR},
+      punch_date = #{punchDate,jdbcType=DATE},
+      atten_days = #{attenDays,jdbcType=INTEGER},
+      tips_code = #{tipsCode,jdbcType=CHAR},
+      alarm_code = #{alarmCode,jdbcType=CHAR},
+      is_respira_sick = #{isRespiraSick,jdbcType=VARCHAR},
+      is_address_right = #{isAddressRight,jdbcType=CHAR},
+      two_week_travel = #{twoWeekTravel,jdbcType=VARCHAR},
+      pass_addr_name = #{passAddrName,jdbcType=VARCHAR},
+      pass_addr_code = #{passAddrCode,jdbcType=VARCHAR},
+      tran_status = #{tranStatus,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      is_return_wuxi = #{isReturnWuxi,jdbcType=CHAR},
+      community_flag = #{communityFlag,jdbcType=VARCHAR},
+      person_auth_flag = #{personAuthFlag,jdbcType=VARCHAR},
+      
+      
+      round_trip_code = #{roundTripCode,jdbcType=VARCHAR},
+      round_trip_name = #{roundTripName,jdbcType=VARCHAR},
+      work_unit = #{workUnit,jdbcType=VARCHAR},
+      school_code = #{schoolCode,jdbcType=VARCHAR},
+      res_one = #{resOne,jdbcType=VARCHAR},
+      res_two = #{resTwo,jdbcType=VARCHAR},
+      res_three = #{resThree,jdbcType=VARCHAR},
+      res_four = #{resFour,jdbcType=VARCHAR},
+      res_five = #{resFive,jdbcType=VARCHAR},
+      paasway_codes = #{paaswayCodes,jdbcType=VARCHAR},
+      img_update_time = #{imgUpdateTime,jdbcType=TIMESTAMP},
+      punch_time = #{punchTime,jdbcType=TIMESTAMP},
+      response_time = #{responseTime,jdbcType=TIMESTAMP},
+      flag_fresh_time = #{flagFreshTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPageTCHealthCodeApply" resultMap="BaseResultMap" parameterType="java.util.Map" >
+  	select 
+	* 
+	from t_c_health_code_apply a
+	<if test="cmmtyType != null">
+		LEFT JOIN 
+		t_c_commuity c
+		on a.community_code=c.VILLAGE_CODE
+		and a.district_code =c.COUNTY_CODE
+		and a.street_code=c.STREET_CODE
+		
+	</if>
+	<where>
+		<if test="districtCode != null ">
+			AND a.district_code = #{districtCode,jdbcType=VARCHAR}
+		</if>
+		<if test="streetCode != null ">
+			AND a.street_code = #{streetCode,jdbcType=VARCHAR}
+		</if>
+		<if test="communityCode != null ">
+			AND a.community_code = #{communityCode,jdbcType=VARCHAR}
+		</if>
+		<if test=" isHealthy!= null ">
+			AND a.is_healthy = #{isHealthy,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="housingName != null">
+			AND a.housing_name like concat('%',#{housingName,jdbcType=VARCHAR},'%') 
+		</if>
+		
+		<if test="certCode != null ">
+			AND a.cert_Code = #{certCode,jdbcType=VARCHAR}
+		</if>
+		<if test="phone != null ">
+			AND a.phone = #{phone,jdbcType=VARCHAR}
+		</if>
+		<if test="userName != null ">
+			AND a.user_Name = #{userName,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null">
+			AND a.create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND a.create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="cmmtyType != null">
+			AND c.cmmty_type=#{cmmtyType,jdbcType=VARCHAR}
+		</if>
+	</where>
+		order by a.create_time
+    	LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  <select id="countTCHealthCodeApply" parameterType="java.util.Map" resultType="java.lang.Integer">
+  select 
+	count(1)
+	from t_c_health_code_apply a
+	<if test="cmmtyType != null">
+		LEFT JOIN 
+		t_c_commuity c
+		on a.community_code=c.VILLAGE_CODE
+		and a.district_code =c.COUNTY_CODE
+		and a.street_code=c.STREET_CODE
+		
+	</if>
+	<where>
+		<if test="districtCode != null ">
+			AND a.district_code = #{districtCode,jdbcType=VARCHAR}
+		</if>
+		<if test="streetCode != null ">
+			AND a.street_code = #{streetCode,jdbcType=VARCHAR}
+		</if>
+		<if test="communityCode != null ">
+			AND a.community_code = #{communityCode,jdbcType=VARCHAR}
+		</if>
+		<if test=" isHealthy!= null ">
+			AND a.is_healthy = #{isHealthy,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="housingName != null">
+			AND a.housing_name like concat('%',#{housingName,jdbcType=VARCHAR},'%') 
+		</if>
+		
+		<if test="certCode != null ">
+			AND a.cert_Code = #{certCode,jdbcType=VARCHAR}
+		</if>
+		<if test="phone != null ">
+			AND a.phone = #{phone,jdbcType=VARCHAR}
+		</if>
+		<if test="userName != null ">
+			AND a.user_Name = #{userName,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null">
+			AND a.create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND a.create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="cmmtyType != null">
+			AND c.cmmty_type=#{cmmtyType,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  
+  <select id="selectApplyByCertCode" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select cert_code,
+		real_name user_name,
+		community_id,
+		is_health is_healthy,
+		create_time,
+		update_time,
+		check_person
+		from t_c_health_code_sweep_record
+		where cert_code= #{certCode,jdbcType=VARCHAR}
+		<if test="startTime != null">
+			AND create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		union ALL
+		select cert_code,
+		real_name user_name,
+		community_id,
+		is_health is_healthy,
+		create_time,
+		update_time,
+		check_person
+		from t_c_health_code_sweep_rec_his
+		where cert_code= #{certCode,jdbcType=VARCHAR}
+		<if test="startTime != null">
+			AND create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		ORDER BY
+		create_time desc
+		LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+	</select>
+
+	<select id="countApplyByCertCode" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select
+		count(1)
+		from
+		(select
+		cert_code,
+		create_time
+		from t_c_health_code_sweep_record
+		where cert_code= #{certCode,jdbcType=VARCHAR}
+		<if test="startTime != null">
+			AND create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		union ALL
+		select 
+		cert_code,
+		create_time
+		check_person
+		from t_c_health_code_sweep_rec_his
+		where cert_code= #{certCode,jdbcType=VARCHAR}
+		<if test="startTime != null">
+			AND create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		) a
+	</select>
+	<select id="selectSweepRecordExport" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT
+		a.id,
+		a.real_name userName,
+		a.create_time createTime,
+		b.real_name checkPersonName,
+		a.check_person checkPerson,
+		e.community_name currentCommunity,
+		d.COMMUITY_NAME housingName 
+		FROM
+		( SELECT id,cert_code,real_name,community_id,check_person,create_time,update_time,is_health FROM t_c_health_code_sweep_record WHERE cert_code = #{certCode,jdbcType=VARCHAR}
+		UNION ALL 
+		SELECT id,cert_code,real_name,community_id,check_person,create_time,update_time,is_health FROM t_c_health_code_sweep_rec_his WHERE cert_code = #{certCode,jdbcType=VARCHAR} ) a
+		LEFT JOIN t_c_health_user_community_relate b ON a.check_person = b.mobile
+		left join t_c_health_community_info e on b.community_id= e.id
+		LEFT JOIN t_c_commuity_verifier_rela c ON c.VERIFIER_ID = b.id
+		LEFT JOIN t_c_commuity d ON d.COMMUITY_ID = c.COMMUITY_ID
+		<where>
+			<if test="startTime != null">
+				AND a.create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND a.create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			order by a.create_time desc
+		</where>
+		
+	</select>
+	<update id="updateByCertCode" parameterType="java.util.Map">
+		update t_c_health_code_apply
+    	<trim prefix="set" suffixOverrides=",">
+    		<if test="updateFlag!=null">
+    			update_flag = #{updateFlag,jdbcType=VARCHAR},
+    		</if>
+    		<if test="updateFlag!=null">
+    			person_auth_flag = #{personAuthFlag,jdbcType=VARCHAR},
+    		</if>
+    		<if test="userName!=null">
+    			user_name = #{userName,jdbcType=VARCHAR},
+    		</if>
+    		<if test="phone!=null">
+    			phone = #{phone,jdbcType=VARCHAR},
+    		</if>
+    	</trim>
+    	where cert_code=#{certCode,jdbcType=VARCHAR}
+	</update>
+	<update id="updateUserTableByCertCode" parameterType="java.util.Map">
+		update t_c_health_code_user
+    		set real_name = #{userName,jdbcType=VARCHAR},mobile=#{phone,jdbcType=VARCHAR}
+    	where bright_card_code=#{certCode,jdbcType=VARCHAR}
+	</update>
+	<update id="updateRelaTableByCertCode" parameterType="java.util.Map">
+		update t_c_health_apply_entrust_rela
+    		set rtr_user_name = #{userName,jdbcType=VARCHAR}
+    	where p_cert_code_secret=#{certCodeSecret,jdbcType=VARCHAR}
+	</update>
+	<select id="selectCertCodeBySecret" parameterType="java.util.Map" resultType="java.util.Map">
+		select 
+			cert_code certCode
+		from 
+			t_c_health_code_apply
+		where 
+			cert_code_secret=#{certCodeSecret,jdbcType=VARCHAR}
+	</select>
+</mapper>

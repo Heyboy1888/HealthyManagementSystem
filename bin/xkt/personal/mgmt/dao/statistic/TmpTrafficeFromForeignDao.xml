@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.statistic.TmpTrafficeFromForeignDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TmpTrafficeFromForeign" >
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="household_code" property="householdCode" jdbcType="VARCHAR" />
+    <result column="household_name" property="householdName" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="current_district" property="currentDistrict" jdbcType="VARCHAR" />
+    <result column="current_street" property="currentStreet" jdbcType="VARCHAR" />
+    <result column="current_community" property="currentCommunity" jdbcType="VARCHAR" />
+    <result column="live_address" property="liveAddress" jdbcType="VARCHAR" />
+    <result column="file_date" property="fileDate" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_name, cert_code, phone, household_code, household_name, district_code, current_district, 
+    current_street, current_community, live_address,file_date, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TmpTrafficeFromForeignExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tmp_traffice_from_foreign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TmpTrafficeFromForeignExample" >
+    delete from tmp_traffice_from_foreign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TmpTrafficeFromForeign" >
+    insert into tmp_traffice_from_foreign (user_name, cert_code, phone, 
+      household_code, household_name, district_code, 
+      current_district, current_street, current_community, 
+      live_address,file_date, create_time)
+    values (#{userName,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{householdCode,jdbcType=VARCHAR}, #{householdName,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, 
+      #{currentDistrict,jdbcType=VARCHAR}, #{currentStreet,jdbcType=VARCHAR}, #{currentCommunity,jdbcType=VARCHAR},
+      #{liveAddress,jdbcType=VARCHAR}, #{fileDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertYellow" parameterType="xkt.personal.mgmt.bo.TmpTrafficeFromForeign" >
+    insert into tmp_traffice_from_foreign_5 (user_name, cert_code, phone, 
+      household_code, household_name, district_code, 
+      current_district, current_street, current_community, 
+      live_address,file_date, create_time)
+    values (#{userName,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{householdCode,jdbcType=VARCHAR}, #{householdName,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, 
+      #{currentDistrict,jdbcType=VARCHAR}, #{currentStreet,jdbcType=VARCHAR}, #{currentCommunity,jdbcType=VARCHAR}, 
+      #{liveAddress,jdbcType=VARCHAR},#{fileDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TmpTrafficeFromForeign" >
+    insert into tmp_traffice_from_foreign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="householdCode != null" >
+        household_code,
+      </if>
+      <if test="householdName != null" >
+        household_name,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="currentDistrict != null" >
+        current_district,
+      </if>
+      <if test="currentStreet != null" >
+        current_street,
+      </if>
+      <if test="currentCommunity != null" >
+        current_community,
+      </if>
+      <if test="liveAddress != null" >
+        live_address,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="householdCode != null" >
+        #{householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="householdName != null" >
+        #{householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="currentDistrict != null" >
+        #{currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStreet != null" >
+        #{currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCommunity != null" >
+        #{currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null" >
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TmpTrafficeFromForeignExample" resultType="java.lang.Integer" >
+    select count(*) from tmp_traffice_from_foreign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tmp_traffice_from_foreign
+    <set >
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCode != null" >
+        cert_code = #{record.certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdCode != null" >
+        household_code = #{record.householdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdName != null" >
+        household_name = #{record.householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtCode != null" >
+        district_code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentDistrict != null" >
+        current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentStreet != null" >
+        current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentCommunity != null" >
+        current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveAddress != null" >
+        live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tmp_traffice_from_foreign
+    set user_name = #{record.userName,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      household_code = #{record.householdCode,jdbcType=VARCHAR},
+      household_name = #{record.householdName,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="queryByTimeRed" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		user_name userName,
+  		cert_code certCode, 
+  		phone, 
+  		household_code householdCode,
+  		household_name householdName, 
+  		district_code districtCode, 
+  		current_district currentDistrict, 
+    	current_street currentStreet, 
+    	current_community currentCommunity, 
+    	live_address liveAddress, 
+    	create_time createTime,
+    	"红码" as codeColourName
+    from
+    	tmp_traffice_from_foreign
+    <where>
+    	<if test="date!=null">
+    		and  create_time<![CDATA[>=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 00:00:00')
+			and  create_time<![CDATA[<=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 23:59:59')
+    	</if>
+    </where>
+    	order by create_time
+    	LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  <select id="countByTimeRed" parameterType="java.lang.String" resultType="int">
+  	select 
+  		count(1)
+    from
+    	tmp_traffice_from_foreign
+    <where>
+    	<if test="date!=null">
+    		and  create_time<![CDATA[>=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 00:00:00')
+			and  create_time<![CDATA[<=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 23:59:59')
+    	</if>
+    </where>
+  </select>
+  <select id="queryByTimeYellow" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		user_name userName,
+  		cert_code certCode, 
+  		phone, 
+  		household_code householdCode,
+  		household_name householdName, 
+  		district_code districtCode, 
+  		current_district currentDistrict, 
+    	current_street currentStreet, 
+    	current_community currentCommunity, 
+    	live_address liveAddress, 
+    	create_time createTime,
+    	"黄码" as codeColourName
+    from
+    	tmp_traffice_from_foreign_5
+    <where>
+    	<if test="date!=null">
+    		and  create_time<![CDATA[>=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 00:00:00')
+			and  create_time<![CDATA[<=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 23:59:59')
+    	</if>
+    </where>
+    	order by create_time
+    	LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  <select id="countByTimeYellow" parameterType="java.lang.String" resultType="int">
+  	select 
+  		count(1)
+    from
+    	tmp_traffice_from_foreign_5
+    <where>
+    	<if test="date!=null">
+    		and  create_time<![CDATA[>=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 00:00:00')
+			and  create_time<![CDATA[<=]]>
+			DATE_FORMAT(#{date,jdbcType=VARCHAR}, '%Y-%m-%d 23:59:59')
+    	</if>
+    </where>
+  </select>
+  <select id="queryByTime" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		user_name userName,
+  		cert_code certCode, 
+  		phone, 
+  		household_code householdCode,
+  		household_name householdName, 
+  		district_code districtCode, 
+  		current_district currentDistrict, 
+    	current_street currentStreet, 
+    	current_community currentCommunity, 
+    	live_address liveAddress, 
+    	file_date fileDate,
+    	create_time createTime,
+    	"黄码" as codeColourName
+    from
+    	tmp_traffice_from_foreign_5
+    <where>
+    	<if test="date!=null">
+    		and  file_date =#{date,jdbcType=VARCHAR}
+    	</if>
+    </where>
+    union all
+	    select 
+	  		user_name userName,
+	  		cert_code certCode, 
+	  		phone, 
+	  		household_code householdCode,
+	  		household_name householdName, 
+	  		district_code districtCode, 
+	  		current_district currentDistrict, 
+	    	current_street currentStreet, 
+	    	current_community currentCommunity, 
+	    	live_address liveAddress, 
+	    	file_date fileDate,
+	    	create_time createTime,
+	    	"红码" as codeColourName
+	    from
+	    	tmp_traffice_from_foreign
+	    <where>
+	    	<if test="date!=null">
+	    		and  file_date =#{date,jdbcType=VARCHAR}
+	    	</if>
+	    </where>
+    	LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  <select id="countByTime" parameterType="java.lang.String" resultType="int">
+  	select 
+  		count(1)
+    from
+    	(select * from tmp_traffice_from_foreign_5 a
+	    <where>
+	    	<if test="date!=null">
+	    		and  file_date =#{date,jdbcType=VARCHAR}
+	    	</if>
+	    </where>
+	    union all
+	    select * from tmp_traffice_from_foreign b
+	    <where>
+	    	<if test="date!=null">
+	    		and  file_date =#{date,jdbcType=VARCHAR}
+	    	</if>
+	    </where>
+	    ) c
+  </select>
+  <delete id="deleteByTimeYellow" parameterType="java.lang.String">
+  		delete from tmp_traffice_from_foreign_5 
+  		where file_date =#{date,jdbcType=VARCHAR}
+  		
+  </delete>
+  <delete id="deleteByTimeRed" parameterType="java.lang.String" >
+  		delete from tmp_traffice_from_foreign
+  		where file_date =#{date,jdbcType=VARCHAR}
+  </delete>
+</mapper>

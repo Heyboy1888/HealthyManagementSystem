@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.lft.TGRegionCatalogDao">
+	<resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TGRegionCatalog">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="account_code" property="accountCode" jdbcType="VARCHAR" />
+		<result column="p_id" property="pId" jdbcType="VARCHAR" />
+		<result column="account_name" property="accountName" jdbcType="VARCHAR" />
+		<result column="district_code" property="districtCode"
+			jdbcType="VARCHAR" />
+		<result column="street_code" property="streetCode" jdbcType="VARCHAR" />
+		<result column="community_code" property="communityCode"
+			jdbcType="VARCHAR" />
+		<result column="level_num" property="levelNum" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, account_code, p_id, account_name, district_code, street_code,
+		community_code,
+		level_num
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="xkt.personal.mgmt.bo.TGRegionCatalogCriteria">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_g_region_catalog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_g_region_catalog
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_g_region_catalog
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TGRegionCatalogCriteria">
+		delete from t_g_region_catalog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="xkt.personal.mgmt.bo.TGRegionCatalog">
+		insert into t_g_region_catalog (id, account_code, p_id,
+		account_name, district_code, street_code,
+		community_code, level_num)
+		values (#{id,jdbcType=INTEGER}, #{accountCode,jdbcType=VARCHAR},
+		#{pId,jdbcType=VARCHAR},
+		#{accountName,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, #{streetCode,jdbcType=VARCHAR},
+		#{communityCode,jdbcType=VARCHAR}, #{levelNum,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TGRegionCatalog">
+		insert into t_g_region_catalog
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="accountCode != null">
+				account_code,
+			</if>
+			<if test="pId != null">
+				p_id,
+			</if>
+			<if test="accountName != null">
+				account_name,
+			</if>
+			<if test="districtCode != null">
+				district_code,
+			</if>
+			<if test="streetCode != null">
+				street_code,
+			</if>
+			<if test="communityCode != null">
+				community_code,
+			</if>
+			<if test="levelNum != null">
+				level_num,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="accountCode != null">
+				#{accountCode,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				#{pId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountName != null">
+				#{accountName,jdbcType=VARCHAR},
+			</if>
+			<if test="districtCode != null">
+				#{districtCode,jdbcType=VARCHAR},
+			</if>
+			<if test="streetCode != null">
+				#{streetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="communityCode != null">
+				#{communityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="levelNum != null">
+				#{levelNum,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="xkt.personal.mgmt.bo.TGRegionCatalogCriteria"
+		resultType="java.lang.Integer">
+		select count(*) from t_g_region_catalog
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_g_region_catalog
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.accountCode != null">
+				account_code = #{record.accountCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pId != null">
+				p_id = #{record.pId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.accountName != null">
+				account_name = #{record.accountName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.districtCode != null">
+				district_code = #{record.districtCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.streetCode != null">
+				street_code = #{record.streetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.communityCode != null">
+				community_code = #{record.communityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.levelNum != null">
+				level_num = #{record.levelNum,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_g_region_catalog
+		set id = #{record.id,jdbcType=INTEGER},
+		account_code = #{record.accountCode,jdbcType=VARCHAR},
+		p_id = #{record.pId,jdbcType=VARCHAR},
+		account_name = #{record.accountName,jdbcType=VARCHAR},
+		district_code = #{record.districtCode,jdbcType=VARCHAR},
+		street_code = #{record.streetCode,jdbcType=VARCHAR},
+		community_code = #{record.communityCode,jdbcType=VARCHAR},
+		level_num = #{record.levelNum,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TGRegionCatalog">
+		update t_g_region_catalog
+		<set>
+			<if test="accountCode != null">
+				account_code = #{accountCode,jdbcType=VARCHAR},
+			</if>
+			<if test="pId != null">
+				p_id = #{pId,jdbcType=VARCHAR},
+			</if>
+			<if test="accountName != null">
+				account_name = #{accountName,jdbcType=VARCHAR},
+			</if>
+			<if test="districtCode != null">
+				district_code = #{districtCode,jdbcType=VARCHAR},
+			</if>
+			<if test="streetCode != null">
+				street_code = #{streetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="communityCode != null">
+				community_code = #{communityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="levelNum != null">
+				level_num = #{levelNum,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TGRegionCatalog">
+		update t_g_region_catalog
+		set account_code = #{accountCode,jdbcType=VARCHAR},
+		p_id = #{pId,jdbcType=VARCHAR},
+		account_name = #{accountName,jdbcType=VARCHAR},
+		district_code = #{districtCode,jdbcType=VARCHAR},
+		street_code = #{streetCode,jdbcType=VARCHAR},
+		community_code = #{communityCode,jdbcType=VARCHAR},
+		level_num = #{levelNum,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

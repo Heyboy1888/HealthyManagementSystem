@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCCommuityCheckerRelaDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCCommuityCheckerRela" >
+    <id column="rela_ID" property="relaId" jdbcType="VARCHAR" />
+    <result column="COMMUITY_ID" property="commuityId" jdbcType="VARCHAR" />
+    <result column="CHECKER_ID" property="checkerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rela_ID, COMMUITY_ID, CHECKER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRelaCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_commuity_checker_rela
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_commuity_checker_rela
+    where rela_ID = #{relaId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_commuity_checker_rela
+    where rela_ID = #{relaId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRelaCriteria" >
+    delete from t_c_commuity_checker_rela
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRela" >
+    insert into t_c_commuity_checker_rela (rela_ID, COMMUITY_ID, CHECKER_ID
+      )
+    values (#{relaId,jdbcType=VARCHAR}, #{commuityId,jdbcType=VARCHAR}, #{checkerId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRela" >
+    insert into t_c_commuity_checker_rela
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relaId != null" >
+        rela_ID,
+      </if>
+      <if test="commuityId != null" >
+        COMMUITY_ID,
+      </if>
+      <if test="checkerId != null" >
+        CHECKER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relaId != null" >
+        #{relaId,jdbcType=VARCHAR},
+      </if>
+      <if test="commuityId != null" >
+        #{commuityId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkerId != null" >
+        #{checkerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRelaCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_c_commuity_checker_rela
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_commuity_checker_rela
+    <set >
+      <if test="record.relaId != null" >
+        rela_ID = #{record.relaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commuityId != null" >
+        COMMUITY_ID = #{record.commuityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkerId != null" >
+        CHECKER_ID = #{record.checkerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_commuity_checker_rela
+    set rela_ID = #{record.relaId,jdbcType=VARCHAR},
+      COMMUITY_ID = #{record.commuityId,jdbcType=VARCHAR},
+      CHECKER_ID = #{record.checkerId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRela" >
+    update t_c_commuity_checker_rela
+    <set >
+      <if test="commuityId != null" >
+        COMMUITY_ID = #{commuityId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkerId != null" >
+        CHECKER_ID = #{checkerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rela_ID = #{relaId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCCommuityCheckerRela" >
+    update t_c_commuity_checker_rela
+    set COMMUITY_ID = #{commuityId,jdbcType=VARCHAR},
+      CHECKER_ID = #{checkerId,jdbcType=VARCHAR}
+    where rela_ID = #{relaId,jdbcType=VARCHAR}
+  </update>
+  
+  <insert id="insertByBatch" parameterType="java.util.List">
+		INSERT INTO t_c_commuity_checker_rela
+		(RELA_ID,
+		COMMUITY_ID,
+		CHECKER_ID)
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			select
+			#{item.relaId,jdbcType=VARCHAR},
+			#{item.commuityId,jdbcType=VARCHAR},
+			#{item.checkerId,jdbcType=VARCHAR}
+			from dual
+		</foreach>
+	</insert>
+	<delete id="deleteByBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index"
+	    	  separator=";">
+			DELETE from t_c_commuity_checker_rela where
+			COMMUITY_ID = #{item.commuityId,jdbcType=VARCHAR}
+			and CHECKER_ID = #{item.checkerId,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+</mapper>

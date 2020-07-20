@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.ScanCommunityCodeDao">
+	<resultMap id="ScanCommunityCodeMap" type="xkt.personal.mgmt.web.vo.ScanCommunityCodeVo">
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="commuity_id" property="commuityId" jdbcType="VARCHAR" />
+		<result column="county_name" property="countyName" jdbcType="VARCHAR" />
+		<result column="street_name" property="streetName" jdbcType="VARCHAR" />
+		<result column="village_name" property="villageName" jdbcType="VARCHAR" />
+		<result column="commuity_name" property="commuityName"
+			jdbcType="VARCHAR" />
+		<result column="county_code" property="countyCode" jdbcType="VARCHAR" />
+		<result column="street_code" property="streetCode" jdbcType="VARCHAR" />
+		<result column="village_code" property="villageCode" jdbcType="VARCHAR" />
+		<result column="cmmty_type" property="cmmtyType" jdbcType="VARCHAR" />
+		<result column="commuity_no" property="commuityNo" jdbcType="VARCHAR" />
+		<result column="total_num" property="totalNum" jdbcType="VARCHAR" />
+		<result column="unpass_num" property="unpassNum" jdbcType="VARCHAR" />
+		<result column="pass_num" property="passNum" jdbcType="VARCHAR" />
+		<result column="checked_name" property="checkedName" jdbcType="VARCHAR" />
+
+		<result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+
+
+		<result column="is_health" property="isHealth" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="commuity_addr" property="commuityAddr"
+			jdbcType="VARCHAR" />
+
+
+	</resultMap>
+
+	<select id="selectByPage" parameterType="java.util.Map"
+		resultMap="ScanCommunityCodeMap">
+
+		SELECT
+		a.mobile,
+		a.community_id,
+		a.create_time,
+		kk.pass_num,
+		kk.unpass_num,
+		kk.total_num
+		FROM
+		t_c_health_user_community_relate a,
+		(
+		SELECT
+		tt.check_person,
+		sum(tt.pass) 'pass_num',
+		sum(tt.unpass)
+		'unpass_num',
+		sum(tt.total) 'total_num'
+		FROM
+		(
+		SELECT
+		e.check_person,
+		e.is_health,
+		CASE is_health
+		WHEN '1' THEN
+		count(is_health)
+		ELSE
+		0
+		END
+		'pass',
+		CASE is_health
+		WHEN '0' THEN
+		count(is_health)
+		ELSE
+		0
+		END 'unpass',
+		count(e.check_person) 'total'
+		FROM
+		t_c_health_code_sweep_record e
+		<where>
+			<if test="countyCode != null and streetCode == null ">
+				AND (
+				e.community_id IN (
+				SELECT
+				id
+				FROM
+				(
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{countyCode,jdbcType=VARCHAR}
+				)
+				)
+				UNION
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id = #{countyCode,jdbcType=VARCHAR}
+				)
+				UNION
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{countyCode,jdbcType=VARCHAR}
+				) t
+				WHERE
+				t.grade = '4'
+				)
+
+				)
+			</if>
+
+			<if
+				test="countyCode != null and streetCode != null and villageCode == null ">
+				AND (
+				e.community_id IN (
+
+				SELECT
+				id
+				FROM
+				(
+
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{streetCode,jdbcType=VARCHAR}
+				)
+				UNION
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{streetCode,jdbcType=VARCHAR}
+				) t
+				WHERE
+				t.grade = '4'
+				)
+				)
+			</if>
+
+			<if
+				test="countyCode != null and streetCode != null and villageCode != null ">
+				AND (
+				e.community_id IN (
+				SELECT id FROM
+				t_c_health_community_info WHERE community_code =
+				#{villageCode,jdbcType=VARCHAR}
+				)
+				)
+
+			</if>
+		
+
+		</where>
+
+		GROUP BY
+		e.check_person,
+		e.is_health
+		) tt
+		GROUP BY
+		tt.check_person
+		) kk
+
+		<where>
+			a.mobile = kk.check_person
+			<if test="createTimeFrom != null">
+				AND create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{createTimeFrom,jdbcType=VARCHAR}, '%Y-%m-%d
+				%H:%i:%s')
+			</if>
+			<if test="createTimeTo != null">
+				AND create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{createTimeTo,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+				<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				AND real_name like
+				concat('%',#{realName,jdbcType=VARCHAR},'%')
+			</if>
+		</where>
+		limit
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+
+	</select>
+
+
+	<select id="countByMap" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+
+		SELECT
+		count(1)
+		FROM
+		t_c_health_user_community_relate a,
+		(
+		SELECT
+		tt.check_person,
+		sum(tt.pass) 'pass_num',
+		sum(tt.unpass)
+		'unpass_num',
+		sum(tt.total)
+		'total_num'
+		FROM
+		(
+		SELECT
+		e.check_person,
+		e.is_health,
+		CASE
+		is_health
+		WHEN
+		'1' THEN
+		count(is_health)
+		ELSE
+		0
+		END
+		'pass',
+		CASE is_health
+		WHEN '0' THEN
+		count(is_health)
+		ELSE
+		0
+		END 'unpass',
+		count(e.check_person)
+		'total'
+		FROM
+		t_c_health_code_sweep_record e
+		<where>
+			<if test="countyCode != null and streetCode == null ">
+				AND (
+				e.community_id IN (
+				SELECT
+				id
+				FROM
+				(
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{countyCode,jdbcType=VARCHAR}
+				)
+				)
+				UNION
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id = #{countyCode,jdbcType=VARCHAR}
+				)
+				UNION
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{countyCode,jdbcType=VARCHAR}
+				) t
+				WHERE
+				t.grade = '4'
+				)
+
+				)
+			</if>
+			<if
+				test="countyCode != null and streetCode != null and villageCode == null ">
+				AND (
+				e.community_id IN (
+
+				SELECT
+				id
+				FROM
+				(
+
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id IN (
+				SELECT
+				community_code
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{streetCode,jdbcType=VARCHAR}
+				)
+				UNION
+				SELECT
+				community_code,
+				id,
+				grade
+				FROM
+				t_c_health_community_info
+				WHERE
+				p_id =
+				#{streetCode,jdbcType=VARCHAR}
+				) t
+				WHERE
+				t.grade = '4'
+				)
+				)
+			</if>
+
+			<if
+				test="countyCode != null and streetCode != null and villageCode != null ">
+				AND (
+				e.community_id IN (
+				SELECT id FROM
+				t_c_health_community_info WHERE community_code =
+				#{villageCode,jdbcType=VARCHAR}
+				)
+				)
+
+			</if>
+
+	
+
+
+		</where>
+
+		GROUP BY
+		e.check_person,
+		e.is_health
+		) tt
+		GROUP BY
+		tt.check_person
+		) kk
+
+		<where>
+			a.mobile = kk.check_person
+			<if test="createTimeFrom != null">
+				AND create_time <![CDATA[>=]]>
+				STR_TO_DATE(#{createTimeFrom,jdbcType=VARCHAR}, '%Y-%m-%d
+				%H:%i:%s')
+			</if>
+			<if test="createTimeTo != null">
+				AND create_time <![CDATA[<=]]>
+				STR_TO_DATE(#{createTimeTo,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+				<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				AND real_name like
+				concat('%',#{realName,jdbcType=VARCHAR},'%')
+			</if>
+		</where>
+
+	</select>
+
+
+	<select id="selectByChecker" parameterType="java.util.Map"
+		resultMap="ScanCommunityCodeMap">
+		SELECT
+		e.community_name county_name,
+		d.community_name street_name,
+		c.community_name village_name,
+		( SELECT f.cert_code FROM
+		t_c_health_code_apply f WHERE t.cert_code =
+		f.cert_code_secret )
+		cert_code,
+		t.real_name,
+		t.mobile,
+		t.checked_name,
+		t.community_id,
+		t.is_health,
+		t.create_time,
+		t.update_time
+		FROM
+		(
+		SELECT
+		DISTINCT
+		b.real_name,
+		b.mobile,
+		a.cert_code,
+		a.real_name checked_name,
+		a.community_id,
+		a.is_health,
+		a.create_time,
+		a.update_time
+		FROM
+		t_c_health_code_sweep_record a,
+		t_c_health_user_community_relate b
+		<where>
+			a.check_person = b.mobile
+			<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="isHealth != null">
+				AND is_health = #{isHealth,jdbcType=VARCHAR}
+			</if>
+		</where>
+		) t
+		LEFT JOIN t_c_health_community_info c ON c.id = t.community_id
+		LEFT
+		JOIN t_c_health_community_info d ON c.p_id = d.community_code
+		LEFT JOIN
+		t_c_health_community_info e ON d.p_id = e.community_code
+		ORDER BY
+		t.create_time
+		LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+	</select>
+
+
+
+	<select id="selectCommunityByChecker" parameterType="java.util.Map"
+		resultMap="ScanCommunityCodeMap">
+		SELECT
+		a.real_name,
+		a.mobile,
+		( SELECT c.community_name FROM
+		t_c_health_community_info c WHERE
+		c.community_code = c.COUNTY_CODE )
+		COUNTY_name,
+		( SELECT c.community_name FROM t_c_health_community_info c
+		WHERE
+		c.community_code = c.STREET_CODE ) STREET_name,
+		( SELECT
+		c.community_name FROM t_c_health_community_info c WHERE
+		c.community_code = c.VILLAGE_CODE ) VILLAGE_name,
+		c.COUNTY_CODE,
+		c.VILLAGE_CODE,
+		c.STREET_CODE,
+		c.COMMUITY_NAME,
+		c.COMMUITY_ADDR
+		FROM
+		t_c_health_user_community_relate a
+		LEFT JOIN t_c_commuity_verifier_rela
+		b ON a.id = b.VERIFIER_ID
+		LEFT JOIN t_c_commuity c ON c.COMMUITY_ID =
+		b.COMMUITY_ID
+		<where>
+			<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectByCertCode" parameterType="java.util.Map"
+		resultMap="ScanCommunityCodeMap">
+		SELECT
+		e.community_name county_name,
+		d.community_name street_name,
+		c.community_name village_name,
+		t.*
+		FROM
+		(
+		SELECT
+		b.real_name,
+		b.mobile,
+		a.cert_code,
+		a.real_name checked_name,
+		a.community_id,
+		a.is_health,
+		a.create_time,
+		a.update_time
+		FROM
+		(
+		select cert_code,
+		real_name,
+		community_id,
+		is_health,
+		create_time,
+		update_time,
+		check_person
+		from
+		t_c_health_code_sweep_record
+		union ALL
+		select cert_code,
+		real_name,
+		community_id,
+		is_health,
+		create_time,
+		update_time,
+		check_person
+		from
+		t_c_health_code_sweep_rec_his
+		)a,
+		t_c_health_user_community_relate b
+		WHERE a.check_person = b.mobile) t
+		LEFT JOIN t_c_health_community_info
+		c ON
+		c.id = t.community_id
+		LEFT JOIN t_c_health_community_info d ON
+		c.p_id =
+		d.community_code
+		LEFT JOIN t_c_health_community_info e ON
+		d.p_id =
+		e.community_code
+		where cert_code= #{certCode,jdbcType=VARCHAR}
+		<if test="startTime != null">
+			AND t.create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND t.create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+
+		LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+	</select>
+
+	<select id="countByCertCode" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		count(1)
+		FROM
+		(
+		SELECT
+		b.real_name,
+		b.mobile,
+		a.cert_code,
+		a.real_name
+		checked_name,
+		a.community_id,
+		a.is_health,
+		a.create_time,
+		a.update_time
+		FROM
+		(
+		select cert_code,
+		real_name,
+		community_id,
+		is_health,
+		create_time,
+		update_time,
+		check_person
+		from t_c_health_code_sweep_record
+		union ALL
+		select cert_code,
+		real_name,
+		community_id,
+		is_health,
+		create_time,
+		update_time,
+		check_person
+		from t_c_health_code_sweep_rec_his
+		)a,
+		t_c_health_user_community_relate b
+		WHERE a.check_person = b.mobile) t
+		LEFT JOIN t_c_health_community_info c ON
+		c.id = t.community_id
+		LEFT JOIN
+		t_c_health_community_info d ON c.p_id =
+		d.community_code
+		LEFT JOIN
+		t_c_health_community_info e ON d.p_id =
+		e.community_code
+		where
+		cert_code= #{certCode,jdbcType=VARCHAR}
+		<if test="startTime != null">
+			AND t.create_time <![CDATA[>=]]>
+			STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+		<if test="endTime != null">
+			AND t.create_time <![CDATA[<=]]>
+			STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+		</if>
+
+	</select>
+
+
+	<select id="countCommunityByChecker" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		count(1)
+		FROM
+		t_c_health_user_community_relate a
+		LEFT JOIN
+		t_c_commuity_verifier_rela b ON a.id = b.VERIFIER_ID
+		LEFT JOIN
+		t_c_commuity c ON c.COMMUITY_ID = b.COMMUITY_ID
+		<where>
+			<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+	</select>
+
+
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-config>
+	<type>fullModule</type>
+	<autostart>true</autostart>
+	<web>
+		<context-path>/xkt_personal</context-path>
+		<web-root>/face</web-root>
+		<resource-extensions>
+			/*.xml,/*.jpg,/*.js,/*.xsd,/*.css,/*.gif,/*.png,/*.html,/*.json,/*.svg,/*.ttf
+		</resource-extensions>
+	</web>
+</module-config>

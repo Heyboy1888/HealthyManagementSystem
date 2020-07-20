@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.TCPcLogInfoDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCPcLogInfo" >
+    <id column="LOG_ID" property="logId" jdbcType="BIGINT" />
+    <result column="CHECKED_CARD_CODE" property="checkedCardCode" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_NO" property="loginNo" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="USER_AGENT" property="userAgent" jdbcType="VARCHAR" />
+    <result column="MOUDLE_TYPE" property="moudleType" jdbcType="VARCHAR" />
+    <result column="REQUEST_URL" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="REMOTE_ADDR" property="remoteAddr" jdbcType="VARCHAR" />
+    <result column="REQUEST_ARGS" property="requestArgs" jdbcType="VARCHAR" />
+    <result column="REQUEST_METHOD" property="requestMethod" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR1" property="preAttr1" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR2" property="preAttr2" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR3" property="preAttr3" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR4" property="preAttr4" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR5" property="preAttr5" jdbcType="VARCHAR" />
+    <result column="LOG_TYPE" property="logType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LOG_ID, CHECKED_CARD_CODE, CREATE_TIME, LOGIN_NO, LOGIN_NAME, USER_AGENT, MOUDLE_TYPE, 
+    REQUEST_URL, REMOTE_ADDR, REQUEST_ARGS, REQUEST_METHOD, REMARK, PRE_ATTR1, PRE_ATTR2, 
+    PRE_ATTR3, PRE_ATTR4, PRE_ATTR5, LOG_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCPcLogInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_pc_log_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_pc_log_info
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_c_pc_log_info
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCPcLogInfoExample" >
+    delete from t_c_pc_log_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCPcLogInfo" >
+    insert into t_c_pc_log_info (LOG_ID, CHECKED_CARD_CODE, CREATE_TIME, 
+      LOGIN_NO, LOGIN_NAME, USER_AGENT, 
+      MOUDLE_TYPE, REQUEST_URL, REMOTE_ADDR, 
+      REQUEST_ARGS, REQUEST_METHOD, REMARK, 
+      PRE_ATTR1, PRE_ATTR2, PRE_ATTR3, 
+      PRE_ATTR4, PRE_ATTR5, LOG_TYPE
+      )
+    values (#{logId,jdbcType=BIGINT}, #{checkedCardCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{loginNo,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, 
+      #{moudleType,jdbcType=VARCHAR}, #{requestUrl,jdbcType=VARCHAR}, #{remoteAddr,jdbcType=VARCHAR}, 
+      #{requestArgs,jdbcType=VARCHAR}, #{requestMethod,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{preAttr1,jdbcType=VARCHAR}, #{preAttr2,jdbcType=VARCHAR}, #{preAttr3,jdbcType=VARCHAR}, 
+      #{preAttr4,jdbcType=VARCHAR}, #{preAttr5,jdbcType=VARCHAR}, #{logType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelectiveLog" parameterType="xkt.personal.mgmt.bo.TCPcLogInfo" >
+    insert into t_c_pc_log_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        LOG_ID,
+      </if>
+      <if test="checkedCardCode != null" >
+        CHECKED_CARD_CODE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="loginNo != null" >
+        LOGIN_NO,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="userAgent != null" >
+        USER_AGENT,
+      </if>
+      <if test="moudleType != null" >
+        MOUDLE_TYPE,
+      </if>
+      <if test="requestUrl != null" >
+        REQUEST_URL,
+      </if>
+      <if test="remoteAddr != null" >
+        REMOTE_ADDR,
+      </if>
+      <if test="requestArgs != null" >
+        REQUEST_ARGS,
+      </if>
+      <if test="requestMethod != null" >
+        REQUEST_METHOD,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="preAttr1 != null" >
+        PRE_ATTR1,
+      </if>
+      <if test="preAttr2 != null" >
+        PRE_ATTR2,
+      </if>
+      <if test="preAttr3 != null" >
+        PRE_ATTR3,
+      </if>
+      <if test="preAttr4 != null" >
+        PRE_ATTR4,
+      </if>
+      <if test="preAttr5 != null" >
+        PRE_ATTR5,
+      </if>
+      <if test="logType != null" >
+        LOG_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="checkedCardCode != null" >
+        #{checkedCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginNo != null" >
+        #{loginNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleType != null" >
+        #{moudleType,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null" >
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteAddr != null" >
+        #{remoteAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="requestArgs != null" >
+        #{requestArgs,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null" >
+        #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr1 != null" >
+        #{preAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr2 != null" >
+        #{preAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr3 != null" >
+        #{preAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr4 != null" >
+        #{preAttr4,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr5 != null" >
+        #{preAttr5,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null" >
+        #{logType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCPcLogInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_c_pc_log_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_pc_log_info
+    <set >
+      <if test="record.logId != null" >
+        LOG_ID = #{record.logId,jdbcType=BIGINT},
+      </if>
+      <if test="record.checkedCardCode != null" >
+        CHECKED_CARD_CODE = #{record.checkedCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginNo != null" >
+        LOGIN_NO = #{record.loginNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginName != null" >
+        LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAgent != null" >
+        USER_AGENT = #{record.userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moudleType != null" >
+        MOUDLE_TYPE = #{record.moudleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestUrl != null" >
+        REQUEST_URL = #{record.requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remoteAddr != null" >
+        REMOTE_ADDR = #{record.remoteAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestArgs != null" >
+        REQUEST_ARGS = #{record.requestArgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestMethod != null" >
+        REQUEST_METHOD = #{record.requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preAttr1 != null" >
+        PRE_ATTR1 = #{record.preAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preAttr2 != null" >
+        PRE_ATTR2 = #{record.preAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preAttr3 != null" >
+        PRE_ATTR3 = #{record.preAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preAttr4 != null" >
+        PRE_ATTR4 = #{record.preAttr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preAttr5 != null" >
+        PRE_ATTR5 = #{record.preAttr5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logType != null" >
+        LOG_TYPE = #{record.logType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_pc_log_info
+    set LOG_ID = #{record.logId,jdbcType=BIGINT},
+      CHECKED_CARD_CODE = #{record.checkedCardCode,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LOGIN_NO = #{record.loginNo,jdbcType=VARCHAR},
+      LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      USER_AGENT = #{record.userAgent,jdbcType=VARCHAR},
+      MOUDLE_TYPE = #{record.moudleType,jdbcType=VARCHAR},
+      REQUEST_URL = #{record.requestUrl,jdbcType=VARCHAR},
+      REMOTE_ADDR = #{record.remoteAddr,jdbcType=VARCHAR},
+      REQUEST_ARGS = #{record.requestArgs,jdbcType=VARCHAR},
+      REQUEST_METHOD = #{record.requestMethod,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      PRE_ATTR1 = #{record.preAttr1,jdbcType=VARCHAR},
+      PRE_ATTR2 = #{record.preAttr2,jdbcType=VARCHAR},
+      PRE_ATTR3 = #{record.preAttr3,jdbcType=VARCHAR},
+      PRE_ATTR4 = #{record.preAttr4,jdbcType=VARCHAR},
+      PRE_ATTR5 = #{record.preAttr5,jdbcType=VARCHAR},
+      LOG_TYPE = #{record.logType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCPcLogInfo" >
+    update t_c_pc_log_info
+    <set >
+      <if test="checkedCardCode != null" >
+        CHECKED_CARD_CODE = #{checkedCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginNo != null" >
+        LOGIN_NO = #{loginNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        USER_AGENT = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleType != null" >
+        MOUDLE_TYPE = #{moudleType,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null" >
+        REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteAddr != null" >
+        REMOTE_ADDR = #{remoteAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="requestArgs != null" >
+        REQUEST_ARGS = #{requestArgs,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null" >
+        REQUEST_METHOD = #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr1 != null" >
+        PRE_ATTR1 = #{preAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr2 != null" >
+        PRE_ATTR2 = #{preAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr3 != null" >
+        PRE_ATTR3 = #{preAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr4 != null" >
+        PRE_ATTR4 = #{preAttr4,jdbcType=VARCHAR},
+      </if>
+      <if test="preAttr5 != null" >
+        PRE_ATTR5 = #{preAttr5,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null" >
+        LOG_TYPE = #{logType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCPcLogInfo" >
+    update t_c_pc_log_info
+    set CHECKED_CARD_CODE = #{checkedCardCode,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LOGIN_NO = #{loginNo,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      USER_AGENT = #{userAgent,jdbcType=VARCHAR},
+      MOUDLE_TYPE = #{moudleType,jdbcType=VARCHAR},
+      REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      REMOTE_ADDR = #{remoteAddr,jdbcType=VARCHAR},
+      REQUEST_ARGS = #{requestArgs,jdbcType=VARCHAR},
+      REQUEST_METHOD = #{requestMethod,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PRE_ATTR1 = #{preAttr1,jdbcType=VARCHAR},
+      PRE_ATTR2 = #{preAttr2,jdbcType=VARCHAR},
+      PRE_ATTR3 = #{preAttr3,jdbcType=VARCHAR},
+      PRE_ATTR4 = #{preAttr4,jdbcType=VARCHAR},
+      PRE_ATTR5 = #{preAttr5,jdbcType=VARCHAR},
+      LOG_TYPE = #{logType,jdbcType=VARCHAR}
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </update>
+  
+  <resultMap id="Custom_BaseResultMap" type="java.util.Map" >
+    <id column="LOG_ID" property="logId" jdbcType="BIGINT" />
+    <result column="CHECKED_CARD_CODE" property="checkedCardCode" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="LOGIN_NO" property="loginNo" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="USER_AGENT" property="userAgent" jdbcType="VARCHAR" />
+    <result column="MOUDLE_TYPE" property="moudleType" jdbcType="VARCHAR" />
+    <result column="REQUEST_URL" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="REMOTE_ADDR" property="remoteAddr" jdbcType="VARCHAR" />
+    <result column="REQUEST_ARGS" property="requestArgs" jdbcType="VARCHAR" />
+    <result column="REQUEST_METHOD" property="requestMethod" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR1" property="preAttr1" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR2" property="preAttr2" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR3" property="preAttr3" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR4" property="preAttr4" jdbcType="VARCHAR" />
+    <result column="PRE_ATTR5" property="preAttr5" jdbcType="VARCHAR" />
+    <result column="LOG_TYPE" property="logType" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <select id="selectByPage" resultMap="Custom_BaseResultMap" parameterType="java.util.Map" >
+    select 
+     LOG_ID, CHECKED_CARD_CODE, 
+     date_format(CREATE_TIME, '%Y-%m-%d %H:%i:%s' )CREATE_TIME, 
+     LOGIN_NO, LOGIN_NAME, USER_AGENT, MOUDLE_TYPE, 
+     REQUEST_URL, REMOTE_ADDR, REQUEST_ARGS, 
+     REQUEST_METHOD, REMARK, PRE_ATTR1, PRE_ATTR2, 
+     PRE_ATTR3, PRE_ATTR4, PRE_ATTR5, LOG_TYPE
+    from t_c_pc_log_info
+    <where>
+    <if test="checkedCardCode != null" >
+        and CHECKED_CARD_CODE = #{checkedCardCode,jdbcType=VARCHAR}
+      </if>
+     <if test="startTime != null" >
+        and CREATE_TIME <![CDATA[>=]]>#{startTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime != null" >
+        and CREATE_TIME <![CDATA[<=]]>#{endTime,jdbcType=VARCHAR}
+      </if>
+      <if test="loginNo != null" >
+        and LOGIN_NO = #{loginNo,jdbcType=VARCHAR}
+      </if>
+      <if test="loginName != null" >
+        and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="moudleType != null" >
+        and MOUDLE_TYPE = #{moudleType,jdbcType=VARCHAR}
+      </if>
+    </where>
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+   <select id="selectCountByPage" resultType="Integer" parameterType="java.util.Map" >
+    select 
+    count(1)
+    from t_c_pc_log_info
+    <where>
+    <if test="checkedCardCode != null" >
+        and CHECKED_CARD_CODE = #{checkedCardCode,jdbcType=VARCHAR}
+      </if>
+     <if test="startTime != null" >
+        and CREATE_TIME <![CDATA[>=]]>#{startTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime != null" >
+        and CREATE_TIME <![CDATA[<=]]>#{endTime,jdbcType=VARCHAR}
+      </if>
+      <if test="loginNo != null" >
+        and LOGIN_NO = #{loginNo,jdbcType=VARCHAR}
+      </if>
+      <if test="loginName != null" >
+        and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="moudleType != null" >
+        and MOUDLE_TYPE = #{moudleType,jdbcType=VARCHAR}
+      </if>
+    </where>
+    
+  </select>
+</mapper>

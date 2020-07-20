@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sqlSessionFactoryXKM"
+			class="com.ls.pf.base.common.persistence.mybatis.DBSessionFactoryBean">
+		<property name="defaultDataSource" value="amber2xkm"/>
+	</bean>
+	
+	<bean id="sqlSessionFactoryBAK"
+			class="com.ls.pf.base.common.persistence.mybatis.DBSessionFactoryBean">
+		<property name="defaultDataSource" value="amber2bak"/>
+	</bean>
+	
+	<bean class="com.ls.pf.base.common.persistence.mybatis.MapperScannerConfigurer"> 
+		<property name="basePackage">
+			<value>
+				xkt.personal.mgmt.dao.xkm,
+				xkt.personal.mgmt.dao.thirdinput,
+				xkt.personal.mgmt.dao.account
+			</value>
+		</property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryXKM" />
+	</bean>
+	
+	<bean class="com.ls.pf.base.common.persistence.mybatis.MapperScannerConfigurer"> 
+		<property name="basePackage">
+			<value>
+				xkt.personal.mgmt.dao.statistic         
+			</value>
+		</property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBAK" />
+	</bean>
+</beans>

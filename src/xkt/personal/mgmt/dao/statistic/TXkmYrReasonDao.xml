@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.statistic.TXkmYrReasonDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TXkmYrReason" >
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="arrive_wx_date" property="arriveWxDate" jdbcType="VARCHAR" />
+    <result column="is_from_hb" property="isFromHb" jdbcType="VARCHAR" />
+    <result column="departure_addr" property="departureAddr" jdbcType="VARCHAR" />
+    <result column="is_two_week_virus" property="isTwoWeekVirus" jdbcType="VARCHAR" />
+    <result column="household_name" property="householdName" jdbcType="VARCHAR" />
+    <result column="current_district" property="currentDistrict" jdbcType="VARCHAR" />
+    <result column="current_street" property="currentStreet" jdbcType="VARCHAR" />
+    <result column="current_community" property="currentCommunity" jdbcType="VARCHAR" />
+    <result column="housing_name" property="housingName" jdbcType="VARCHAR" />
+    <result column="live_address" property="liveAddress" jdbcType="VARCHAR" />
+    <result column="is_hot" property="isHot" jdbcType="VARCHAR" />
+    <result column="is_stay" property="isStay" jdbcType="VARCHAR" />
+    <result column="is_healthy" property="isHealthy" jdbcType="VARCHAR" />
+    <result column="two_week_travel" property="twoWeekTravel" jdbcType="VARCHAR" />
+    <result column="round_trip_name" property="roundTripName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="is_isola_virus_psn" property="isIsolaVirusPsn" jdbcType="VARCHAR" />
+    <result column="is_cure_virus_psn" property="isCureVirusPsn" jdbcType="VARCHAR" />
+    <result column="is_obser_virus_psn" property="isObserVirusPsn" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_name, cert_code, phone, arrive_wx_date, is_from_hb, departure_addr, is_two_week_virus, 
+    household_name, current_district, current_street, current_community, housing_name, 
+    live_address, is_hot, is_stay, is_healthy, two_week_travel, round_trip_name, create_time, 
+    is_isola_virus_psn, is_cure_virus_psn, is_obser_virus_psn, reason, remark1, remark2, 
+    data_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TXkmYrReasonExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_xkm_yr_reason
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TXkmYrReasonExample" >
+    delete from t_xkm_yr_reason
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TXkmYrReason" >
+    insert into t_xkm_yr_reason (user_name, cert_code, phone, 
+      arrive_wx_date, is_from_hb, departure_addr, 
+      is_two_week_virus, household_name, current_district, 
+      current_street, current_community, housing_name, 
+      live_address, is_hot, is_stay, 
+      is_healthy, two_week_travel, round_trip_name, 
+      create_time, is_isola_virus_psn, is_cure_virus_psn, 
+      is_obser_virus_psn, reason, remark1, 
+      remark2, data_type)
+    values (#{userName,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{arriveWxDate,jdbcType=VARCHAR}, #{isFromHb,jdbcType=VARCHAR}, #{departureAddr,jdbcType=VARCHAR}, 
+      #{isTwoWeekVirus,jdbcType=VARCHAR}, #{householdName,jdbcType=VARCHAR}, #{currentDistrict,jdbcType=VARCHAR}, 
+      #{currentStreet,jdbcType=VARCHAR}, #{currentCommunity,jdbcType=VARCHAR}, #{housingName,jdbcType=VARCHAR}, 
+      #{liveAddress,jdbcType=VARCHAR}, #{isHot,jdbcType=VARCHAR}, #{isStay,jdbcType=VARCHAR}, 
+      #{isHealthy,jdbcType=VARCHAR}, #{twoWeekTravel,jdbcType=VARCHAR}, #{roundTripName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{isIsolaVirusPsn,jdbcType=VARCHAR}, #{isCureVirusPsn,jdbcType=VARCHAR}, 
+      #{isObserVirusPsn,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TXkmYrReason" >
+    insert into t_xkm_yr_reason
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="arriveWxDate != null" >
+        arrive_wx_date,
+      </if>
+      <if test="isFromHb != null" >
+        is_from_hb,
+      </if>
+      <if test="departureAddr != null" >
+        departure_addr,
+      </if>
+      <if test="isTwoWeekVirus != null" >
+        is_two_week_virus,
+      </if>
+      <if test="householdName != null" >
+        household_name,
+      </if>
+      <if test="currentDistrict != null" >
+        current_district,
+      </if>
+      <if test="currentStreet != null" >
+        current_street,
+      </if>
+      <if test="currentCommunity != null" >
+        current_community,
+      </if>
+      <if test="housingName != null" >
+        housing_name,
+      </if>
+      <if test="liveAddress != null" >
+        live_address,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isStay != null" >
+        is_stay,
+      </if>
+      <if test="isHealthy != null" >
+        is_healthy,
+      </if>
+      <if test="twoWeekTravel != null" >
+        two_week_travel,
+      </if>
+      <if test="roundTripName != null" >
+        round_trip_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isIsolaVirusPsn != null" >
+        is_isola_virus_psn,
+      </if>
+      <if test="isCureVirusPsn != null" >
+        is_cure_virus_psn,
+      </if>
+      <if test="isObserVirusPsn != null" >
+        is_obser_virus_psn,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveWxDate != null" >
+        #{arriveWxDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isFromHb != null" >
+        #{isFromHb,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAddr != null" >
+        #{departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="isTwoWeekVirus != null" >
+        #{isTwoWeekVirus,jdbcType=VARCHAR},
+      </if>
+      <if test="householdName != null" >
+        #{householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="currentDistrict != null" >
+        #{currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStreet != null" >
+        #{currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="currentCommunity != null" >
+        #{currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="housingName != null" >
+        #{housingName,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null" >
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=VARCHAR},
+      </if>
+      <if test="isStay != null" >
+        #{isStay,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealthy != null" >
+        #{isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="twoWeekTravel != null" >
+        #{twoWeekTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="roundTripName != null" >
+        #{roundTripName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isIsolaVirusPsn != null" >
+        #{isIsolaVirusPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="isCureVirusPsn != null" >
+        #{isCureVirusPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="isObserVirusPsn != null" >
+        #{isObserVirusPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TXkmYrReasonExample" resultType="java.lang.Integer" >
+    select count(*) from t_xkm_yr_reason
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_xkm_yr_reason
+    <set >
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCode != null" >
+        cert_code = #{record.certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveWxDate != null" >
+        arrive_wx_date = #{record.arriveWxDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isFromHb != null" >
+        is_from_hb = #{record.isFromHb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departureAddr != null" >
+        departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTwoWeekVirus != null" >
+        is_two_week_virus = #{record.isTwoWeekVirus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.householdName != null" >
+        household_name = #{record.householdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentDistrict != null" >
+        current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentStreet != null" >
+        current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentCommunity != null" >
+        current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.housingName != null" >
+        housing_name = #{record.housingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveAddress != null" >
+        live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHot != null" >
+        is_hot = #{record.isHot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isStay != null" >
+        is_stay = #{record.isStay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHealthy != null" >
+        is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.twoWeekTravel != null" >
+        two_week_travel = #{record.twoWeekTravel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roundTripName != null" >
+        round_trip_name = #{record.roundTripName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isIsolaVirusPsn != null" >
+        is_isola_virus_psn = #{record.isIsolaVirusPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCureVirusPsn != null" >
+        is_cure_virus_psn = #{record.isCureVirusPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isObserVirusPsn != null" >
+        is_obser_virus_psn = #{record.isObserVirusPsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataType != null" >
+        data_type = #{record.dataType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_xkm_yr_reason
+    set user_name = #{record.userName,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      arrive_wx_date = #{record.arriveWxDate,jdbcType=VARCHAR},
+      is_from_hb = #{record.isFromHb,jdbcType=VARCHAR},
+      departure_addr = #{record.departureAddr,jdbcType=VARCHAR},
+      is_two_week_virus = #{record.isTwoWeekVirus,jdbcType=VARCHAR},
+      household_name = #{record.householdName,jdbcType=VARCHAR},
+      current_district = #{record.currentDistrict,jdbcType=VARCHAR},
+      current_street = #{record.currentStreet,jdbcType=VARCHAR},
+      current_community = #{record.currentCommunity,jdbcType=VARCHAR},
+      housing_name = #{record.housingName,jdbcType=VARCHAR},
+      live_address = #{record.liveAddress,jdbcType=VARCHAR},
+      is_hot = #{record.isHot,jdbcType=VARCHAR},
+      is_stay = #{record.isStay,jdbcType=VARCHAR},
+      is_healthy = #{record.isHealthy,jdbcType=VARCHAR},
+      two_week_travel = #{record.twoWeekTravel,jdbcType=VARCHAR},
+      round_trip_name = #{record.roundTripName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      is_isola_virus_psn = #{record.isIsolaVirusPsn,jdbcType=VARCHAR},
+      is_cure_virus_psn = #{record.isCureVirusPsn,jdbcType=VARCHAR},
+      is_obser_virus_psn = #{record.isObserVirusPsn,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      data_type = #{record.dataType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  		
+  
+  <select id="queryYrReason" parameterType="java.util.Map" resultType="java.util.Map">
+  	 select
+  			user_name userName,
+  			cert_code certCode,
+  			phone,
+  			arrive_wx_date arriveWxDate,
+  			is_from_hb isFromHb,
+  			departure_addr departureAddr,
+  			is_two_week_virus isTwoWeekVirus,
+  			household_name householdName,
+  			current_district currentDistrict,
+  			current_street currentStreet,
+  			current_community currentCommunity,
+  			IFNULL(housing_name,'') housingName,
+  			live_address liveAddress,
+  			is_hot isHot,
+  			is_stay isStay,
+  			is_healthy isHealthy,
+  			two_week_travel twoWeekTravel,
+  			IFNULL(round_trip_name,'') roundTripName,
+  			create_time createTime,
+  			is_isola_virus_psn isIsolaVirusPsn,
+  			is_cure_virus_psn isCureVirusPsn,
+  			is_obser_virus_psn isObserVirusPsn,
+  			IFNULL(reason,'') reason,
+  			remark1,
+  			remark2,
+  			data_type dataType
+  	from 
+  	        t_xkm_yr_reason
+  	where
+  			data_type=#{dataType,jdbcType=VARCHAR}
+  	<if test="userName != null">
+			AND user_name like concat('%',#{userName,jdbcType=VARCHAR},'%') 
+	</if>
+	<if test="phone !=null">
+			And  phone = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="certCode !=null">
+			And  cert_code = #{certCode,jdbcType=VARCHAR}
+	</if>					
+  	order by arrive_wx_date desc
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}				
+  </select>
+  
+   <select id="countYrReason" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	select 
+  		count(1)
+	from 
+			t_xkm_yr_reason
+	where 
+		data_type=#{dataType,jdbcType=VARCHAR}
+		
+	<if test="userName != null">
+			AND user_name like concat('%',#{userName,jdbcType=VARCHAR},'%') 
+	</if>
+	<if test="phone !=null">
+			And  phone = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="certCode !=null">
+			And  cert_code = #{certCode,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+  	<select id="callProcedure" resultType="java.lang.Integer">
+		call pro_xkm_ry_reason_report()
+	</select>
+  
+</mapper>

@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthCodeAdminDao">
+	<resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthCodeAdmin">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="card_code" property="cardCode" jdbcType="VARCHAR" />
+		<result column="card_code_hide" property="cardCodeHide"
+			jdbcType="VARCHAR" />
+		<result column="card_code_bright" property="cardCodeBright"
+			jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="cert_type" property="certType" jdbcType="VARCHAR" />
+		<result column="community_id" property="communityId" jdbcType="VARCHAR" />
+		<result column="police_station_id" property="policeStationId"
+			jdbcType="VARCHAR" />
+		<result column="is_special" property="isSpecial" jdbcType="CHAR" />
+		<result column="admin_type" property="adminType" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="personnel_type" property="personnelType"
+			jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, real_name, card_code, card_code_hide, card_code_bright, password,
+		mobile, cert_type,
+		community_id, police_station_id, is_special, admin_type, create_time, update_time,
+		personnel_type
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdminCriteria">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_c_health_code_admin
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_c_health_code_admin
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_c_health_code_admin
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdminCriteria">
+		delete from t_c_health_code_admin
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdmin">
+		insert into t_c_health_code_admin (id, real_name, card_code,
+		card_code_hide, card_code_bright, password,
+		mobile, cert_type, community_id,
+		police_station_id, is_special, admin_type,
+		create_time, update_time, personnel_type
+		)
+		values (#{id,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+		#{cardCode,jdbcType=VARCHAR},
+		#{cardCodeHide,jdbcType=VARCHAR}, #{cardCodeBright,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR},
+		#{communityId,jdbcType=VARCHAR},
+		#{policeStationId,jdbcType=VARCHAR}, #{isSpecial,jdbcType=CHAR}, #{adminType,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{personnelType,jdbcType=CHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdmin">
+		insert into t_c_health_code_admin
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="realName != null">
+				real_name,
+			</if>
+			<if test="cardCode != null">
+				card_code,
+			</if>
+			<if test="cardCodeHide != null">
+				card_code_hide,
+			</if>
+			<if test="cardCodeBright != null">
+				card_code_bright,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="certType != null">
+				cert_type,
+			</if>
+			<if test="communityId != null">
+				community_id,
+			</if>
+			<if test="policeStationId != null">
+				police_station_id,
+			</if>
+			<if test="isSpecial != null">
+				is_special,
+			</if>
+			<if test="adminType != null">
+				admin_type,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="personnelType != null">
+				personnel_type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardCode != null">
+				#{cardCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cardCodeHide != null">
+				#{cardCodeHide,jdbcType=VARCHAR},
+			</if>
+			<if test="cardCodeBright != null">
+				#{cardCodeBright,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				#{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="communityId != null">
+				#{communityId,jdbcType=VARCHAR},
+			</if>
+			<if test="policeStationId != null">
+				#{policeStationId,jdbcType=VARCHAR},
+			</if>
+			<if test="isSpecial != null">
+				#{isSpecial,jdbcType=CHAR},
+			</if>
+			<if test="adminType != null">
+				#{adminType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="personnelType != null">
+				#{personnelType,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdminCriteria"
+		resultType="java.lang.Integer">
+		select count(*) from t_c_health_code_admin
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_c_health_code_admin
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.realName != null">
+				real_name = #{record.realName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cardCode != null">
+				card_code = #{record.cardCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cardCodeHide != null">
+				card_code_hide = #{record.cardCodeHide,jdbcType=VARCHAR},
+			</if>
+			<if test="record.cardCodeBright != null">
+				card_code_bright = #{record.cardCodeBright,jdbcType=VARCHAR},
+			</if>
+			<if test="record.password != null">
+				password = #{record.password,jdbcType=VARCHAR},
+			</if>
+			<if test="record.mobile != null">
+				mobile = #{record.mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="record.certType != null">
+				cert_type = #{record.certType,jdbcType=VARCHAR},
+			</if>
+			<if test="record.communityId != null">
+				community_id = #{record.communityId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.policeStationId != null">
+				police_station_id = #{record.policeStationId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.isSpecial != null">
+				is_special = #{record.isSpecial,jdbcType=CHAR},
+			</if>
+			<if test="record.adminType != null">
+				admin_type = #{record.adminType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				create_time = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.updateTime != null">
+				update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.personnelType != null">
+				personnel_type = #{record.personnelType,jdbcType=CHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_c_health_code_admin
+		set id = #{record.id,jdbcType=VARCHAR},
+		real_name = #{record.realName,jdbcType=VARCHAR},
+		card_code = #{record.cardCode,jdbcType=VARCHAR},
+		card_code_hide = #{record.cardCodeHide,jdbcType=VARCHAR},
+		card_code_bright = #{record.cardCodeBright,jdbcType=VARCHAR},
+		password = #{record.password,jdbcType=VARCHAR},
+		mobile = #{record.mobile,jdbcType=VARCHAR},
+		cert_type = #{record.certType,jdbcType=VARCHAR},
+		community_id = #{record.communityId,jdbcType=VARCHAR},
+		police_station_id = #{record.policeStationId,jdbcType=VARCHAR},
+		is_special = #{record.isSpecial,jdbcType=CHAR},
+		admin_type = #{record.adminType,jdbcType=CHAR},
+		create_time = #{record.createTime,jdbcType=TIMESTAMP},
+		update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+		personnel_type = #{record.personnelType,jdbcType=CHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdmin">
+		update t_c_health_code_admin
+		<set>
+			<if test="realName != null">
+				real_name = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardCode != null">
+				card_code = #{cardCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cardCodeHide != null">
+				card_code_hide = #{cardCodeHide,jdbcType=VARCHAR},
+			</if>
+			<if test="cardCodeBright != null">
+				card_code_bright = #{cardCodeBright,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				cert_type = #{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="communityId != null">
+				community_id = #{communityId,jdbcType=VARCHAR},
+			</if>
+			<if test="policeStationId != null">
+				police_station_id = #{policeStationId,jdbcType=VARCHAR},
+			</if>
+			<if test="isSpecial != null">
+				is_special = #{isSpecial,jdbcType=CHAR},
+			</if>
+			<if test="adminType != null">
+				admin_type = #{adminType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="personnelType != null">
+				personnel_type = #{personnelType,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthCodeAdmin">
+		update t_c_health_code_admin
+		set real_name = #{realName,jdbcType=VARCHAR},
+		card_code = #{cardCode,jdbcType=VARCHAR},
+		card_code_hide = #{cardCodeHide,jdbcType=VARCHAR},
+		card_code_bright = #{cardCodeBright,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		cert_type = #{certType,jdbcType=VARCHAR},
+		community_id = #{communityId,jdbcType=VARCHAR},
+		police_station_id = #{policeStationId,jdbcType=VARCHAR},
+		is_special = #{isSpecial,jdbcType=CHAR},
+		admin_type = #{adminType,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		personnel_type = #{personnelType,jdbcType=CHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<!-- 废弃 -->
+	<select id="selectByExampleAndPage" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+			a.* 
+		FROM
+			t_c_health_code_admin a 
+		<where>
+			<if test="personnelType != null">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}
+			</if>			
+			<if test="realName != null">
+				AND real_name = #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="cardCodeBright != null">
+				AND card_code_bright = #{cardCodeBright,jdbcType=VARCHAR}
+			</if>			
+			<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="certType != null">
+				AND cert_type = #{certType,jdbcType=VARCHAR}
+			</if>
+			<if test="districtCode != null">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{districtCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 								
+								and t3.id =  a.community_id)
+			</if>
+			<if test="streetCode != null">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{streetCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 								
+								and t3.id =  a.community_id)
+			</if>
+			<if test="communityCode != null">
+				AND EXISTS ( SELECT 1 FROM 
+							t_c_health_community_info b 
+						WHERE a.community_id = b.id 
+						AND b.community_code = #{communityCode,jdbcType=VARCHAR}
+						AND b.grade = '4' )
+			</if>						
+			<if test="startTime != null">
+				AND a.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND a.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>			
+			<if test="cmmtyType !=null ">
+				AND exists(
+					SELECT
+							1 
+					FROM
+						t_c_health_community_info d,
+						t_c_commuity e 
+					WHERE
+						d.grade = '4'
+						AND a.community_id = d.id
+						AND  d.community_code = e.VILLAGE_CODE 
+						AND e.CMMTY_TYPE = #{cmmtyType,jdbcType=VARCHAR}
+						<if test="streetCode != null">
+							AND e.STREET_CODE = #{streetCode,jdbcType=VARCHAR}
+						</if>
+						<if test="districtCode != null">
+							AND e.COUNTY_CODE = #{districtCode,jdbcType=VARCHAR}
+						</if>
+				)
+			</if>
+		</where>
+		ORDER BY
+			a.create_time
+		LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+	</select>
+	<select id="countByExampleAndPage" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		SELECT
+			count(1) 
+		FROM
+			t_c_health_code_admin a 
+		<where>
+			<if test="realName != null">
+				AND real_name = #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="cardCodeBright != null">
+				AND card_code_bright = #{cardCodeBright,jdbcType=VARCHAR}
+			</if>			
+			<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="certType != null">
+				AND cert_type = #{certType,jdbcType=VARCHAR}
+			</if>
+			<if test="personnelType == '区管理员'">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}	
+				<if test="districtCode != null and streetCode == null and communityCode == null ">
+					and a.community_id = (select id from t_c_health_community_info where community_code = #{districtCode,jdbcType=VARCHAR})	
+				</if>
+			</if>
+			<if test="personnelType == '街道管理员'">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}	
+				<if test="districtCode != null and streetCode == null and communityCode == null ">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{districtCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 	
+								and t3.grade = '3'							
+								and t3.id =  a.community_id)
+				</if>
+				<if test="districtCode != null and  streetCode != null and communityCode == null">
+					and a.community_id = (select id from t_c_health_community_info where community_code = #{streetCode,jdbcType=VARCHAR})	
+				</if>
+			</if>
+			<if test="personnelType == '审核员'">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}	
+				<if test="districtCode != null and streetCode == null and communityCode == null">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{districtCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 	
+								and t3.grade = '4'							
+								and t3.id =  a.community_id)
+				</if>
+				<if test="districtCode != null and streetCode != null and communityCode == null ">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{streetCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 	
+								and t3.grade = '4'								
+								and t3.id =  a.community_id)
+				</if>
+				<if test="districtCode != null and streetCode != null and communityCode != null">
+					and a.community_id = (select id from t_c_health_community_info where community_code = #{communityCode,jdbcType=VARCHAR})	
+				</if>
+			</if>
+			<if test="personnelType == '其他'">
+				AND ( personnel_type = '' OR personnel_type IS NULL )
+			</if>		
+			<if test="startTime != null">
+				AND a.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND a.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+		</where>
+	</select>
+	
+	<resultMap id="SubClassResultMap" type="xkt.personal.mgmt.bo.TCHealthCodeAdminExt" extends="BaseResultMap">
+  		<result column="cmmty_type" 		property="cmmtyType" 	jdbcType="VARCHAR" />
+		<result column="commuity_name" 		property="commuityName" jdbcType="VARCHAR" />
+  	</resultMap>
+	
+	<select id="selectByPage" resultMap="SubClassResultMap" parameterType="java.util.Map">
+		SELECT
+			a.* 
+		FROM
+			t_c_health_code_admin a 
+		<where>
+			<if test="realName != null">
+				AND real_name = #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="cardCodeBright != null">
+				AND card_code_bright = #{cardCodeBright,jdbcType=VARCHAR}
+			</if>			
+			<if test="mobile != null">
+				AND mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="certType != null">
+				AND cert_type = #{certType,jdbcType=VARCHAR}
+			</if>
+			<if test="personnelType == '区管理员'">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}	
+				<if test="districtCode != null and streetCode == null and communityCode == null ">
+					and a.community_id = (select id from t_c_health_community_info where community_code = #{districtCode,jdbcType=VARCHAR})	
+				</if>
+			</if>
+			<if test="personnelType == '街道管理员'">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}	
+				<if test="districtCode != null and streetCode == null and communityCode == null ">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{districtCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 	
+								and t3.grade = '3'							
+								and t3.id =  a.community_id)
+				</if>
+				<if test="districtCode != null and  streetCode != null and communityCode == null">
+					and a.community_id = (select id from t_c_health_community_info where community_code = #{streetCode,jdbcType=VARCHAR})	
+				</if>
+			</if>
+			<if test="personnelType == '审核员'">
+				AND personnel_type = #{personnelType,jdbcType=CHAR}	
+				<if test="districtCode != null and streetCode == null and communityCode == null">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{districtCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 	
+								and t3.grade = '4'							
+								and t3.id =  a.community_id)
+				</if>
+				<if test="districtCode != null and streetCode != null and communityCode == null ">
+				AND EXISTS ( SELECT 1 
+								FROM (
+									SELECT
+										t1.*,
+										IF( FIND_IN_SET( p_id, @pids ) > 0, @pids := CONCAT( @pids, ',', community_code ), '0' ) AS ischild 
+									FROM
+										( SELECT * FROM t_c_health_community_info AS t ORDER BY t.community_code ASC ) t1,
+									( SELECT @pids := #{streetCode,jdbcType=VARCHAR} ) t2 
+								) t3 
+							WHERE
+								ischild != '0' 	
+								and t3.grade = '4'								
+								and t3.id =  a.community_id)
+				</if>
+				<if test="districtCode != null and streetCode != null and communityCode != null">
+					and a.community_id = (select id from t_c_health_community_info where community_code = #{communityCode,jdbcType=VARCHAR})	
+				</if>
+			</if>
+			<if test="personnelType == '其他'">
+				AND ( personnel_type = '' OR personnel_type IS NULL )
+			</if>		
+			<if test="startTime != null">
+				AND a.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND a.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+		</where>
+		ORDER BY
+			a.create_time
+		LIMIT
+		${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+	</select>
+</mapper>

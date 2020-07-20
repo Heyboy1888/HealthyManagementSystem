@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthCompanyApplyDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthCompanyApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="card_code" property="cardCode" jdbcType="VARCHAR" />
+    <result column="bright_card_code" property="brightCardCode" jdbcType="VARCHAR" />
+    <result column="is_branch" property="isBranch" jdbcType="CHAR" />
+    <result column="parent_info_name" property="parentInfoName" jdbcType="VARCHAR" />
+    <result column="parent_info_code" property="parentInfoCode" jdbcType="VARCHAR" />
+    <result column="branch_level" property="branchLevel" jdbcType="VARCHAR" />
+    <result column="external_name" property="externalName" jdbcType="VARCHAR" />
+    <result column="industry_cat" property="industryCat" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="VARCHAR" />
+    <result column="actual_name" property="actualName" jdbcType="VARCHAR" />
+    <result column="actual_cert_code" property="actualCertCode" jdbcType="VARCHAR" />
+    <result column="actual_cert_code_hide" property="actualCertCodeHide" jdbcType="VARCHAR" />
+    <result column="actual_cert_code_secret" property="actualCertCodeSecret" jdbcType="VARCHAR" />
+    <result column="actual_mobile" property="actualMobile" jdbcType="VARCHAR" />
+    <result column="cert_pic" property="certPic" jdbcType="VARCHAR" />
+    <result column="store_pic" property="storePic" jdbcType="VARCHAR" />
+    <result column="bus_pic" property="busPic" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="CHAR" />
+    <result column="check_reason" property="checkReason" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_id, open_id, channel, card_code, bright_card_code, is_branch, parent_info_name, 
+    parent_info_code, branch_level, external_name, industry_cat, address_id, actual_name, 
+    actual_cert_code, actual_cert_code_hide, actual_cert_code_secret, actual_mobile, 
+    cert_pic, store_pic, bus_pic, check_status, check_reason, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_company_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_health_company_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_health_company_apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApplyExample" >
+    delete from t_c_health_company_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApply" >
+    insert into t_c_health_company_apply (id, company_id, open_id, 
+      channel, card_code, bright_card_code, 
+      is_branch, parent_info_name, parent_info_code, 
+      branch_level, external_name, industry_cat, 
+      address_id, actual_name, actual_cert_code, 
+      actual_cert_code_hide, actual_cert_code_secret, 
+      actual_mobile, cert_pic, store_pic, 
+      bus_pic, check_status, check_reason, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{cardCode,jdbcType=VARCHAR}, #{brightCardCode,jdbcType=VARCHAR}, 
+      #{isBranch,jdbcType=CHAR}, #{parentInfoName,jdbcType=VARCHAR}, #{parentInfoCode,jdbcType=VARCHAR}, 
+      #{branchLevel,jdbcType=VARCHAR}, #{externalName,jdbcType=VARCHAR}, #{industryCat,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=VARCHAR}, #{actualName,jdbcType=VARCHAR}, #{actualCertCode,jdbcType=VARCHAR}, 
+      #{actualCertCodeHide,jdbcType=VARCHAR}, #{actualCertCodeSecret,jdbcType=VARCHAR}, 
+      #{actualMobile,jdbcType=VARCHAR}, #{certPic,jdbcType=VARCHAR}, #{storePic,jdbcType=VARCHAR}, 
+      #{busPic,jdbcType=VARCHAR}, #{checkStatus,jdbcType=CHAR}, #{checkReason,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApply" >
+    insert into t_c_health_company_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="cardCode != null" >
+        card_code,
+      </if>
+      <if test="brightCardCode != null" >
+        bright_card_code,
+      </if>
+      <if test="isBranch != null" >
+        is_branch,
+      </if>
+      <if test="parentInfoName != null" >
+        parent_info_name,
+      </if>
+      <if test="parentInfoCode != null" >
+        parent_info_code,
+      </if>
+      <if test="branchLevel != null" >
+        branch_level,
+      </if>
+      <if test="externalName != null" >
+        external_name,
+      </if>
+      <if test="industryCat != null" >
+        industry_cat,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="actualName != null" >
+        actual_name,
+      </if>
+      <if test="actualCertCode != null" >
+        actual_cert_code,
+      </if>
+      <if test="actualCertCodeHide != null" >
+        actual_cert_code_hide,
+      </if>
+      <if test="actualCertCodeSecret != null" >
+        actual_cert_code_secret,
+      </if>
+      <if test="actualMobile != null" >
+        actual_mobile,
+      </if>
+      <if test="certPic != null" >
+        cert_pic,
+      </if>
+      <if test="storePic != null" >
+        store_pic,
+      </if>
+      <if test="busPic != null" >
+        bus_pic,
+      </if>
+      <if test="checkStatus != null" >
+        check_status,
+      </if>
+      <if test="checkReason != null" >
+        check_reason,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCode != null" >
+        #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brightCardCode != null" >
+        #{brightCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isBranch != null" >
+        #{isBranch,jdbcType=CHAR},
+      </if>
+      <if test="parentInfoName != null" >
+        #{parentInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentInfoCode != null" >
+        #{parentInfoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchLevel != null" >
+        #{branchLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="externalName != null" >
+        #{externalName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCat != null" >
+        #{industryCat,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="actualName != null" >
+        #{actualName,jdbcType=VARCHAR},
+      </if>
+      <if test="actualCertCode != null" >
+        #{actualCertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="actualCertCodeHide != null" >
+        #{actualCertCodeHide,jdbcType=VARCHAR},
+      </if>
+      <if test="actualCertCodeSecret != null" >
+        #{actualCertCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="actualMobile != null" >
+        #{actualMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="certPic != null" >
+        #{certPic,jdbcType=VARCHAR},
+      </if>
+      <if test="storePic != null" >
+        #{storePic,jdbcType=VARCHAR},
+      </if>
+      <if test="busPic != null" >
+        #{busPic,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=CHAR},
+      </if>
+      <if test="checkReason != null" >
+        #{checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApplyExample" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_company_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_company_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openId != null" >
+        open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardCode != null" >
+        card_code = #{record.cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brightCardCode != null" >
+        bright_card_code = #{record.brightCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBranch != null" >
+        is_branch = #{record.isBranch,jdbcType=CHAR},
+      </if>
+      <if test="record.parentInfoName != null" >
+        parent_info_name = #{record.parentInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentInfoCode != null" >
+        parent_info_code = #{record.parentInfoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchLevel != null" >
+        branch_level = #{record.branchLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.externalName != null" >
+        external_name = #{record.externalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryCat != null" >
+        industry_cat = #{record.industryCat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressId != null" >
+        address_id = #{record.addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualName != null" >
+        actual_name = #{record.actualName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualCertCode != null" >
+        actual_cert_code = #{record.actualCertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualCertCodeHide != null" >
+        actual_cert_code_hide = #{record.actualCertCodeHide,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualCertCodeSecret != null" >
+        actual_cert_code_secret = #{record.actualCertCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actualMobile != null" >
+        actual_mobile = #{record.actualMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certPic != null" >
+        cert_pic = #{record.certPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storePic != null" >
+        store_pic = #{record.storePic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busPic != null" >
+        bus_pic = #{record.busPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkStatus != null" >
+        check_status = #{record.checkStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.checkReason != null" >
+        check_reason = #{record.checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_company_apply
+    set id = #{record.id,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      open_id = #{record.openId,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      card_code = #{record.cardCode,jdbcType=VARCHAR},
+      bright_card_code = #{record.brightCardCode,jdbcType=VARCHAR},
+      is_branch = #{record.isBranch,jdbcType=CHAR},
+      parent_info_name = #{record.parentInfoName,jdbcType=VARCHAR},
+      parent_info_code = #{record.parentInfoCode,jdbcType=VARCHAR},
+      branch_level = #{record.branchLevel,jdbcType=VARCHAR},
+      external_name = #{record.externalName,jdbcType=VARCHAR},
+      industry_cat = #{record.industryCat,jdbcType=VARCHAR},
+      address_id = #{record.addressId,jdbcType=VARCHAR},
+      actual_name = #{record.actualName,jdbcType=VARCHAR},
+      actual_cert_code = #{record.actualCertCode,jdbcType=VARCHAR},
+      actual_cert_code_hide = #{record.actualCertCodeHide,jdbcType=VARCHAR},
+      actual_cert_code_secret = #{record.actualCertCodeSecret,jdbcType=VARCHAR},
+      actual_mobile = #{record.actualMobile,jdbcType=VARCHAR},
+      cert_pic = #{record.certPic,jdbcType=VARCHAR},
+      store_pic = #{record.storePic,jdbcType=VARCHAR},
+      bus_pic = #{record.busPic,jdbcType=VARCHAR},
+      check_status = #{record.checkStatus,jdbcType=CHAR},
+      check_reason = #{record.checkReason,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApply" >
+    update t_c_health_company_apply
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCode != null" >
+        card_code = #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brightCardCode != null" >
+        bright_card_code = #{brightCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isBranch != null" >
+        is_branch = #{isBranch,jdbcType=CHAR},
+      </if>
+      <if test="parentInfoName != null" >
+        parent_info_name = #{parentInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentInfoCode != null" >
+        parent_info_code = #{parentInfoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchLevel != null" >
+        branch_level = #{branchLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="externalName != null" >
+        external_name = #{externalName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCat != null" >
+        industry_cat = #{industryCat,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="actualName != null" >
+        actual_name = #{actualName,jdbcType=VARCHAR},
+      </if>
+      <if test="actualCertCode != null" >
+        actual_cert_code = #{actualCertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="actualCertCodeHide != null" >
+        actual_cert_code_hide = #{actualCertCodeHide,jdbcType=VARCHAR},
+      </if>
+      <if test="actualCertCodeSecret != null" >
+        actual_cert_code_secret = #{actualCertCodeSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="actualMobile != null" >
+        actual_mobile = #{actualMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="certPic != null" >
+        cert_pic = #{certPic,jdbcType=VARCHAR},
+      </if>
+      <if test="storePic != null" >
+        store_pic = #{storePic,jdbcType=VARCHAR},
+      </if>
+      <if test="busPic != null" >
+        bus_pic = #{busPic,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=CHAR},
+      </if>
+      <if test="checkReason != null" >
+        check_reason = #{checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthCompanyApply" >
+    update t_c_health_company_apply
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      card_code = #{cardCode,jdbcType=VARCHAR},
+      bright_card_code = #{brightCardCode,jdbcType=VARCHAR},
+      is_branch = #{isBranch,jdbcType=CHAR},
+      parent_info_name = #{parentInfoName,jdbcType=VARCHAR},
+      parent_info_code = #{parentInfoCode,jdbcType=VARCHAR},
+      branch_level = #{branchLevel,jdbcType=VARCHAR},
+      external_name = #{externalName,jdbcType=VARCHAR},
+      industry_cat = #{industryCat,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=VARCHAR},
+      actual_name = #{actualName,jdbcType=VARCHAR},
+      actual_cert_code = #{actualCertCode,jdbcType=VARCHAR},
+      actual_cert_code_hide = #{actualCertCodeHide,jdbcType=VARCHAR},
+      actual_cert_code_secret = #{actualCertCodeSecret,jdbcType=VARCHAR},
+      actual_mobile = #{actualMobile,jdbcType=VARCHAR},
+      cert_pic = #{certPic,jdbcType=VARCHAR},
+      store_pic = #{storePic,jdbcType=VARCHAR},
+      bus_pic = #{busPic,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=CHAR},
+      check_reason = #{checkReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+ <resultMap id="Custom_BaseResultMap" type="java.util.Map" >
+    <result column="company_id" 			property="companyId" 		jdbcType="VARCHAR" />
+    <result column="company_name" 			property="companyName" 		jdbcType="VARCHAR" />
+    <result column="is_branch" 				property="isBranch" 		jdbcType="VARCHAR" />
+    <result column="parent_info_code" 		property="parentInfoCode" 	jdbcType="VARCHAR" />
+    <result column="branch_level" 			property="branchLevel" 		jdbcType="VARCHAR" />
+    <result column="external_name" 			property="externalName" 	jdbcType="VARCHAR" />
+    <result column="industry_cat" 			property="industryCat" 		jdbcType="VARCHAR" />
+    <result column="create_time" 			property="createTime" 		jdbcType="VARCHAR" />
+    <result column="update_time" 			property="updateTime" 		jdbcType="VARCHAR" />
+    <result column="info_code" 				property="infoCode" 		jdbcType="VARCHAR" />
+    <result column="reg_address" 			property="regAddress" 		jdbcType="VARCHAR" />
+    <result column="address" 				property="address" 			jdbcType="VARCHAR" />
+    <result column="company_status" 		property="companyStatus" 	jdbcType="VARCHAR" />
+    <result column="sub_count"  			property="subCount" 		jdbcType="VARCHAR" />
+ </resultMap>
+ <select id="queryOneAddrOneCodeInfoByPageMap" parameterType="java.util.Map" resultMap="Custom_BaseResultMap">
+ 	SELECT
+		zz.id,
+		zz.company_name,
+		IFNULL( zz.is_branch, '0' ) is_branch,
+		zz.parent_info_code,
+		zz.branch_level,
+		zz.external_name,
+		zz.industry_cat,
+		zz.create_time,
+		zz.update_time,
+		zz.reg_address,
+		zz.address,
+		zz.info_code,
+		zz.company_id,
+		IFNULL( zz.company_status, '0' ) company_status,
+		zz.sub_count 
+	FROM
+		(
+			SELECT
+				a.id,
+				i.company_name,
+				a.is_branch,
+				a.parent_info_code,
+				a.branch_level,
+				a.external_name,
+				a.industry_cat,
+				a.company_id,
+				DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') create_time,
+				DATE_FORMAT(a.update_time,'%Y-%m-%d %H:%i:%s')update_time,
+				i.info_code,
+				i.reg_address,
+				concat( addr.province_name, addr.city_name, addr.area_name, addr.street_name, addr.village_name, addr.num_plate ) address,
+				(
+				SELECT
+					re.`status` 
+				FROM
+					t_c_health_code_create_record re 
+				WHERE
+					re.company_id = a.company_id 
+				ORDER BY
+					re.id DESC,
+					re.create_time DESC 
+					LIMIT 1 
+				) company_status,
+				( SELECT count( 1 ) FROM t_c_health_company_sub f WHERE f.company_id = i.id ) sub_count 
+			FROM
+				t_c_health_company_apply a
+				LEFT JOIN t_c_health_company_info i ON a.company_id = i.id
+			LEFT JOIN t_c_health_company_address addr ON addr.id = a.address_id 
+			
+		) zz
+		<where>
+			<if test="status != null">
+				and zz.company_status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="industryCat != null">
+				and zz.industry_cat = #{industryCat,jdbcType=VARCHAR}
+			</if>
+			<if test="externalName != null">
+				and zz.external_name like concat('%',#{externalName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="companyName != null">
+				and zz.company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="startTime != null">
+				and zz.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				and zz.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>			
+		</where>
+		ORDER BY zz.id
+			LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+ </select>
+ <select id="countOneAddrOneCodeInfoByPageMap" parameterType="java.util.Map" resultType="java.lang.Integer">
+ 	SELECT
+		count(1)
+	FROM
+		(
+			SELECT
+				a.id,
+				i.company_name,
+				a.is_branch,
+				a.parent_info_code,
+				a.branch_level,
+				a.external_name,
+				a.industry_cat,
+				a.create_time,
+				a.update_time,
+				i.info_code,
+				i.reg_address,
+				concat( addr.province_name, addr.city_name, addr.area_name, addr.street_name, addr.village_name, addr.num_plate ) address,
+				(
+				SELECT
+					re.`status` 
+				FROM
+					t_c_health_code_create_record re 
+				WHERE
+					re.company_id = a.company_id 
+				ORDER BY
+					re.id DESC,
+					re.create_time DESC 
+					LIMIT 1 
+				) company_status,
+				( SELECT count( 1 ) FROM t_c_health_company_sub f WHERE f.company_id = i.id ) sub_count 
+			FROM
+				t_c_health_company_apply a
+				LEFT JOIN t_c_health_company_info i ON a.company_id = i.id
+			LEFT JOIN t_c_health_company_address addr ON addr.id = a.address_id 
+			
+		) zz
+		<where>
+			<if test="status != null">
+				and zz.company_status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="industryCat != null">
+				and zz.industry_cat = #{industryCat,jdbcType=VARCHAR}
+			</if>
+			<if test="externalName != null">
+				and zz.external_name like concat('%',#{externalName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="companyName != null">
+				and zz.company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%') 
+			</if>
+			<if test="startTime != null">
+				and zz.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				and zz.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>			
+		</where>
+ 	</select>
+ 	 <resultMap id="CompangyScan_BaseResultMap" type="java.util.Map" >
+    <result column="company_id" 			property="companyId" 		jdbcType="VARCHAR" />
+     <result column="company_sub_id" 		property="companySubId" 		jdbcType="VARCHAR" />
+    <result column="company_name" 			property="companyName" 		jdbcType="VARCHAR" />
+    <result column="company_sub_name" 		property="companySubName" 		jdbcType="VARCHAR" />
+    <result column="is_branch" 				property="isBranch" 		jdbcType="VARCHAR" />
+    <result column="parent_info_code" 		property="parentInfoCode" 	jdbcType="VARCHAR" />
+    <result column="branch_level" 			property="branchLevel" 		jdbcType="VARCHAR" />
+    <result column="external_name" 			property="externalName" 	jdbcType="VARCHAR" />
+    <result column="industry_cat" 			property="industryCat" 		jdbcType="VARCHAR" />
+    <result column="create_time" 			property="createTime" 		jdbcType="VARCHAR" />
+    <result column="update_time" 			property="updateTime" 		jdbcType="VARCHAR" />
+    <result column="info_code" 				property="infoCode" 		jdbcType="VARCHAR" />
+    <result column="reg_address" 			property="regAddress" 		jdbcType="VARCHAR" />
+    <result column="address_detail" 		property="address" 			jdbcType="VARCHAR" />
+    <result column="company_status" 		property="companyStatus" 	jdbcType="VARCHAR" />
+    <result column="sub_count"  			property="subCount" 		jdbcType="VARCHAR" />
+    <result column="scan_date"  			property="scanDate" 		jdbcType="VARCHAR" />
+    <result column="scan_count"  			property="scanCount" 		jdbcType="VARCHAR" />
+    
+ </resultMap>
+ 	 <select id="queryCompanyScanStatisticsPageMap" parameterType="java.util.Map" resultMap="CompangyScan_BaseResultMap">
+ 	SELECT
+ 	kk.id company_id,
+	kk.address_detail,
+	kk.company_name,
+	kk.create_time,
+	kk.external_name,
+	kk.industry_cat,
+	( SELECT count( s.id ) FROM t_c_health_company_sub s WHERE s.company_id = kk.id 
+		and date(create_time) <![CDATA[<=]]> zz.scan_date ) sub_count,
+	kk.reg_address,
+	kk.update_time,		
+	IFNULL( kk.company_status, '0' ) company_status,
+	zz.scan_date,
+	zz.scan_count
+FROM
+	(
+	SELECT
+		i.id,
+		i.company_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat,
+		a.external_name,
+		i.create_time,
+		i.update_time,
+		(
+			SELECT
+				re.`status` 
+			FROM
+				t_c_health_code_create_record re 
+			WHERE
+				re.company_id = i.id 
+			ORDER BY
+				re.id DESC,
+				re.create_time DESC 
+				LIMIT 1 
+			) company_status
+	FROM
+		t_c_health_company_apply a,
+		t_c_health_company_info i 
+	WHERE
+		a.company_id = i.id 
+	GROUP BY
+		i.id,
+		i.company_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat,
+		a.external_name,
+		i.create_time,
+		i.update_time 
+	) kk,
+	(
+	SELECT
+		gg.scan_date,
+		scan_count,
+		gg.company_id company_id 
+	FROM
+		(
+		SELECT
+			a.company_id,
+			DATE_FORMAT( a.create_time, '%Y-%m-%d' ) scan_date,
+			count( a.company_id ) scan_count
+		FROM
+			t_c_health_company_sweep_record a 
+		GROUP BY
+		 scan_date, a.company_id
+	 UNION ALL
+		SELECT
+			b.company_id,
+			DATE_FORMAT( b.create_time, '%Y-%m-%d' ) scan_date,
+			count( b.company_id ) scan_count
+		FROM
+			t_c_health_company_sweep_rec_his b
+		GROUP BY
+			scan_date, b.company_id
+		) gg 
+		<where>
+		<if test="startTime != null">
+			and gg.scan_date <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d')
+		</if>
+		<if test="endTime != null">
+			and gg.scan_date <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d')
+		</if>			
+		</where>
+	) zz 
+	
+		<where>
+		zz.company_id = kk.id 
+			<if test="status != null">
+				and kk.company_status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="industryCat != null">
+				and kk.industry_cat = #{industryCat,jdbcType=VARCHAR}
+			</if>
+			<if test="companyName != null">
+				and kk.company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%') 
+			</if>		
+		</where>
+		ORDER BY scan_date
+			LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+ </select>
+ <select id="countqueryCompanyScanStatisticsByPageMap" parameterType="java.util.Map" resultType="java.lang.Integer">
+ 	SELECT
+		count(id)
+FROM
+	(
+	SELECT
+		i.id,
+		i.company_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat,
+		a.external_name,
+		i.create_time,
+		i.update_time,
+		(
+			SELECT
+				re.`status` 
+			FROM
+				t_c_health_code_create_record re 
+			WHERE
+				re.company_id = i.id 
+			ORDER BY
+				re.id DESC,
+				re.create_time DESC 
+				LIMIT 1 
+			) company_status
+	FROM
+		t_c_health_company_apply a,
+		t_c_health_company_info i 
+	WHERE
+		a.company_id = i.id 
+	GROUP BY
+		i.id,
+		i.company_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat,
+		a.external_name,
+		i.create_time,
+		i.update_time 
+	) kk,
+	(
+	SELECT
+		gg.scan_date,
+		scan_count,
+		gg.company_id company_id 
+	FROM
+		(
+		SELECT
+			a.company_id,
+			count( a.company_id ) scan_count,
+			DATE_FORMAT( a.create_time, '%Y-%m-%d' ) scan_date 
+		FROM
+			t_c_health_company_sweep_record a 
+		GROUP BY
+		 scan_date, a.company_id
+	 UNION ALL
+		SELECT
+			b.company_id,
+			count( b.company_id ) scan_count,
+			DATE_FORMAT( b.create_time, '%Y-%m-%d' ) scan_date 
+		FROM
+			t_c_health_company_sweep_rec_his b
+		GROUP BY
+			scan_date, b.company_id
+		) gg 
+		<where>
+		<if test="startTime != null">
+			and gg.scan_date <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d')
+		</if>
+		<if test="endTime != null">
+			and gg.scan_date <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d')
+		</if>			
+		</where>
+	) zz 
+	
+		<where>
+		zz.company_id = kk.id 
+			<if test="status != null">
+				and kk.company_status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="industryCat != null">
+				and kk.industry_cat = #{industryCat,jdbcType=VARCHAR}
+			</if>
+			<if test="companyName != null">
+				and kk.company_name like concat('%',#{companyName,jdbcType=VARCHAR},'%') 
+			</if>		
+		</where>
+ 	</select>
+ 	
+ 	 	 <select id="queryCompanySubScanStatisticsPageMap" parameterType="java.util.Map" resultMap="CompangyScan_BaseResultMap">
+		SELECT
+	kk.id company_id,
+	kk.address_detail,
+	kk.company_name,
+	kk.external_name,
+	kk.industry_cat,
+	kk.reg_address,	
+	zz.update_time,
+	zz.create_time,
+	zz.scan_date,
+	IFNULL( zz.scan_count, '0' ) scan_count,
+	zz.company_sub_id,
+	zz.company_sub_name 
+FROM
+	(
+	SELECT
+		i.id,
+		i.company_name,
+		a.external_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat
+	FROM
+		t_c_health_company_apply a,
+		t_c_health_company_info i 
+	WHERE
+		a.company_id = i.id 
+	GROUP BY
+		i.id,
+		i.company_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat,
+		a.external_name
+	) kk
+	RIGHT JOIN (
+	SELECT
+		ww.id company_sub_id,
+		ww.company_sub_name,
+		ww.create_time,
+		ww.update_time,
+		qq.scan_count,
+		qq.scan_date,
+		qq.company_id
+	FROM
+		( SELECT s.id, s.company_id, s.company_sub_name,s.create_time,s.update_time FROM t_c_health_company_sub s WHERE s.company_id = #{companyId,jdbcType=VARCHAR} ) ww
+		LEFT JOIN (
+		SELECT
+			gg.scan_date,
+			count( gg.company_id ) scan_count,
+			gg.company_id company_id,
+			gg.company_sub_id 
+		FROM
+			(
+			SELECT
+				a.company_id,
+				DATE_FORMAT( a.create_time, '%Y-%m-%d' ) scan_date,
+				a.company_sub_id 
+			FROM
+				t_c_health_company_sweep_record a 
+			WHERE
+				date( a.create_time ) = #{scanDate,jdbcType=VARCHAR} UNION ALL
+			SELECT
+				b.company_id,
+				DATE_FORMAT( b.create_time, '%Y-%m-%d' ) scan_date,
+				b.company_sub_id 
+			FROM
+				t_c_health_company_sweep_rec_his b 
+			WHERE
+				date( b.create_time ) = #{scanDate,jdbcType=VARCHAR}
+			) gg 
+		GROUP BY
+			gg.company_sub_id,
+			gg.scan_date,
+			gg.company_id 
+		) qq ON ww.id = qq.company_sub_id 
+	) zz ON zz.company_id = kk.id 
+	AND kk.id = #{companyId,jdbcType=VARCHAR}
+	order by
+	zz.create_time DESC 
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+ </select>
+ 
+ <select id="countCompanySubScanStatisticsPageMap" parameterType="java.util.Map" resultType="java.lang.Integer">
+ 	SELECT
+		count(company_sub_id)
+	FROM
+	(
+	SELECT
+		i.id,
+		i.company_name,
+		a.external_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat
+	FROM
+		t_c_health_company_apply a,
+		t_c_health_company_info i 
+	WHERE
+		a.company_id = i.id 
+	GROUP BY
+		i.id,
+		i.company_name,
+		i.reg_address,
+		a.address_detail,
+		a.industry_cat,
+		a.external_name
+	) kk
+	RIGHT JOIN (
+	SELECT
+		ww.id company_sub_id,
+		ww.company_sub_name,
+		ww.create_time,
+		ww.update_time,
+		qq.scan_count,
+		qq.scan_date,
+		qq.company_id
+	FROM
+		( SELECT s.id, s.company_id, s.company_sub_name,s.create_time,s.update_time FROM t_c_health_company_sub s WHERE s.company_id = #{companyId,jdbcType=VARCHAR} ) ww
+		LEFT JOIN (
+		SELECT
+			gg.scan_date,
+			count( gg.company_id ) scan_count,
+			gg.company_id company_id,
+			gg.company_sub_id 
+		FROM
+			(
+			SELECT
+				a.company_id,
+				DATE_FORMAT( a.create_time, '%Y-%m-%d' ) scan_date,
+				a.company_sub_id 
+			FROM
+				t_c_health_company_sweep_record a 
+			WHERE
+				date( a.create_time ) = #{scanDate,jdbcType=VARCHAR} UNION ALL
+			SELECT
+				b.company_id,
+				DATE_FORMAT( b.create_time, '%Y-%m-%d' ) scan_date,
+				b.company_sub_id 
+			FROM
+				t_c_health_company_sweep_rec_his b 
+			WHERE
+				date( b.create_time ) = #{scanDate,jdbcType=VARCHAR}
+			) gg 
+		GROUP BY
+			gg.company_sub_id,
+			gg.scan_date,
+			gg.company_id 
+		) qq ON ww.id = qq.company_sub_id 
+	) zz ON zz.company_id = kk.id 
+	AND kk.id = #{companyId,jdbcType=VARCHAR}
+ 	</select>
+ 
+ 
+ <resultMap id="Custom_Edit_BaseResultMap" type="java.util.Map" >
+ 	<result column="is_branch" 				property="isBranch" 		jdbcType="VARCHAR" />
+    <result column="parent_info_code" 		property="parentInfoCode" 	jdbcType="VARCHAR" />
+    <result column="branch_level" 			property="branchLevel" 		jdbcType="VARCHAR" />
+    <result column="external_name" 			property="externalName" 	jdbcType="VARCHAR" />
+    <result column="industry_cat" 			property="industryCat" 		jdbcType="VARCHAR" />
+    <result column="actual_name" 			property="actualName" 		jdbcType="VARCHAR" />
+    <result column="actual_cert_code" 		property="actualCertCode" 	jdbcType="VARCHAR" />
+    <result column="actual_mobile" 			property="actualMobile" 	jdbcType="VARCHAR" />
+    <result column="cert_pic" 				property="certPic" 			jdbcType="VARCHAR" />
+    <result column="store_pic" 				property="storePic" 		jdbcType="VARCHAR" />
+    <result column="bus_pic" 				property="busPic" 			jdbcType="VARCHAR" />
+    <result column="address" 				property="address" 			jdbcType="VARCHAR" />
+    <result column="reg_address" 			property="regAddress" 		jdbcType="VARCHAR" />
+    <result column="info_code" 				property="infoCode" 		jdbcType="VARCHAR" />
+    <result column="company_status" 		property="companyStatus" 	jdbcType="VARCHAR" />
+    <result column="company_name" 			property="companyName" 		jdbcType="VARCHAR" />
+    <result column="record_id" 				property="recordId" 		jdbcType="VARCHAR" />
+ </resultMap>
+ 
+ <select id="getOneAddrOneCodeInfoById" parameterType="java.util.Map" resultMap="Custom_Edit_BaseResultMap">
+	SELECT
+		b.is_branch,
+		b.parent_info_code,
+		b.branch_level,
+		b.external_name,
+		b.industry_cat,
+		b.actual_name,
+		b.actual_cert_code,
+		b.actual_mobile,
+		b.cert_pic,
+		b.store_pic,
+		b.bus_pic,
+		a.info_code,
+		a.company_name,
+		a.reg_address,
+		CONCAT( addr.province_name, addr.city_name, addr.area_name, addr.street_name, addr.village_name, addr.num_plate ) AS address,
+		k.`STATUS` company_status,
+		k.id as record_id
+	FROM
+		t_c_health_company_apply b
+		LEFT JOIN t_c_health_company_info a ON b.company_id = a.id
+		LEFT JOIN t_c_health_company_address addr ON b.address_id = addr.id
+		LEFT JOIN (
+		SELECT
+			gg.`STATUS`,
+			gg.company_id,
+			gg.id 
+		FROM
+			t_c_health_code_create_record gg 
+		WHERE
+			gg.company_id =  #{companyId,jdbcType=VARCHAR}
+		ORDER BY
+			gg.id DESC,
+			gg.create_time DESC 
+			LIMIT 1 
+		) k ON b.company_id = k.company_id 
+	WHERE
+		b.id = #{id,jdbcType=VARCHAR} 
+ </select>
+</mapper>

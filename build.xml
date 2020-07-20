@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="xkt.personal.mgmt" default="release">
+
+	<!-- 设置全局参数 -->
+	<property name="base.release.dir" location="." />
+	
+	<!--修改配置1:jar包引用路径,此处需要自定义-->
+	<property name="thirdparty.release.dir" value="../../../common/app_server"/>
+	
+	<property name="release.dir" value="${base.release.dir}/target" />
+	
+	<property name="doc.dir" value="${base.release.dir}/docs/amber" />
+	<property name="bundle.bin.dir" value="${base.release.dir}/build/bin" />
+	<property name="build.doc" value="false" />
+	
+	<!-- BUNDLE的名称与版本号 -->
+	<property name="bundle.name" value="xkt.personal.mgmt" />
+	<property name="bundle.ver" value="1.0.0" />
+	
+	<echo message="Bundle_Version ${bundle.name}_${bundle.ver}"/>
+
+	<!-- 清理历史编译文件 -->
+	<target name="clean" description="Remove all generated release files.">
+		<delete failonerror="false">
+			<fileset dir="${release.dir}" includes="${bundle.name}_*.*.jar" />
+		</delete>
+		<delete dir="${doc.dir}" failonerror="false" />
+		<delete dir="${bundle.bin.dir}" failonerror="false" />
+	</target>
+	
+	<!--准备目录-->
+	<target name="init" depends="clean">
+		<mkdir dir="${base.release.dir}" />
+		<mkdir dir="${doc.dir}" />
+		<mkdir dir="${bundle.bin.dir}" />
+		<mkdir dir="${release.dir}"/>
+	</target>
+
+	<!-- 配置依赖的BUNDLE -->
+	<target name="set.classpath">
+		<path id="project.compile.classpath" location=".">
+			<fileset dir="${thirdparty.release.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${release.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+	</target>
+	<target name="doc" if="g-doc">
+		<!-- 生成JAVADOC ,不是必须!! -->
+		<javadoc encoding="UTF-8" charset="UTF-8" author="true" bottom="朗新科技" destdir="${doc.dir}" doctitle="&lt;font color=#ff00000&gt;${bundle.name} API&lt;/font&gt;" sourcepath="src" use="true" version="true" header="版本0.5" windowtitle="${bundle.name}--API">
+			<classpath refid="project.compile.classpath" />
+		</javadoc>
+	</target>
+	<!-- 生成BUNDLE -->
+	<target name="release" depends="init,set.classpath">
+		<!-- 编译源代码 !! -->
+		<javac encoding="utf-8" destdir="${bundle.bin.dir}" failonerror="true" verbose="false" debug="yes">
+			<classpath refid="project.compile.classpath" />
+			<src path="src" />
+		</javac>
+		<!--依据build.doc的值,决定是否生成javadoc-->
+        <condition property="g-doc">
+            <istrue value="${build.doc}"/>                    
+        </condition>
+        <antcall target="doc"></antcall>  
+		<!-- 时间戳 -->
+		<tstamp>
+			<format property="DSTAMP" pattern="yyyyMMddHHmm" />
+		</tstamp>
+		<echo message="DSTAMP is ${DSTAMP}"/>
+		
+		<!-- 动态修改MANIFEST.MF -->
+		<copyfile dest="MANIFEST.NEW" src="META-INF/MANIFEST.MF" />
+		<replace file="MANIFEST.NEW" token="qualifier" value="${DSTAMP}"/>
+		<!-- 生成BUNDLE JAR,不是必须!! -->
+		<jar jarfile="${release.dir}/${bundle.name}_${bundle.ver}.jar" filesonly="true" manifest="MANIFEST.NEW">
+			<zipfileset dir="${bundle.bin.dir}" includes="**/*.class" />
+			<!-- 其他资源打入BUNDLE包 -->
+			<zipfileset dir="META-INF" prefix="META-INF">
+				<include name="**/*.*" />
+			</zipfileset>
+			<zipfileset dir="src">
+				<include name="**/*.xml" />
+				<include name="**/*.xsd" />
+				<include name="**/*.properties" />
+			</zipfileset>
+			<!--修改配置2:根据工程目录,定义需要打包的目录及文件-->
+			
+			<zipfileset dir="config" prefix="config">
+				<include name="**/*.*" />
+			</zipfileset>
+			
+			<zipfileset dir="face" prefix="face">
+				<include name="**/*.*" />
+			</zipfileset>
+			
+			<zipfileset dir="lib" prefix="lib">
+				<include name="**/*.jar" />
+			</zipfileset>
+
+			<zipfileset file="config.xml" />
+		</jar>
+		<!-- 删除临时文件 -->
+		<delete file="MANIFEST.NEW"/>
+		<!-- 源代码打包,不是必须!! 
+		<zip destfile="${release.dir}/${bundle.name}_${bundle.ver}.v${DSTAMP}.zip" basedir="src" includes="**/*.java" />-->
+		
+		<echo message="Release OK!!!!!!"/>
+	</target>
+
+</project>

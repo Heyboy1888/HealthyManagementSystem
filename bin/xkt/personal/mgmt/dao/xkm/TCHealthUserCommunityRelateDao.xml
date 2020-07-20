@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthUserCommunityRelateDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthUserCommunityRelate" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="community_id" property="communityId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="ext_attr1" property="extAttr1" jdbcType="VARCHAR" />
+    <result column="ext_attr2" property="extAttr2" jdbcType="VARCHAR" />
+    <result column="ext_attr3" property="extAttr3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, real_name, mobile, community_id, create_time, update_time, ext_attr1, ext_attr2, 
+    ext_attr3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelateCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_user_community_relate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_health_user_community_relate
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_c_health_user_community_relate
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelateCriteria" >
+    delete from t_c_health_user_community_relate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelate" >
+    insert into t_c_health_user_community_relate (id, real_name, mobile, 
+      community_id, create_time, update_time, 
+      ext_attr1, ext_attr2, ext_attr3
+      )
+    values (#{id,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{communityId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{extAttr1,jdbcType=VARCHAR}, #{extAttr2,jdbcType=VARCHAR}, #{extAttr3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelate" >
+    insert into t_c_health_user_community_relate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="communityId != null" >
+        community_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="extAttr1 != null" >
+        ext_attr1,
+      </if>
+      <if test="extAttr2 != null" >
+        ext_attr2,
+      </if>
+      <if test="extAttr3 != null" >
+        ext_attr3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="communityId != null" >
+        #{communityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extAttr1 != null" >
+        #{extAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttr2 != null" >
+        #{extAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttr3 != null" >
+        #{extAttr3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelateCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_user_community_relate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_user_community_relate
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityId != null" >
+        community_id = #{record.communityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.extAttr1 != null" >
+        ext_attr1 = #{record.extAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extAttr2 != null" >
+        ext_attr2 = #{record.extAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extAttr3 != null" >
+        ext_attr3 = #{record.extAttr3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_user_community_relate
+    set id = #{record.id,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      community_id = #{record.communityId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      ext_attr1 = #{record.extAttr1,jdbcType=VARCHAR},
+      ext_attr2 = #{record.extAttr2,jdbcType=VARCHAR},
+      ext_attr3 = #{record.extAttr3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelate" >
+    update t_c_health_user_community_relate
+    <set >
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="communityId != null" >
+        community_id = #{communityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extAttr1 != null" >
+        ext_attr1 = #{extAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttr2 != null" >
+        ext_attr2 = #{extAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttr3 != null" >
+        ext_attr3 = #{extAttr3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xkt.personal.mgmt.bo.TCHealthUserCommunityRelate" >
+    update t_c_health_user_community_relate
+    set real_name = #{realName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      community_id = #{communityId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      ext_attr1 = #{extAttr1,jdbcType=VARCHAR},
+      ext_attr2 = #{extAttr2,jdbcType=VARCHAR},
+      ext_attr3 = #{extAttr3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByPage" parameterType="java.util.Map" resultMap="SubClassResultMap">
+		SELECT
+			a.*
+		FROM
+			t_c_health_user_community_relate a
+		<where>
+			<if test="districtCode != null and streetCode == null ">
+				AND (
+					a.community_id IN (
+					SELECT
+						id 
+					FROM
+						(
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{districtCode,jdbcType=VARCHAR}  ) ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{districtCode,jdbcType=VARCHAR}  ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id = #{districtCode,jdbcType=VARCHAR} 
+						) x 
+					WHERE
+						x.grade = 4 
+					) 
+				)
+				  
+			</if>
+			<if test="districtCode != null and streetCode != null ">
+				AND (
+					a.community_id IN (
+					SELECT
+						id 
+					FROM
+						(
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{streetCode,jdbcType=VARCHAR}  ) ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{streetCode,jdbcType=VARCHAR}  ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id = #{streetCode,jdbcType=VARCHAR} 
+						) x 
+					WHERE
+						x.grade = 4 
+					) 
+				)
+			</if>
+			<if test="districtCode != null and streetCode != null and communityID != null" >
+	       		AND a.community_id =  #{communityID,jdbcType=VARCHAR}
+	      	</if>
+	      	
+	      	<if test="extAttr1 != null" >
+	      		AND a.ext_attr1 =  #{extAttr1,jdbcType=VARCHAR}
+	      	</if>
+			<if test="relaName != null ">
+				AND a.real_name =  #{relaName,jdbcType=VARCHAR}
+			</if>	
+	        <if test="startTime != null" >
+	        	AND a.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	        </if>
+	        <if test="endTime != null" >
+	        	AND a.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	       </if>			
+	      	<if test="mobile != null" >
+	       		AND a.mobile =  #{mobile,jdbcType=VARCHAR}
+	      	</if>		
+		</where>
+	ORDER BY a.create_time
+	LIMIT ${(pageBegin-pageBegin)+(pageBegin-1)},${pageEnd-pageBegin+1}
+  </select>
+  
+  
+ 	<resultMap id="SubClassResultMap" type="xkt.personal.mgmt.bo.TCHealthUserCommunityRelateExt" extends="BaseResultMap">
+  		<result column="cmmty_type" 		property="cmmtyType" 	jdbcType="VARCHAR" />
+		<result column="commuity_name" 		property="commuityName" jdbcType="VARCHAR" />
+  	</resultMap>
+  
+  
+  <select id="countByExampleAndPage" parameterType="java.util.Map" resultType="java.lang.Integer" >
+		SELECT
+			count(1)
+		FROM
+			t_c_health_user_community_relate a
+		<where>
+			<if test="districtCode != null and streetCode == null ">
+				AND (
+					a.community_id IN (
+					SELECT
+						id 
+					FROM
+						(
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{districtCode,jdbcType=VARCHAR}  ) ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{districtCode,jdbcType=VARCHAR}  ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id = #{districtCode,jdbcType=VARCHAR} 
+						) x 
+					WHERE
+						x.grade = 4 
+					) 
+				)
+				  
+			</if>
+			<if test="districtCode != null and streetCode != null ">
+				AND (
+					a.community_id IN (
+					SELECT
+						id 
+					FROM
+						(
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{streetCode,jdbcType=VARCHAR}  ) ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id IN ( SELECT community_code FROM t_c_health_community_info WHERE p_id = #{streetCode,jdbcType=VARCHAR}  ) UNION
+						SELECT
+							community_code,
+							id,
+							grade 
+						FROM
+							t_c_health_community_info 
+						WHERE
+							p_id = #{streetCode,jdbcType=VARCHAR} 
+						) x 
+					WHERE
+						x.grade = 4 
+					) 
+				)
+			</if>
+			<if test="districtCode != null and streetCode != null and communityID != null" >
+	       		AND a.community_id =  #{communityID,jdbcType=VARCHAR}
+	      	</if>
+	      	
+	      	<if test="extAttr1 != null" >
+	      		AND a.ext_attr1 =  #{extAttr1,jdbcType=VARCHAR}
+	      	</if>
+			<if test="relaName != null ">
+				AND a.real_name =  #{relaName,jdbcType=VARCHAR}
+			</if>	
+	        <if test="startTime != null" >
+	        	AND a.create_time <![CDATA[>=]]> STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	        </if>
+	        <if test="endTime != null" >
+	        	AND a.create_time <![CDATA[<=]]> STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+	       </if>			
+	      	<if test="mobile != null" >
+	       		AND a.mobile =  #{mobile,jdbcType=VARCHAR}
+	      	</if>		
+		</where>
+  </select>
+  
+  
+</mapper>

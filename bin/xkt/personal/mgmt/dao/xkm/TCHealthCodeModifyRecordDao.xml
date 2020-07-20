@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xkt.personal.mgmt.dao.xkm.TCHealthCodeModifyRecordDao" >
+  <resultMap id="BaseResultMap" type="xkt.personal.mgmt.bo.TCHealthCodeModifyRecord" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="cert_code" property="certCode" jdbcType="VARCHAR" />
+    <result column="is_healthy_before" property="isHealthyBefore" jdbcType="VARCHAR" />
+    <result column="is_healthy_after" property="isHealthyAfter" jdbcType="VARCHAR" />
+    <result column="isolation_days" property="isolationDays" jdbcType="INTEGER" />
+    <result column="isolation_date" property="isolationDate" jdbcType="TIMESTAMP" />
+    <result column="modify_code" property="modifyCode" jdbcType="CHAR" />
+    <result column="modify_reason" property="modifyReason" jdbcType="VARCHAR" />
+    <result column="modify_person" property="modifyPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, real_name, cert_code, is_healthy_before, is_healthy_after, isolation_days, isolation_date, 
+    modify_code, modify_reason, modify_person, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xkt.personal.mgmt.bo.TCHealthCodeModifyRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_health_code_modify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCodeModifyRecordExample" >
+    delete from t_c_health_code_modify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xkt.personal.mgmt.bo.TCHealthCodeModifyRecord" >
+    insert into t_c_health_code_modify_record (id, real_name, cert_code, 
+      is_healthy_before, is_healthy_after, isolation_days, 
+      isolation_date, modify_code, modify_reason, 
+      modify_person, create_time, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{certCode,jdbcType=VARCHAR}, 
+      #{isHealthyBefore,jdbcType=VARCHAR}, #{isHealthyAfter,jdbcType=VARCHAR}, #{isolationDays,jdbcType=INTEGER}, 
+      #{isolationDate,jdbcType=TIMESTAMP}, #{modifyCode,jdbcType=CHAR}, #{modifyReason,jdbcType=VARCHAR}, 
+      #{modifyPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xkt.personal.mgmt.bo.TCHealthCodeModifyRecord" >
+    insert into t_c_health_code_modify_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="certCode != null" >
+        cert_code,
+      </if>
+      <if test="isHealthyBefore != null" >
+        is_healthy_before,
+      </if>
+      <if test="isHealthyAfter != null" >
+        is_healthy_after,
+      </if>
+      <if test="isolationDays != null" >
+        isolation_days,
+      </if>
+      <if test="isolationDate != null" >
+        isolation_date,
+      </if>
+      <if test="modifyCode != null" >
+        modify_code,
+      </if>
+      <if test="modifyReason != null" >
+        modify_reason,
+      </if>
+      <if test="modifyPerson != null" >
+        modify_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="certCode != null" >
+        #{certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealthyBefore != null" >
+        #{isHealthyBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="isHealthyAfter != null" >
+        #{isHealthyAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="isolationDays != null" >
+        #{isolationDays,jdbcType=INTEGER},
+      </if>
+      <if test="isolationDate != null" >
+        #{isolationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyCode != null" >
+        #{modifyCode,jdbcType=CHAR},
+      </if>
+      <if test="modifyReason != null" >
+        #{modifyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyPerson != null" >
+        #{modifyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xkt.personal.mgmt.bo.TCHealthCodeModifyRecordExample" resultType="java.lang.Integer" >
+    select count(*) from t_c_health_code_modify_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_c_health_code_modify_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certCode != null" >
+        cert_code = #{record.certCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHealthyBefore != null" >
+        is_healthy_before = #{record.isHealthyBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHealthyAfter != null" >
+        is_healthy_after = #{record.isHealthyAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isolationDays != null" >
+        isolation_days = #{record.isolationDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.isolationDate != null" >
+        isolation_date = #{record.isolationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyCode != null" >
+        modify_code = #{record.modifyCode,jdbcType=CHAR},
+      </if>
+      <if test="record.modifyReason != null" >
+        modify_reason = #{record.modifyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyPerson != null" >
+        modify_person = #{record.modifyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_c_health_code_modify_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      cert_code = #{record.certCode,jdbcType=VARCHAR},
+      is_healthy_before = #{record.isHealthyBefore,jdbcType=VARCHAR},
+      is_healthy_after = #{record.isHealthyAfter,jdbcType=VARCHAR},
+      isolation_days = #{record.isolationDays,jdbcType=INTEGER},
+      isolation_date = #{record.isolationDate,jdbcType=TIMESTAMP},
+      modify_code = #{record.modifyCode,jdbcType=CHAR},
+      modify_reason = #{record.modifyReason,jdbcType=VARCHAR},
+      modify_person = #{record.modifyPerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="queryModifyRecord" parameterType="java.util.Map" resultType="java.util.Map">
+  	select 
+  		id, real_name, cert_code, is_healthy_before, is_healthy_after, isolation_days, isolation_date, 
+    	modify_code, modify_reason, modify_person, create_time, update_time
+  	 from t_c_health_code_modify_record
+  	 where 
+  	 cert_code = #{certCodeSecret,jdbcType=VARCHAR}
+  	 <if test="startTime != null">
+				AND update_time <![CDATA[>=]]>
+				STR_TO_DATE(#{startTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			<if test="endTime != null">
+				AND update_time <![CDATA[<=]]>
+				STR_TO_DATE(#{endTime,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+			</if>
+			order by update_time desc 
+  </select>
+</mapper>
